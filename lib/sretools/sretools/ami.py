@@ -4,11 +4,18 @@ import time
 from botocore.exceptions import ClientError
 from botocore.exceptions import NoCredentialsError
 
-from modules import grv, utils
+#from modules import grv, utils
+import grv, utils
 
 
+# ----------------------------------------------------------
+#
+# ami_info
+#
+# ----------------------------------------------------------
 def ami_info(session: boto3.session.Session, ami_id) -> dict:
-    """Describe AMI information.
+    """
+    Describe AMI information.
 
     Args:
         session: boto3 session
@@ -21,8 +28,14 @@ def ami_info(session: boto3.session.Session, ami_id) -> dict:
     return response['Images'][0]
 
 
+# ----------------------------------------------------------
+#
+# wait_for_ami_availability
+#
+# ----------------------------------------------------------
 def wait_for_ami_availability(session: boto3.session.Session, ami_id):
-    """Wait for the ami to become available.
+    """
+    Wait for the ami to become available.
 
     Args:
         session: boto3 session
@@ -39,8 +52,14 @@ def wait_for_ami_availability(session: boto3.session.Session, ami_id):
     return
 
 
+# ----------------------------------------------------------
+#
+# list_amis
+#
+# ----------------------------------------------------------
 def list_amis(session: boto3.session.Session) -> list:
-    """List AMIs available.
+    """
+    List AMIs available.
 
     Args:
         session: boto3 session
@@ -57,8 +76,14 @@ def list_amis(session: boto3.session.Session) -> list:
     # pprint(sorted(image_list, key=lambda x: (x[2], x[0]), reverse=False))
 
 
+# ----------------------------------------------------------
+#
+# list_images_in_s3
+#
+# ----------------------------------------------------------
 def list_images_in_s3(session: boto3.session.Session, bucket: str, path: str) -> list:
-    """List images in S3.
+    """
+    List images in S3.
 
     Args:
         session: boto3 session
@@ -78,8 +103,14 @@ def list_images_in_s3(session: boto3.session.Session, bucket: str, path: str) ->
     return sorted(image_list, key=lambda x: x['Name'])
 
 
+# ----------------------------------------------------------
+#
+# export_ami
+#
+# ----------------------------------------------------------
 def export_ami(session: boto3.session.Session, ami_id: str, bucket: str, path: str, role_name: str):
-    """Export AMI to S3.
+    """
+    Export AMI to S3.
 
     Args:
         session: boto3 session
@@ -126,8 +157,14 @@ def export_ami(session: boto3.session.Session, ami_id: str, bucket: str, path: s
     return
 
 
+# ----------------------------------------------------------
+#
+# import_image
+#
+# ----------------------------------------------------------
 def import_image(session: boto3.session.Session, image_name: str, bucket: str, path: str, role_name: str) -> str:
-    """Import image from S3.
+    """
+    Import image from S3.
 
     Args:
         session: boto3 session
@@ -189,8 +226,14 @@ def import_image(session: boto3.session.Session, image_name: str, bucket: str, p
     return real_image_id
 
 
+# ----------------------------------------------------------
+#
+# copy_ami
+#
+# ----------------------------------------------------------
 def copy_ami(session: boto3.session.Session, ami_id, region_list) -> bool:
-    """Copy AMI across regions.
+    """
+    Copy AMI across regions.
 
     Args:
         session: boto3 session
@@ -235,8 +278,14 @@ def copy_ami(session: boto3.session.Session, ami_id, region_list) -> bool:
     return True
 
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def get_vmimport_role(session: boto3.session.Session, bucket: str) -> str:
-    """Get or create the vmimport role.
+    """
+    Get or create the vmimport role.
 
     Args:
         session: boto3 session

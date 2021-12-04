@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>doc</title>
+  </head>
+
+  <body>
+    <center>
+      <h2>alb.py</h2>
+    </center>
+    <hr noshade>
+
+    alb.py - A library of routines to handle ALB (Amazon Load Balancer)
+&nbsp;
+
+<ul>
+<li>alb_connect_sg - Connect gravitar security group to alb.</li>
+<ul>
+<li>Args:</li>
+<ul>
+<li>grv_name: gravitar name</li>
+<li>cluster_name: the name of eks cluster</li>
+<li>public: is this a public or internal alb</li>
+</ul>
+<li>Returns:</li> 
+<ul>
+<li>success as a boolean</li>
+</ul>
+<li>Example:</li>
+<ul>
+<li><code>is_connected = alb_connect_sg("grv", "cluster",
+pub_or_internal)</code></li>
+</ul>
+</ul>
+
+&nbsp;
+<li>alb_create - Create an Application Load Balancer.</li>
+<ul>
+    <li>Args:</li>
+<ul>
+        <li>grv_name: gravitar name</li>
+        <li>public: is this a public or internal alb</li>
+</ul>
+    <li>Returns: </li>
+<ul>
+        <li>dict of alb status response or exception dict</li>
+</ul>
+    <li>Example:</li>
+<ul>
+        <li><code>return_dict = alb_create("grv", pub_or_internal)</code></li>
+</ul>
+</ul>
+&nbsp;
+
+<li>alb_info - Get alb information.</li>
+
+    Args: 
+        grv_name: gravitar name
+
+    Returns: 
+        a dictionary containing information of load balancers and security groups
+
+    Example:
+        return_dict = alb_info("grv")
+
+&nbsp;
+
+<li>delete_alb - Delete an ALB.</li>
+
+    Args:
+        grv_name: gravitar name to delete ALBs from
+        public: is this a public or internal alb
+
+    Returns: 
+        True if alb is deleted or not available, or False
+
+    Example:
+        a
+
+&nbsp;
+
+<li>find_alb_arn - Find the ALB Arn.</li>
+
+    Args: 
+        alb_name: name of alb
+
+    Returns: 
+        ARN of the given alb, or empty string
+
+    Example:
+        a
+
+&nbsp;
+
+<li>find_sg_attached - Return the security group attached to a alb.</li>
+
+    Args: 
+        alb_name: the name of the alb
+
+    Returns: 
+        the id of security group, or empty string
+
+    Example:
+        a
+
+&nbsp;
+
+<li>get_alb_dict</li>
+
+    Return alb name dictionary for a gravitar and public flag.
+
+    Args:
+        gravitar: the name of the gravitor
+        public: the bool flag indicating whether it is public or private
+
+    Returns: 
+        A dictionary in the format of {name, sg_name, schema, subnets}
+
+    Example:
+        a
+
+&nbsp;
+
+<li>get_alb_status - Get the alb status.</li>
+
+    Args: 
+        alb_name: alb name
+
+    Returns: 
+        status dict of the response or exception dict
+
+
+    Example:
+        a
+</ul>
+    <hr noshade>
+  </body>
+</html>

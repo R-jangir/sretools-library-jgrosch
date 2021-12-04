@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>doc</title>
+  </head>
+
+  <body>
+    <center>
+      <h2>doc</h2>
+    </center>
+    <hr noshade>
+# ami.py
+
+
+### ami_info
+
+    Describe AMI information.
+
+    Args:
+        session: boto3 session
+        ami_id: AMI id
+    Returns:
+        dict: AMI information
+
+
+### copy_ami
+
+
+### export_ami
+
+    Export AMI to S3.
+
+    Args:
+        session: boto3 session
+        ami_id: AMI id
+        bucket: the S3 bucket
+        path: the S3 key
+        role_name: the role to do the export as(vmimport)
+    Returns:
+        None: no return
+
+
+### get_vmimport_role
+
+
+### import_image
+
+
+### list_amis
+
+    List AMIs available.
+
+    Args:
+        session: boto3 session
+    Returns:
+        list: list of AMIs available in AWS
+
+
+### list_images_in_s3
+
+    List images in S3.
+
+    Args:
+        session: boto3 session
+        bucket: the S3 bucket
+        path: the S3 key
+    Returns:
+        dict: AMI information
+
+
+### wait_for_ami_availability
+
+    Wait for the ami to become available.
+
+    Args:
+        session: boto3 session
+        ami_id: AMI id
+    Returns:
+        None:    
+    <hr noshade>
+  </body>
+</html>
+
+

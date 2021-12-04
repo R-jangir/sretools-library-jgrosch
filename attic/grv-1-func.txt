@@ -1,0 +1,77 @@
+def afail():
+def aws_tags_dict(taglist):
+def aws_whoami():
+def check_reservation_eip(printlist=None):
+def check_reservations_instances():
+def debug(msg, outfile=sys.stderr):
+def die(msg, _exit=111, _fdout=sys.stderr):
+def domain_find_zone_id(fqdn):
+def domain_walkback(fqdn):
+def fetch_account_id():
+def fetch_available_azs(region=None):
+def fetch_available_regions():
+def fetch_grv_meta(grv_id, region=None):
+def fetch_live_ipv4_netblocks(vpc=None):
+def flatten_dict(dd, separator='_', prefix=''):
+def get_paginated_reservations(filters=[], instance_ids=[]):
+def grv_net_config_logical(grv_name=None, grv_net=None, configpath=None):
+def grv_net_config_physical(grv_name=None, grv_net=None, configpath=None, region=None):
+def grvs_loadconfig(configpath=None):
+def grvs_loadconfig_net(configpath=None):
+def grvs_supernets_config(configpath=None):
+def info_grvnames():
+def info_grvnets():
+def ip_net_cidr(address):
+def ip_next(ip, in_mask=None, out_mask=None, _prev=False):
+def ip_prior(ip, in_mask=None, out_mask=None):
+def ipv4_contiguous(supernet=None, subnet_cidr=None):
+def is_valid_fqdn(fqdn):
+def list_acl(grv_id=None, acl_id=None):
+def list_available_endpoints(region=None, product=''):
+def list_available_instance_types(region='', grv_or_net_name=''):
+def list_compare(a, b):
+def list_default_amis(region='', configpath=None):
+def list_dns_names(name='', zone='', dns_type='', show_zone=False):
+def list_dns_zones(zone=None, name=None):
+def list_global_subnets():
+def list_global_vpcs():
+def list_grv_instances(grv_name='', phys_subnet='', logical_net='',):
+def list_grv_security_groups(grv_or_net_name=''):
+def list_grvs(grv_id=''):
+def list_grvs_s3_buckets(grv_id=None, bucket_id=None):
+def list_grv_subnets(grv_id='', subnet_id='', sregion='', allregions=False):
+def list_iam_roles(grv_id=None, show_policy=False):
+def list_igw(igw_id=None, grv_id=None, region=None):
+def list_key_pairs(grv_id='', region=''):
+def list_lambdas(grv_id=None, region='Undefined'):
+def list_logical_subnets(network):
+def list_nat_amis(region='', configpath=None):
+def list_network_acls(acl_id=None, grv_id=None, region=None):
+def list_physical_subnets(grvname_or_logicalname, show_metadata=False):
+def list_rds_instances(grv_id=None, rds_id=None):
+def list_route_tables(grv_id='', route_table_ids=[], region=None):
+def list_sg(grv_id=None, sg_id=None):
+def list_sqs_queues(grv_id=None, sqs_id=None, region='Undefined'):
+def list_ssh_pub_keys(region='', grv_or_net_name=''):
+def list_vpc_endpoints(grv_id=None, region=None):
+def list_vpc_subnets(grv_id):
+def main(argv):
+def name_to_region(name):
+def prettyPrint(anything=None):
+def r53_lookup(name='', dns_type=''):
+def redirect(handle=None):
+def region_resolver(startwith=[], allregions=True, geofilter='', geopriority=''):
+def set_region(region=''):
+def sort_ips(list_of_ips, reverse=False):
+def sort_nets(list_of_addrs, reverse=False):
+def source(fname=None):
+def tld_in_string(tld, name):
+def tld_to_zone_id(zone_string=None):
+def upsert_list(alist, avalue):
+def validate_create_id(create_session_uid_or_grv_id, grvs_list=None):
+def validate_grv_id(grv_id):
+def validate_subnet_id(subnet_id):
+def vpc_domains_enabled(grv_id):
+def wallclock():
+def yell(msg, _fdout=sys.stderr):
+def zone_vpc_associations(zone):

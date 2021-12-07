@@ -15,8 +15,11 @@ def find_alb_arn(alb_name: str) -> str:
     """
     Find the ALB Arn.
 
-    Args: alb_name: name of alb
-    Returns: ARN of the given alb, or empty string
+    Args:
+        alb_name: name of alb
+        
+    Returns:
+        ARN of the given alb, or empty string
     """
     client = boto3.client('elbv2')
     try:
@@ -25,20 +28,25 @@ def find_alb_arn(alb_name: str) -> str:
     except ClientError as e:
         return ''
 
+    # End of find_alb_arn
+
 
 # ----------------------------------------------------------
 #
 # alb_create
 #
 # ----------------------------------------------------------
-def alb_create(grv_name: str, public: bool) -> dict:
+def alb_create(grv_name: str,
+               public: bool) -> dict:
     """
     Create an Application Load Balancer.
 
     Args:
         grv_name: gravitar name
         public: is this a public or internal alb
-    Returns: dict of alb status response or exception dict
+        
+    Returns:
+        dict of alb status response or exception dict
     """
     client = boto3.client('elbv2')
 
@@ -115,6 +123,7 @@ def alb_create(grv_name: str, public: bool) -> dict:
         return e.response
 
     return status
+    # End of alb_create
 
 
 # ----------------------------------------------------------
@@ -122,14 +131,17 @@ def alb_create(grv_name: str, public: bool) -> dict:
 # delete_alb
 #
 # ----------------------------------------------------------
-def delete_alb(grv_name: str, public: bool) -> bool:
+def delete_alb(grv_name: str,
+               public: bool) -> bool:
     """
     Delete an ALB.
 
     Args:
         grv_name: gravitar name to delete ALBs from
         public: is this a public or internal alb
-    Returns: True if alb is deleted or not available, or False
+        
+    Returns:
+        True if alb is deleted or not available, or False
     """
     client = boto3.client('elbv2')
 
@@ -160,7 +172,7 @@ def delete_alb(grv_name: str, public: bool) -> bool:
     print(f"Deleted security group {alb_dict['sg_name']}")
 
     return True
-
+    # End of delete_alb
 
 # ----------------------------------------------------------
 #
@@ -171,8 +183,11 @@ def get_alb_status(alb_name: str) -> dict:
     """
     Get the alb status.
 
-    Args: alb_name: alb name
-    Returns: status dict of the response or exception dict
+    Args:
+        alb_name: alb name
+        
+    Returns:
+        status dict of the response or exception dict
     """
     client = boto3.client('elbv2')
     try:
@@ -181,6 +196,8 @@ def get_alb_status(alb_name: str) -> dict:
         return e.response
 
     return response['LoadBalancers'][0]
+
+    # End of get_alb_status
 
 
 # ----------------------------------------------------------
@@ -192,8 +209,11 @@ def find_sg_attached(alb_name: str) -> str:
     """
     Return the security group attached to a alb.
 
-    Args: alb_name: the name of the alb
-    Returns: the id of security group, or empty string
+    Args:
+        alb_name: the name of the alb
+        
+    Returns:
+        the id of security group, or empty string
     """
     client = boto3.client('elbv2')
     try:
@@ -202,13 +222,17 @@ def find_sg_attached(alb_name: str) -> str:
     except ClientError as e:
         return ''
 
+    # End of find_sg_attached
+
 
 # ----------------------------------------------------------
 #
 # alb_connect_sg
 #
 # ----------------------------------------------------------
-def alb_connect_sg(grv_name: str, cluster_name: str, public: bool) -> bool:
+def alb_connect_sg(grv_name: str,
+                   cluster_name: str,
+                   public: bool) -> bool:
     """
     Connect gravitar security group to alb.
 
@@ -216,7 +240,9 @@ def alb_connect_sg(grv_name: str, cluster_name: str, public: bool) -> bool:
         grv_name: gravitar name
         cluster_name: the name of eks cluster
         public: is this a public or internal alb
-    Returns: success as a bool
+        
+    Returns:
+        success as a bool
     """
     client = boto3.client('elbv2')
     alb_dict = get_alb_dict(grv_name, public)
@@ -255,8 +281,11 @@ def alb_info(grv_name: str) -> dict:
     """
     Get alb information.
 
-    Args: grv_name: gravitar name
-    Returns: a dictionary containing information of load balancers and security groups
+    Args:
+        grv_name: gravitar name
+        
+    Returns:
+        a dictionary containing information of load balancers and security groups
     """
     client = boto3.client('elbv2')
     alb_public = get_alb_dict(grv_name, True)['name']
@@ -298,14 +327,17 @@ def alb_info(grv_name: str) -> dict:
 # get_alb_dict
 #
 # ----------------------------------------------------------
-def get_alb_dict(gravitar: str, public: bool) -> dict:
+def get_alb_dict(gravitar: str,
+                 public: bool) -> dict:
     """
     Return alb name dictionary for a gravitar and public flag.
 
     Args:
         gravitar: the name of the gravitor
         public: the bool flag indicating whether it is public or private
-    Returns: A dictionary in the format of {name, sg_name, schema, subnets}
+        
+    Returns:
+        A dictionary in the format of {name, sg_name, schema, subnets}
     """
     # albs have a specific naming scheme.
     # Security groups are based on unmodified gravitar name for consistency

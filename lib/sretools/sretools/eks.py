@@ -1,12 +1,13 @@
 import boto3
+import logging
 import time
 import yaml
-import logging
+
 from botocore.exceptions import ClientError
 from kubernetes import client, config
 from kubernetes.client.rest import ApiException
 
-from modules import grv, utils
+#from modules import grv, utils
 
 ASSUME_CLUSTER_ROLE_POLICY_DOCUMENT = {
     "Version": "2012-10-17",
@@ -52,11 +53,20 @@ ECR_ACCESS_POLICY_DOCUMENT = {
 }
 
 
+# ----------------------------------------------------------
+#
+# get_eks_status
+#
+# ----------------------------------------------------------
 def get_eks_status(cluster_name: str) -> dict:
-    """Return the status of a EKS cluster.
+    """
+    Return the status of a EKS cluster.
 
-    Args: cluster_name: cluster name
-    Returns: status dict of the response or exception dict
+    Args:
+        cluster_name: cluster name
+        
+    Returns:
+        status dict of the response or exception dict
     """
     client = boto3.client('eks')
     try:
@@ -66,13 +76,21 @@ def get_eks_status(cluster_name: str) -> dict:
     return response['cluster']
 
 
+# ----------------------------------------------------------
+#
+# get_eks_nodegroup_status
+#
+# ----------------------------------------------------------
 def get_eks_nodegroup_status(cluster_name: str, node_group_name: str) -> dict:
-    """Return the status of a EKS nodegroup.
+    """
+    Return the status of a EKS nodegroup.
 
     Args:
         cluster_name: the name of the cluster
         node_group_name: The name of the nodegroup
-    Returns: status dict of the response or exception dict
+        
+    Returns:
+        status dict of the response or exception dict
     """
     if not cluster_name or not node_group_name:
         return {'Error': "Invalid cluster name or nodegroup name"}
@@ -88,14 +106,22 @@ def get_eks_nodegroup_status(cluster_name: str, node_group_name: str) -> dict:
         return e.response
 
 
+# ----------------------------------------------------------
+#
+# create_eks
+#
+# ----------------------------------------------------------
 def create_eks(cluster_prefix: str, gravitar: str, eks_version: str = '1.20') -> dict:
-    """Create an EKS cluster.
+    """
+    Create an EKS cluster.
 
     Args:
         cluster_prefix: the prefix of a cluster
         gravitar: gravitar name
         eks_version: eks version. Defaults to '1.20'.
-    Returns: status dict of the response or exception dict
+        
+    Returns:
+        status dict of the response or exception dict
     """
     eks_name = f"{cluster_prefix}-{gravitar.replace('.', '-')}"
 
@@ -160,9 +186,15 @@ def create_eks(cluster_prefix: str, gravitar: str, eks_version: str = '1.20') ->
         return status
 
 
+# ----------------------------------------------------------
+#
+# create_eks_nodegroup
+#
+# ----------------------------------------------------------
 def create_eks_nodegroup(cluster_prefix: str, gravitar: str, nodes: int = 4,
                          instance_type: str = 't3.medium', size: int = 20) -> dict:
-    """Create an EKS nodegroup for the cluster.
+    """
+    Create an EKS nodegroup for the cluster.
 
     Args:
         cluster_prefix: the prefix of a cluster
@@ -170,7 +202,9 @@ def create_eks_nodegroup(cluster_prefix: str, gravitar: str, nodes: int = 4,
         nodes: the number of nodes
         instance_type: the type of instance, default is 't3.medium'
         size: the gibibyte size of the disk, default is 20
-    Returns: status dict of the response or exception dict
+        
+    Returns:
+        status dict of the response or exception dict
     """
     eks_name = f"{cluster_prefix}-{gravitar.replace('.', '-')}"
     eks_nodegroup_name = f"{cluster_prefix}_nodegroup-{gravitar.replace('.', '-')}"
@@ -236,13 +270,21 @@ def create_eks_nodegroup(cluster_prefix: str, gravitar: str, nodes: int = 4,
     return status
 
 
+# ----------------------------------------------------------
+#
+# delete_eks
+#
+# ----------------------------------------------------------
 def delete_eks(cluster_prefix: str, gravitar: str) -> dict:
-    """Delete EKS cluster with given cluster name.
+    """
+    Delete EKS cluster with given cluster name.
 
     Args:
         cluster_prefix: name of the eks to be deleted
         gravitar: name of gravitar
-    Returns: status dict of the response or exception dict
+        
+    Returns:
+        status dict of the response or exception dict
     """
     eks_name = f"{cluster_prefix}-{gravitar.replace('.', '-')}"
     eks_sg_name = f"{cluster_prefix}_eks.{gravitar}"
@@ -273,13 +315,21 @@ def delete_eks(cluster_prefix: str, gravitar: str) -> dict:
     return status
 
 
+# ----------------------------------------------------------
+#
+# delete_eks_nodegroup
+#
+# ----------------------------------------------------------
 def delete_eks_nodegroup(cluster_prefix: str, gravitar: str) -> dict:
-    """Delete eks nodegroup for the cluster.
+    """
+    Delete eks nodegroup for the cluster.
 
     Args:
         cluster_prefix: the prefix of cluster
         gravitar: the name of gravitar
-    Returns: status dict of the response or exception dict
+        
+    Returns:
+        status dict of the response or exception dict
     """
     eks_name = f"{cluster_prefix}-{gravitar.replace('.', '-')}"
     eks_nodegroup_name = f"{cluster_prefix}_nodegroup-{gravitar.replace('.', '-')}"
@@ -314,11 +364,20 @@ def delete_eks_nodegroup(cluster_prefix: str, gravitar: str) -> dict:
     return status
 
 
+# ----------------------------------------------------------
+#
+# list_eks
+#
+# ----------------------------------------------------------
 def list_eks(gravitar='') -> list:
-    """Return the cluster info as list
+    """
+    Return the cluster info as list
 
-    Args: gravitar: the name of gravitar
-    Returns: List of EKS clusters, or empty list if there is no cluster.
+    Args:
+        gravitar: the name of gravitar
+        
+    Returns:
+        List of EKS clusters, or empty list if there is no cluster.
     """
     client = boto3.client('eks')
     response = client.list_clusters()
@@ -334,11 +393,20 @@ def list_eks(gravitar='') -> list:
     return gravitar_clusters
 
 
+# ----------------------------------------------------------
+#
+# info_eks
+#
+# ----------------------------------------------------------
 def info_eks(cluster_name: str) -> dict:
-    """Return the info of an EKS cluster as a dict.
+    """
+    Return the info of an EKS cluster as a dict.
 
-    Args: cluster_name: cluster name
-    Returns: eks dict (with nodegroups) or empty dict
+    Args:
+        cluster_name: cluster name
+        
+    Returns:
+        eks dict (with nodegroups) or empty dict
     """
     client = boto3.client('eks')
     try:
@@ -353,13 +421,21 @@ def info_eks(cluster_name: str) -> dict:
     return eks_info
 
 
+# ----------------------------------------------------------
+#
+# info_eks_nodegroup
+#
+# ----------------------------------------------------------
 def info_eks_nodegroup(cluster_name: str, nodegroup: str) -> dict:
-    """Return the info of an EKS nodegroup as a dict.
+    """
+    Return the info of an EKS nodegroup as a dict.
 
     Args:
         cluster_name: the name of the cluster
         nodegroup: The name of the nodegroup
-    Returns: nodegroup dict or empty dict
+        
+    Returns:
+        nodegroup dict or empty dict
     """
     if not cluster_name or not nodegroup:
         return {}
@@ -378,13 +454,21 @@ def info_eks_nodegroup(cluster_name: str, nodegroup: str) -> dict:
     return response['nodegroup']
 
 
+# ----------------------------------------------------------
+#
+# apply_awsauth_configmap
+#
+# ----------------------------------------------------------
 def apply_awsauth_configmap(cluster_prefix: str, gravitar: str):
-    """Apply AWS auth configmap to the EKS context.
+    """
+    Apply AWS auth configmap to the EKS context.
 
     Args:
         cluster_prefix: the prefix of a cluster
         gravitar: gravitar name
-    Returns: bool
+        
+    Returns:
+        bool
     """
     if not cluster_prefix or not gravitar:
         return False

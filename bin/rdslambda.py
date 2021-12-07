@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
 
+import argparse
 import boto3
 import json
-import os
-import argparse
 import logging
+import os
 import time
+
 from botocore.exceptions import ClientError
 from botocore.exceptions import NoCredentialsError
 from modules import grv
 
 def attach_VPC_Lambda_Policy(owner_id: str, rds_lambda_role: str):
+    """
+    """
     response = client.attach_role_policy(
     PolicyArn=f'arn:aws:iam::{owner_id}:policy/AWSLambdaVPCAccessExecutionRole',
     RoleName=f'{rds_lambda_role}',)

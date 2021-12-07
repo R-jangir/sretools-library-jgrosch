@@ -1,12 +1,20 @@
 import boto3
 
 
+# ----------------------------------------------------------
+#
+# get_cloudmap_status
+#
+# ----------------------------------------------------------
 def get_cloudmap_status(arcade_name: str) -> dict:
-    """Return the status of cloud map namespace.
+    """
+    Return the status of cloud map namespace.
 
     Args:
         arcade_name: the name of arcade
-    Returns: status dict of the cloud map namespace or empty dict
+        
+    Returns:
+        status dict of the cloud map namespace or empty dict
     """
     client = boto3.client('servicediscovery')
     cloudmap_namespace = f'arcade.{arcade_name}'
@@ -21,13 +29,22 @@ def get_cloudmap_status(arcade_name: str) -> dict:
     return {}
 
 
-def create_cloudmap_namespace(vpc_id: str, arcade_name: str) -> dict:
-    """Create cloud map namespace.
+# ----------------------------------------------------------
+#
+# create_cloudmap_namespace
+#
+# ----------------------------------------------------------
+def create_cloudmap_namespace(vpc_id: str,
+                              arcade_name: str) -> dict:
+    """
+    Create cloud map namespace.
 
     Args:
         vpc_id: the vpc id of the arcade
         arcade_name: the name of arcade
-    Returns: the ResponseMetadata of creating cloud map namespace or empty dict
+        
+    Returns:
+        the ResponseMetadata of creating cloud map namespace or empty dict
     """
     client = boto3.client('servicediscovery')
     cloudmap_namespace = f'arcade.{arcade_name}'
@@ -37,12 +54,20 @@ def create_cloudmap_namespace(vpc_id: str, arcade_name: str) -> dict:
     return {}
 
 
+# ----------------------------------------------------------
+#
+# delete_cloudmap_namespace
+#
+# ----------------------------------------------------------
 def delete_cloudmap_namespace(arcade_name: str) -> dict:
-    """Delete cloud map namespace.
+    """
+    Delete cloud map namespace.
 
     Args:
         arcade_name: the name of arcade
-    Returns: empty dict of the exception response dict
+        
+    Returns:
+        empty dict of the exception response dict
     """
     client = boto3.client('servicediscovery')
     response = get_cloudmap_status(arcade_name)

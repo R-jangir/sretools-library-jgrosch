@@ -6,8 +6,15 @@ import yaml
 from modules import utils
 
 
+# ----------------------------------------------------------
+#
+# get_asteroid_running_services
+#
+# ----------------------------------------------------------
 def get_asteroid_running_services(asteroid_name):
-    """Query K8s for an asteroid running services"""
+    """
+    Query K8s for an asteroid running services
+    """
     k8s_apps_v1 = client.AppsV1Api()
     try:
         deployment_list = k8s_apps_v1.list_deployment_for_all_namespaces(timeout_seconds=10)
@@ -26,7 +33,14 @@ def get_asteroid_running_services(asteroid_name):
         return []
 
 
+# ----------------------------------------------------------
+#
+# load_arcade_k8s_config
+#
+# ----------------------------------------------------------
 def load_arcade_k8s_config(arcade_name: str):
+    """
+    """
     cluster_name = f"asteroids-{arcade_name.replace('.', '-')}"
     arcade_session = utils.setup_arcade_session(arcade_name=arcade_name)
 

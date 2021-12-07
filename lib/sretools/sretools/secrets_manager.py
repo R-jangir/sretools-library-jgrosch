@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
 
 import boto3
+import json
 import logging
 import random
-import json
 import secrets
+
 from botocore.exceptions import ClientError
 
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def rds_default_creds(arcade_name: str, name='rds_default_credentials', length=12):
-    """Generates Default RDS creds for secrets manager per arcade
+    """
+    Generates Default RDS creds for secrets manager per arcade
     Args:
         arcade_name (str): [arcade name]
         name (str, optional): [name of the secret]. Defaults to 'rds_default_credentials'.
@@ -37,8 +44,14 @@ def rds_default_creds(arcade_name: str, name='rds_default_credentials', length=1
         logging.info(e)
         return False
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def update_secret_version(arcade_name: str, name: str, secret_value: str, versions=None):
-    """Puts Value with Version in Secrets Manager
+    """
+    Puts Value with Version in Secrets Manager
 
     Args:
         arcade_name (str): [Name of the Arcade]
@@ -69,8 +82,14 @@ def update_secret_version(arcade_name: str, name: str, secret_value: str, versio
     return response    
     
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def create_secret(arcade_name: str, name: str, secret_value, versions=None):
-    """Creates a Secret In AWS Secrets Manager
+    """
+    Creates a Secret In AWS Secrets Manager
 
     Args:
         arcade_name (str): [Name of the Arcade]
@@ -105,8 +124,14 @@ def create_secret(arcade_name: str, name: str, secret_value, versions=None):
         return {'SecretName': add_version['Name'], 'SecretARN': add_version['ARN']}
 
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def delete_secret(arcade_name: str, name: str, without_recovery=False):
-    """Deletes Secret from Secrets Manager
+    """
+    Deletes Secret from Secrets Manager
 
     Args:
         arcade_name (str): [Name of the Arcade]
@@ -123,8 +148,14 @@ def delete_secret(arcade_name: str, name: str, without_recovery=False):
     return response
 
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def get_secret(arcade_name: str, name: str, version=None):
-    """Gets A Secret Value from Secrets Manager
+    """
+    Gets A Secret Value from Secrets Manager
 
     Args:
         arcade_name (str): [Name of the Arcade]
@@ -145,8 +176,14 @@ def get_secret(arcade_name: str, name: str, version=None):
     return response['SecretString']
 
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def update_secret(arcade_name: str, name: str, secret_value: str):
-    """Update a secret in Secrets Manager
+    """
+    Update a secret in Secrets Manager
 
     Args:
         arcade_name (str): [Name of the Arcade]
@@ -168,4 +205,3 @@ def update_secret(arcade_name: str, name: str, secret_value: str):
     response = client.update_secret(**kwargs)
     logging.info(response)
     return {'SecretName': response['Name'], 'SecretARN': response['ARN']}
-

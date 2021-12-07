@@ -5,7 +5,9 @@ from datetime import datetime
 
 
 class S3ObjectLockedException(Exception):
-    """Raised when the S3ObjectLock is not acquired """
+    """
+    Raised when the S3ObjectLock is not acquired
+    """
     pass
 
 

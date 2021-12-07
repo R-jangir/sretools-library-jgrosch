@@ -1,13 +1,19 @@
+import boto3
 import json
 import logging
 import os
-import boto3
 
 from modules import storage
 
-
+# Begin merge
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def aws_tags_dict(tag_list):
-    """Convenience function to relieve fumbling around with AWS tag lists.
+    """
+    Convenience function to relieve fumbling around with AWS tag lists.
 
     Given a list of AWS tags, (common to most AWS object types), converts
     the list into a dict keyed by tag:Key.
@@ -27,9 +33,14 @@ def aws_tags_dict(tag_list):
         return_dict[tagd['Key']] = tagd['Value']
     return return_dict
 
-
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def check_dryrun(filename: str) -> bool:
-    """Check dryrun option from os environ (GALAGA_DRYRUN)
+    """
+    Check dryrun option from os environ (GALAGA_DRYRUN)
     This function needs to be invoked by installer at
     the beginning of the main function
 
@@ -46,9 +57,14 @@ def check_dryrun(filename: str) -> bool:
         print(f"Invoking installer {filename}.")
         return False
 
-
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def print_status(status: dict) -> None:
-    """ Print status dictionary to json object
+    """
+    Print status dictionary to json object
     The purpose of this function is to resolve following error
     when loading json object from json string:
     TypeError: Object of type datetime is not JSON serializable
@@ -60,23 +76,14 @@ def print_status(status: dict) -> None:
 
     print(json.dumps(status, sort_keys=False, indent=2, default=str))
 
-
-def setup_arcade_session(arcade_name: str) -> boto3.session.Session:
-    """Create AWS session with arcade region set."""
-    # figure out what region cluster/arcade lives in
-    # getting location from arcade scoped bucket is faster than looking for vpc
-    bucket_session = boto3.session.Session(region_name='us-east-2')
-    s3_client = bucket_session.client('s3')
-    buckets = storage.get_arcade_buckets(bucket_session, arcade_name)
-    arcade_region = s3_client.get_bucket_location(Bucket=buckets['app'])['LocationConstraint']
-    # print("----Arcade region----")
-    # print(arcade_region)
-
-    return boto3.session.Session(region_name=arcade_region)
-
-
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def add_arcade_cname(arcade: str, source: str, target: str) -> bool:
-    """Add source -> target cname record to arcade
+    """
+    Add source -> target cname record to arcade
     Args:
         arcade: The name of arcade
         source: Source string
@@ -108,10 +115,16 @@ def add_arcade_cname(arcade: str, source: str, target: str) -> bool:
     except Exception as e:
         logging.error(e)
         return False
-
-
+    #
+    
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def delete_arcade_cname(arcade: str, source: str) -> None:
-    """ Delete cname start with source for an arcade
+    """
+    Delete cname start with source for an arcade
     Args:
         arcade: The name of arcade
         source: Source string
@@ -137,9 +150,91 @@ def delete_arcade_cname(arcade: str, source: str) -> None:
                     }]
             })
 
-
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def get_account_id() -> str:
+    """
+    """
     client = boto3.client('sts')
     response = client.get_caller_identity()
     # print(json.dumps(response, sort_keys=False, indent=2, default=str))
     return response["Account"]
+
+# End merge
+
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def get_short_narc_id(narcid: str) -> str:
+    """
+    Get the short narc id by using first 8 characters of asd/asteroid name
+    Args:
+        narcid: the original narc id
+    Returns: the short narc id in string format
+    """
+    groups = narcid.split('-')
+    groups[1] = groups[1][:8]
+    groups[2] = groups[2][:8]
+    return "-".join(groups)
+
+
+#def is_number(self, num):
+#    """
+#    Helper function to determine if string is numeric or not (handles int, float, pos/neg"""
+#    try:
+#        float(num)
+#    except ValueError:
+#        return False
+#    return True
+
+
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def check_if_sg(sg_name: str) -> str:
+    """
+    Check to see if a SG is present.
+    Args: sg_name: security group name
+    Returns: security group id if the sg is there, empty string if not
+    """
+    client = boto3.client('ec2')
+    response = client.describe_security_groups(
+        Filters=[
+            {
+                'Name': 'tag:Name',
+                'Values': [f"{sg_name}*"]
+            }
+        ]
+    )
+
+    if len(response['SecurityGroups']) != 1:
+        return ""
+    return response['SecurityGroups'][0]['GroupId']
+
+
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def setup_arcade_session(arcade_name: str) -> boto3.session.Session:
+    """
+    Create AWS session with arcade region set."""
+
+    # figure out what region cluster/arcade lives in
+    # getting location from arcade scoped bucket is faster than looking for vpc
+    bucket_session = boto3.session.Session(region_name='us-east-2')
+    s3_client = bucket_session.client('s3')
+    buckets = storage.get_arcade_buckets(bucket_session, arcade_name)
+    arcade_region = s3_client.get_bucket_location(Bucket=buckets['app'])['LocationConstraint']
+    # print("----Arcade region----")
+    # print(arcade_region)
+
+    return boto3.session.Session(region_name=arcade_region)

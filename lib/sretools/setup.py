@@ -9,8 +9,8 @@ AUTHOR       = 'Josef Grosch'
 AUTHOR_EMAIL = 'josef.grosch@addepar.com'
 URL          = 'https://github.com/you/your_package'
 
-LICENSE = 'Apache License 2.0'
-DESCRIPTION = 'Describe your package in one sentence'
+LICENSE = 'None'
+DESCRIPTION = 'Library of the Arcade tools'
 LONG_DESCRIPTION = (HERE / "README.md").read_text()
 LONG_DESC_TYPE = "text/markdown"
 

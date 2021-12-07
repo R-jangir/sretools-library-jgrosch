@@ -1,14 +1,21 @@
+import base64
 import boto3
+import logging
 import time
 import yaml
-import logging
-import base64
+
 from botocore.exceptions import ClientError
 from modules import grv
 
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def get_msk_status(cluster_name: str) -> dict:
-    """Return the status of a MSK cluster.
+    """
+    Return the status of a MSK cluster.
 
     Args: cluster_name: cluster name
     Returns: status dict of the response or exception dict
@@ -21,8 +28,14 @@ def get_msk_status(cluster_name: str) -> dict:
     return response['ClusterInfoList'][0]
 
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def get_msk_configuration(cluster_name: str) -> dict:
-    """Return the status of a MSK configuration.
+    """
+    Return the status of a MSK configuration.
 
     Args:
         cluster_name: the name of the cluster
@@ -40,8 +53,19 @@ def get_msk_configuration(cluster_name: str) -> dict:
     return {}
 
 
-def create_msk(cluster_prefix: str, gravitar: str, instance_type: str, brokers_per_az: int, ebs_size: int, kafka_version: str = '2.6.2') -> dict:
-    """Create an EKS cluster.
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def create_msk(cluster_prefix: str,
+               gravitar: str,
+               instance_type: str,
+               brokers_per_az: int,
+               ebs_size: int,
+               kafka_version: str = '2.6.2') -> dict:
+    """
+    Create an EKS cluster.
 
     Args:
         cluster_prefix: the prefix of a cluster
@@ -124,8 +148,17 @@ def create_msk(cluster_prefix: str, gravitar: str, instance_type: str, brokers_p
         return status
 
 
-def create_msk_configuration(cluster_prefix: str, gravitar: str, kafka_version: str, server_properties: str) -> dict:
-    """Create an MSK configuration for the MSK cluster, if it doesn't already exist.
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def create_msk_configuration(cluster_prefix: str,
+                             gravitar: str,
+                             kafka_version: str,
+                             server_properties: str) -> dict:
+    """
+    Create an MSK configuration for the MSK cluster, if it doesn't already exist.
 
     Args:
         cluster_prefix: the prefix of a cluster
@@ -153,8 +186,14 @@ def create_msk_configuration(cluster_prefix: str, gravitar: str, kafka_version: 
     return status
 
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def delete_msk(cluster_prefix: str, gravitar: str) -> dict:
-    """Delete MSK cluster with given cluster prefix.
+    """
+    Delete MSK cluster with given cluster prefix.
 
     Args:
         cluster_prefix: name of the msk to be deleted
@@ -190,8 +229,14 @@ def delete_msk(cluster_prefix: str, gravitar: str) -> dict:
     return status
 
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def delete_msk_configuration(cluster_prefix: str, gravitar: str) -> dict:
-    """Delete msk nodegroup for the cluster.
+    """
+    Delete msk nodegroup for the cluster.
 
     Args:
         cluster_prefix: the prefix of cluster

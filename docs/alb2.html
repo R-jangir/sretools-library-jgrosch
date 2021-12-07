@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Linux version 5.6.0">
+  <title>doc</title>
+</head>
+<body>
+  <div style="text-align: center;">
+    <h2>alb.py</h2>
+  </div>
+  <hr noshade>
+  alb.py - A library of routines to handle ALB (Amazon Load
+  Balancer) &nbsp;
+  <ul>
+    <li>alb_connect_sg - Connect gravitar security group to
+    alb.</li>
+    <li style="list-style: none; display: inline">
+      <ul>
+        <li>Args:</li>
+        <li style="list-style: none; display: inline">
+          <ul>
+            <li>grv_name: gravitar name</li>
+            <li>cluster_name: the name of eks cluster</li>
+            <li>public: is this a public or internal alb</li>
+          </ul>
+        </li>
+        <li>Returns:</li>
+        <li style="list-style: none; display: inline">
+          <ul>
+            <li>success as a boolean</li>
+          </ul>
+        </li>
+        <li>Example:</li>
+        <li style="list-style: none; display: inline">
+          <ul>
+            <li><code>is_connected = alb_connect_sg("grv",
+            "cluster", pub_or_internal)</code></li>
+          </ul>
+        </li>
+      </ul>&nbsp;
+    </li>
+    <li>alb_create - Create an Application Load Balancer.</li>
+    <li style="list-style: none; display: inline">
+      <ul>
+        <li>Args:</li>
+        <li style="list-style: none; display: inline">
+          <ul>
+            <li>grv_name: gravitar name</li>
+            <li>public: is this a public or internal alb</li>
+          </ul>
+        </li>
+        <li>Returns:</li>
+        <li style="list-style: none; display: inline">
+          <ul>
+            <li>dict of alb status response or exception dict</li>
+          </ul>
+        </li>
+        <li>Example:</li>
+        <li style="list-style: none; display: inline">
+          <ul>
+            <li><code>return_dict = alb_create("grv",
+            pub_or_internal)</code></li>
+          </ul>
+        </li>
+      </ul>&nbsp;
+    </li>
+    <li>alb_info - Get alb information.</li>
+    <li style="list-style: none; display: inline">
+      <ul>
+        <li>Args:</li>
+        <li style="list-style: none; display: inline">
+          <ul>
+            <li>grv_name: gravitar name</li>
+          </ul>
+        </li>
+        <li>Returns:</li>
+        <li style="list-style: none; display: inline">
+          <ul>
+            <li>a dictionary containing information of load
+            balancers and security groups</li>
+          </ul>
+        </li>
+        <li>Example:</li>
+        <li style="list-style: none; display: inline">
+          <ul>
+            <li><code>return_dict = alb_info("grv")</code></li>
+          </ul>
+        </li>
+      </ul>&nbsp;
+    </li>
+    <li>delete_alb - Delete an ALB.</li>
+    <li style="list-style: none; display: inline">
+      <div style="margin-left: 2em">
+        Args: grv_name: gravitar name to delete ALBs from public:
+        is this a public or internal alb Returns: True if alb is
+        deleted or not available, or False Example: a
+      </div>&nbsp;
+    </li>
+    <li>find_alb_arn - Find the ALB Arn.</li>
+    <li style="list-style: none; display: inline">
+      <div style="margin-left: 2em">
+        Args: alb_name: name of alb Returns: ARN of the given alb,
+        or empty string Example: a
+      </div>&nbsp;
+    </li>
+    <li>find_sg_attached - Return the security group attached to a
+    alb.</li>
+    <li style="list-style: none; display: inline">
+      <div style="margin-left: 2em">
+        Args: alb_name: the name of the alb Returns: the id of
+        security group, or empty string Example: a
+      </div>&nbsp;
+    </li>
+    <li>get_alb_dict</li>
+    <li style="list-style: none; display: inline">
+      <div style="margin-left: 2em">
+        Return alb name dictionary for a gravitar and public flag.
+        Args: gravitar: the name of the gravitor public: the bool
+        flag indicating whether it is public or private Returns: A
+        dictionary in the format of {name, sg_name, schema,
+        subnets} Example: a
+      </div>&nbsp;
+    </li>
+    <li>get_alb_status - Get the alb status.</li>
+    <li style="list-style: none; display: inline">
+      <div style="margin-left: 2em">
+        Args: alb_name: alb name Returns: status dict of the
+        response or exception dict Example: a
+      </div>
+    </li>
+  </ul>
+  <hr noshade>
+</body>
+</html>

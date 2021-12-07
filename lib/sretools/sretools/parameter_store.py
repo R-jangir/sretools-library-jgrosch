@@ -5,8 +5,17 @@ import logging
 from botocore.exceptions import ClientError
 
 
-def put_parameter(arcade_name: str, parameter_name: str, parameter_value: str, data_type: str) -> dict:
-    """This puts a parameter in aws parameter store
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def put_parameter(arcade_name: str,
+                  parameter_name: str,
+                  parameter_value: str,
+                  data_type: str) -> dict:
+    """
+    This puts a parameter in aws parameter store
 
     Args:
         arcade_name (str): [Name of the Arcade]
@@ -25,11 +34,19 @@ def put_parameter(arcade_name: str, parameter_name: str, parameter_value: str, d
         Type=data_type,
 
     )
+    
     return response
+    #
 
 
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def delete_parameter(arcade_name: str, parameter_name: str) -> dict:
-    """Deletes a parameter in aws parameter store
+    """
+    Deletes a parameter in aws parameter store
 
     Args:
         arcade_name (str): [Name of the Arcade]
@@ -40,11 +57,13 @@ def delete_parameter(arcade_name: str, parameter_name: str) -> dict:
     """
     client = boto3.client('ssm')
     response = client.delete_parameter(Name=f'/{arcade_name}/{parameter_name}')
-    return response
     
+    return response
+    #
 
 def get_parameter(arcade_name: str, parameter_name: str, decryption=False) -> dict:
-    """Gets parameter from AWS parameter store
+    """
+    Gets parameter from AWS parameter store
 
     Args:
         arcade_name (str): [Name of the Arcade]
@@ -56,4 +75,6 @@ def get_parameter(arcade_name: str, parameter_name: str, decryption=False) -> di
     """
     client = boto3.client('ssm')
     response = client.get_parameter(Name=f'/{arcade_name}/{parameter_name}', WithDecryption=decryption)
+    
     return response['Parameter']
+    #

@@ -13,13 +13,15 @@ import grv, utils
 # ami_info
 #
 # ----------------------------------------------------------
-def ami_info(session: boto3.session.Session, ami_id) -> dict:
+def ami_info(session: boto3.session.Session,
+             ami_id) -> dict:
     """
     Describe AMI information.
 
     Args:
         session: boto3 session
         ami_id: AMI id
+        
     Returns:
         dict: AMI information
     """
@@ -33,13 +35,15 @@ def ami_info(session: boto3.session.Session, ami_id) -> dict:
 # wait_for_ami_availability
 #
 # ----------------------------------------------------------
-def wait_for_ami_availability(session: boto3.session.Session, ami_id):
+def wait_for_ami_availability(session: boto3.session.Session,
+                              ami_id):
     """
     Wait for the ami to become available.
 
     Args:
         session: boto3 session
         ami_id: AMI id
+        
     Returns:
         None:
     """
@@ -63,6 +67,7 @@ def list_amis(session: boto3.session.Session) -> list:
 
     Args:
         session: boto3 session
+        
     Returns:
         list: list of AMIs available in AWS
     """
@@ -81,7 +86,9 @@ def list_amis(session: boto3.session.Session) -> list:
 # list_images_in_s3
 #
 # ----------------------------------------------------------
-def list_images_in_s3(session: boto3.session.Session, bucket: str, path: str) -> list:
+def list_images_in_s3(session: boto3.session.Session,
+                      bucket: str,
+                      path: str) -> list:
     """
     List images in S3.
 
@@ -89,6 +96,7 @@ def list_images_in_s3(session: boto3.session.Session, bucket: str, path: str) ->
         session: boto3 session
         bucket: the S3 bucket
         path: the S3 key
+        
     Returns:
         dict: AMI information
     """
@@ -108,7 +116,11 @@ def list_images_in_s3(session: boto3.session.Session, bucket: str, path: str) ->
 # export_ami
 #
 # ----------------------------------------------------------
-def export_ami(session: boto3.session.Session, ami_id: str, bucket: str, path: str, role_name: str):
+def export_ami(session: boto3.session.Session,
+               ami_id: str,
+               bucket: str,
+               path: str,
+               role_name: str):
     """
     Export AMI to S3.
 
@@ -118,6 +130,7 @@ def export_ami(session: boto3.session.Session, ami_id: str, bucket: str, path: s
         bucket: the S3 bucket
         path: the S3 key
         role_name: the role to do the export as(vmimport)
+        
     Returns:
         None: no return
     """
@@ -162,7 +175,11 @@ def export_ami(session: boto3.session.Session, ami_id: str, bucket: str, path: s
 # import_image
 #
 # ----------------------------------------------------------
-def import_image(session: boto3.session.Session, image_name: str, bucket: str, path: str, role_name: str) -> str:
+def import_image(session: boto3.session.Session,
+                 image_name: str,
+                 bucket: str,
+                 path: str,
+                 role_name: str) -> str:
     """
     Import image from S3.
 
@@ -172,6 +189,7 @@ def import_image(session: boto3.session.Session, image_name: str, bucket: str, p
         bucket: the S3 bucket
         path: the S3 key
         role_name: the role to do the export as(vmimport)
+        
     Returns:
         str: the AMI id
     """
@@ -231,7 +249,9 @@ def import_image(session: boto3.session.Session, image_name: str, bucket: str, p
 # copy_ami
 #
 # ----------------------------------------------------------
-def copy_ami(session: boto3.session.Session, ami_id, region_list) -> bool:
+def copy_ami(session: boto3.session.Session,
+             ami_id,
+             region_list) -> bool:
     """
     Copy AMI across regions.
 
@@ -239,6 +259,7 @@ def copy_ami(session: boto3.session.Session, ami_id, region_list) -> bool:
         session: boto3 session
         ami_id: AMI id
         region_list: list of regions to copy AMI to
+        
     Returns:
         bool: success or fail
     """
@@ -283,13 +304,15 @@ def copy_ami(session: boto3.session.Session, ami_id, region_list) -> bool:
 # get_vmimport_role
 #
 # ----------------------------------------------------------
-def get_vmimport_role(session: boto3.session.Session, bucket: str) -> str:
+def get_vmimport_role(session: boto3.session.Session,
+                      bucket: str) -> str:
     """
     Get or create the vmimport role.
 
     Args:
         session: boto3 session
         bucket: bucket to use for vmimport
+        
     Returns:
         str: role_name
     """

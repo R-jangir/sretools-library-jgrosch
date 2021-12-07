@@ -1,26 +1,20 @@
 import boto3
+import hashlib
 import json
 import logging
-import hashlib
 
+from botocore.exceptions import ClientError, NoCredentialsError
+from datetime import datetime
 
-def key_exists(bucket, s3_file_path) -> bool:
-    """Check for key in bucket.
-
-    Args:
-        bucket: s3 bucket
-        s3_file_path: Full path in s3 with filename
-    Returns:
-        bool: key exists
-    """
-    s3_client = boto3.client('s3')
-    response = s3_client.list_objects_v2(Bucket=bucket,
-                                         Prefix=s3_file_path)
-    return 'Contents' in response
-
-
+# Begin merge
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def load_json(bucket, s3_file_path) -> dict:
-    """Load json object from json file in s3 bucket
+    """
+    Load json object from json file in s3 bucket
     Args:
         bucket: s3 bucket
         s3_file_path: Full path in s3 with filename
@@ -37,28 +31,61 @@ def load_json(bucket, s3_file_path) -> dict:
         logging.error(f"Exception: {e}")
         return {}
 
-
-def upload_to_s3(bucket: str, data: str, key: str) -> bool:
-    """Uploads a json str to s3
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def key_exists(bucket, s3_file_path) -> bool:
+    """
+    Check for key in bucket.
 
     Args:
-        bucket: s3 bucket name
-        data: a serialized json str
-        key: s3 object key
+        bucket: s3 bucket
+        s3_file_path: Full path in s3 with filename
     Returns:
-        Bool: True (If upload was successful) False (If upload was unsuccessful)
+        bool: key exists
     """
-    client = boto3.client('s3')
-    try:
-        client.put_object(Bucket=bucket, Key=key, Body=data)
-        return True
-    except Exception as e:
-        logging.error(f"Exception: {e}")
-        return False
+    s3_client = boto3.client('s3')
+    response = s3_client.list_objects_v2(Bucket=bucket,
+                                         Prefix=s3_file_path)
+    return 'Contents' in response
 
 
+# End merge
+
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def s3_file_timestamp(session: boto3.session.Session, 
+                    bucket: str, s3_file_path: str):
+    """
+    Returns Timestamp for a file in S3
+
+    Args:
+        session (boto3.session.Session): [Boto3 Session]
+        bucket (str): [Name of the S3 Bucket]
+        s3_file_path (str): [S3 file path]
+
+    Returns:
+        [type]: [description]
+    """
+    s3_client = session.client('s3')
+    obj = s3_client.get_object(Bucket=bucket, Key=s3_file_path)
+    date = obj['LastModified']
+    return date.strftime('%Y-%m-%d %H:%M:%S')
+
+
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
 def get_arcade_buckets(session: boto3.session.Session, arcade: str) -> dict:
-    """Return the arcade buckets as a dictionary.
+    """
+    Return the arcade buckets as a dictionary.
 
     Args:
         session: A boto3 session for accessing client and resource
@@ -78,9 +105,140 @@ def get_arcade_buckets(session: boto3.session.Session, arcade: str) -> dict:
     return bucket_dict
 
 
-def get_account_global_bucket(session: boto3.session.Session) -> str:
-    """Get account global s3 bucket.
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def upload_to_s3(session: boto3.session.Session,
+                 bucket: str, data: str, key: str) -> bool:
+    """
+    Uploads a json str to s3
 
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        data: a serialized json str
+        key: s3 object key
+    Returns:
+        Bool: True (If upload was successful) False (If upload was unsuccessful)
+    """
+    client = session.client('s3')
+    try:
+        client.put_object(Bucket=bucket, Key=key, Body=data)
+        return True
+    except (ClientError, NoCredentialsError) as e:
+        logging.error(f'AWS error: {e}')
+        return False
+
+
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def upload_asteroid_json(session: boto3.session.Session, bucket: str,
+                         prefix: str, name: str, version: str, data: str) -> str:
+    """
+    Upload asd/asteroid json to s3. Always add a new s3 key and
+    update latest key to the new data.
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        prefix: prefix of the s3 key ('asd' or 'asteroid')
+        name: asd service or asteroid name
+        version: version str
+        data: a serialized json str
+
+    Returns: the s3 key of latest version or empty string
+
+    """
+
+    date_radix = datetime.utcnow().strftime("%Y/%m/%d/%H/%M")
+    filename = f"{name}.json"
+    hash_json = hashlib.md5(str(filename).encode('utf-8')).hexdigest()
+    radix_hash = f"{prefix}/{name}/{version}/{date_radix}/{hash_json}.json"
+    radix_hash_latest = f'{prefix}/{name}/latest/latest.json'
+
+    new_version = upload_to_s3(session, bucket, data, radix_hash)
+
+    new_latest = upload_to_s3(session, bucket, data, radix_hash_latest)
+
+    if new_version and new_latest:
+        print(f'{bucket} {radix_hash}')
+        print(f'{bucket} {radix_hash_latest}')
+        return radix_hash_latest
+    else:
+        return ''
+
+
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def find_s3_keys(session: boto3.session.Session,
+                bucket: str, prefix: str) -> list:
+    """
+    Find objects from s3 bucket
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        prefix: s3 key prefix
+
+    Returns: a list of keys matching prefix
+
+    """
+    try:
+        s3_client = session.client('s3')
+        response = s3_client.list_objects(Bucket=bucket, Prefix=prefix)
+        output = []
+        for content in response.get('Contents', []):
+            output.append(content.get('Key'))
+        return output
+    except (ClientError, NoCredentialsError) as e:
+        logging.info(f'AWS error: {e} for key: {prefix}')
+        return []
+
+
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def s3_json_to_dict(session: boto3.session.Session,
+                  bucket: str, s3_file_path: str) -> dict:
+    """
+    Load json file in s3 and return as a dictionary
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: bucket name
+        s3_file_path: Full path in S3 with filename
+
+    Returns:
+        dict: return the dictionary from json file in s3, or empty dictionary
+    """
+
+    s3_client = session.client('s3')
+    try:
+        obj = s3_client.get_object(Bucket=bucket, Key=s3_file_path)
+        return json.loads(obj['Body'].read())
+    except Exception as e:
+        logging.info(f"Exception: {e} for key: {s3_file_path}")
+        return {}
+
+
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def get_account_global_bucket(session: boto3.session.Session) -> str:
+    """
+    Get account global s3 bucket.
     If the bucket does not exits, create a new one
 
     Args:
@@ -99,5 +257,52 @@ def get_account_global_bucket(session: boto3.session.Session) -> str:
 
     if not bucket.creation_date:
         resource.create_bucket(Bucket=bucket_name,
-                               CreateBucketConfiguration={'LocationConstraint': session.region_name})
+                               CreateBucketConfiguration=
+                               {'LocationConstraint': session.region_name})
     return bucket_name
+
+
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def delete_s3_prefix(session: boto3.session.Session, bucket: str, prefix: str) -> None:
+    """
+    Delete keys in s3 with prefix.
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        prefix: s3 key prefix
+
+    Returns: None
+
+    """
+    bucket = session.resource('s3').Bucket(bucket)
+    bucket.objects.filter(Prefix=prefix).delete()
+
+
+# ----------------------------------------------------------
+#
+# get_vmimport_role
+#
+# ----------------------------------------------------------
+def download_s3_file(session: boto3.session.Session,
+                     bucket: str,
+                     key: str,
+                     filename: str) -> None:
+    """
+    Download s3 file to local.
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        key: s3 key
+        filename: local file name
+
+    Returns: None
+    """
+
+    session.resource('s3').Bucket(bucket).download_file(key, filename)
+    #

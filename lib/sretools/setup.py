@@ -7,9 +7,9 @@ VERSION      = '0.5.0'
 PACKAGE_NAME = 'sretools'
 AUTHOR       = 'Josef Grosch'
 AUTHOR_EMAIL = 'josef.grosch@addepar.com'
-URL          = 'https://github.com/you/your_package'
+URL          = 'https://github.com/josefgrosch/sretools-library'
 
-LICENSE = 'None'
+LICENSE = 'Copyright (c) 2021 Addepar, Inc.'
 DESCRIPTION = 'Library of the Arcade tools'
 LONG_DESCRIPTION = (HERE / "README.md").read_text()
 LONG_DESC_TYPE = "text/markdown"

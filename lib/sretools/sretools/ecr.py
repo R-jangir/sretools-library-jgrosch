@@ -34,6 +34,7 @@ def pull_image(docker_client: docker.client.DockerClient,
     pull_name = f"{registry.replace('https://', '')}/{image_name}"
     logging.info(f"Pulling docker image {pull_name}...")
     image = docker_client.images.pull(pull_name, auth_config=auth_config)
+
     return image
 
 
@@ -70,6 +71,7 @@ def push_image(docker_client: docker.client.DockerClient,
 
     logging.info(f"Pushing docker image {push_name}...")
     docker_client.images.push(push_name, auth_config=auth_config)
+
     return push_name
 
 

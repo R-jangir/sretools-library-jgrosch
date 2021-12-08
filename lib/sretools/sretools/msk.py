@@ -10,15 +10,18 @@ from modules import grv
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# get_msk_status
 #
 # ----------------------------------------------------------
 def get_msk_status(cluster_name: str) -> dict:
     """
     Return the status of a MSK cluster.
 
-    Args: cluster_name: cluster name
-    Returns: status dict of the response or exception dict
+    Args:
+        cluster_name: cluster name
+        
+    Returns:
+        status dict of the response or exception dict
     """
     client = boto3.client('kafka')
     response = client.list_clusters(ClusterNameFilter=cluster_name)
@@ -30,7 +33,7 @@ def get_msk_status(cluster_name: str) -> dict:
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# get_msk_configuration
 #
 # ----------------------------------------------------------
 def get_msk_configuration(cluster_name: str) -> dict:
@@ -39,7 +42,9 @@ def get_msk_configuration(cluster_name: str) -> dict:
 
     Args:
         cluster_name: the name of the cluster
-    Returns: status dict of the response or empty dict
+        
+    Returns:
+        status dict of the response or empty dict
     """
     if not cluster_name:
         return {}
@@ -55,7 +60,7 @@ def get_msk_configuration(cluster_name: str) -> dict:
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# create_msk
 #
 # ----------------------------------------------------------
 def create_msk(cluster_prefix: str,
@@ -74,7 +79,9 @@ def create_msk(cluster_prefix: str,
         brokers_per_az: brokers per az
         ebs_size: size of the ebs volume per broker
         kafka_version: kafka version. Defaults to '2.6.2'.
-    Returns: status dict of the response or exception dict
+        
+    Returns:
+        status dict of the response or exception dict
     """
     msk_name = f"{cluster_prefix}-{gravitar.replace('_', '').replace('.', '-')}"
 
@@ -150,7 +157,7 @@ def create_msk(cluster_prefix: str,
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# create_msk_configuration
 #
 # ----------------------------------------------------------
 def create_msk_configuration(cluster_prefix: str,
@@ -165,7 +172,9 @@ def create_msk_configuration(cluster_prefix: str,
         gravitar: gravitar name
         kafka_version: version of kafka for this configuration
         server_properties: kafka options
-    Returns: status dict of the response or get
+        
+    Returns:
+        status dict of the response or get
     """
     msk_name = f"{cluster_prefix}-{gravitar.replace('_', '').replace('.', '-')}"
 
@@ -188,17 +197,20 @@ def create_msk_configuration(cluster_prefix: str,
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# delete_msk
 #
 # ----------------------------------------------------------
-def delete_msk(cluster_prefix: str, gravitar: str) -> dict:
+def delete_msk(cluster_prefix: str,
+               gravitar: str) -> dict:
     """
     Delete MSK cluster with given cluster prefix.
 
     Args:
         cluster_prefix: name of the msk to be deleted
         gravitar: name of gravitar
-    Returns: empty dict if deletion happens otherwise status is returned
+        
+    Returns:
+        empty dict if deletion happens otherwise status is returned
     """
     msk_name = f"{cluster_prefix}-{gravitar.replace('_', '').replace('.', '-')}"
     msk_sg_name = f"{cluster_prefix}_msk.{gravitar}"
@@ -231,17 +243,20 @@ def delete_msk(cluster_prefix: str, gravitar: str) -> dict:
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# delete_msk_configuration
 #
 # ----------------------------------------------------------
-def delete_msk_configuration(cluster_prefix: str, gravitar: str) -> dict:
+def delete_msk_configuration(cluster_prefix: str,
+                             gravitar: str) -> dict:
     """
     Delete msk nodegroup for the cluster.
 
     Args:
         cluster_prefix: the prefix of cluster
         gravitar: the name of gravitar
-    Returns: empty dict if deletion happens otherwise status is returned
+        
+    Returns:
+        empty dict if deletion happens otherwise status is returned
     """
     msk_name = f"{cluster_prefix}-{gravitar.replace('_', '').replace('.', '-')}"
 

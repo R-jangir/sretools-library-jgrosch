@@ -11,12 +11,15 @@ from botocore.exceptions import ClientError
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# rds_default_creds
 #
 # ----------------------------------------------------------
-def rds_default_creds(arcade_name: str, name='rds_default_credentials', length=12):
+def rds_default_creds(arcade_name: str,
+                      name='rds_default_credentials',
+                      length=12) -> boolean:
     """
     Generates Default RDS creds for secrets manager per arcade
+    
     Args:
         arcade_name (str): [arcade name]
         name (str, optional): [name of the secret]. Defaults to 'rds_default_credentials'.
@@ -44,12 +47,16 @@ def rds_default_creds(arcade_name: str, name='rds_default_credentials', length=1
         logging.info(e)
         return False
 
+
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# update_secret_version
 #
 # ----------------------------------------------------------
-def update_secret_version(arcade_name: str, name: str, secret_value: str, versions=None):
+def update_secret_version(arcade_name: str,
+                          name: str,
+                          secret_value: str,
+                          versions=None) -> dict:
     """
     Puts Value with Version in Secrets Manager
 
@@ -59,6 +66,7 @@ def update_secret_version(arcade_name: str, name: str, secret_value: str, versio
         secret_value (str): [The secret]
         versions ([type], optional): [A version for the secret]. Defaults to None.
         ex: update_secret_version(name="my-test-secret-str", secret_value="test-secret-str-new-version", versions=["new-version"])
+
     Returns:
         [dict]: [aws api return]
     """
@@ -84,10 +92,13 @@ def update_secret_version(arcade_name: str, name: str, secret_value: str, versio
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# create_secret
 #
 # ----------------------------------------------------------
-def create_secret(arcade_name: str, name: str, secret_value, versions=None):
+def create_secret(arcade_name: str,
+                  name: str,
+                  secret_value,
+                  versions=None) -> dict:
     """
     Creates a Secret In AWS Secrets Manager
 
@@ -96,6 +107,7 @@ def create_secret(arcade_name: str, name: str, secret_value, versions=None):
         name (str): [Name of the secret]
         secret_value : [The secret]
         versions ([type], optional): [description]. Defaults to None.
+        
     Returns:
         [dict]: [Returns the ARN and Secret Name]
     """
@@ -126,10 +138,12 @@ def create_secret(arcade_name: str, name: str, secret_value, versions=None):
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# delete_secret
 #
 # ----------------------------------------------------------
-def delete_secret(arcade_name: str, name: str, without_recovery=False):
+def delete_secret(arcade_name: str,
+                  name: str,
+                  without_recovery=False) -> dict:
     """
     Deletes Secret from Secrets Manager
 
@@ -150,10 +164,12 @@ def delete_secret(arcade_name: str, name: str, without_recovery=False):
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# get_secret
 #
 # ----------------------------------------------------------
-def get_secret(arcade_name: str, name: str, version=None):
+def get_secret(arcade_name: str,
+               name: str,
+               version=None) -> str:
     """
     Gets A Secret Value from Secrets Manager
 
@@ -178,10 +194,12 @@ def get_secret(arcade_name: str, name: str, version=None):
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# update_secret
 #
 # ----------------------------------------------------------
-def update_secret(arcade_name: str, name: str, secret_value: str):
+def update_secret(arcade_name: str,
+                  name: str,
+                  secret_value: str) -> dict:
     """
     Update a secret in Secrets Manager
 
@@ -204,4 +222,5 @@ def update_secret(arcade_name: str, name: str, secret_value: str):
 
     response = client.update_secret(**kwargs)
     logging.info(response)
+
     return {'SecretName': response['Name'], 'SecretARN': response['ARN']}

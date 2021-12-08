@@ -3,25 +3,27 @@ import json
 import logging
 import os
 
-from modules import storage
+#from modules import storage
 
 # Begin merge
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# aws_tags_dict
 #
 # ----------------------------------------------------------
-def aws_tags_dict(tag_list):
+def aws_tags_dict(tag_list: list) -> dict:
     """
     Convenience function to relieve fumbling around with AWS tag lists.
 
     Given a list of AWS tags, (common to most AWS object types), converts
     the list into a dict keyed by tag:Key.
 
-    Args: tag_list - list of dicts from AWS API tag.
+    Args:
+        tag_list - list of dicts from AWS API tag.
 
-    Returns: dict of Key, Value pairs.  If supplied tag list contains
-             no values, returns an empty dict.
+    Returns:
+        dict of Key, Value pairs.  If supplied tag list contains
+        no values, returns an empty dict.
     """
     if tag_list is None or not isinstance(tag_list, list):
         raise ValueError(f"tag_list should be a list of dicts, got: {tag_list}")
@@ -35,7 +37,7 @@ def aws_tags_dict(tag_list):
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# check_dryrun
 #
 # ----------------------------------------------------------
 def check_dryrun(filename: str) -> bool:
@@ -44,9 +46,11 @@ def check_dryrun(filename: str) -> bool:
     This function needs to be invoked by installer at
     the beginning of the main function
 
-    Args: filename - the filename of the installer
+    Args:
+        filename - the filename of the installer
 
-    Returns: True if dryrun is set, else False
+    Returns:
+        True if dryrun is set, else False
     """
     dryrun = os.environ.get('GALAGA_DRYRUN')
 
@@ -59,7 +63,7 @@ def check_dryrun(filename: str) -> bool:
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# print_status
 #
 # ----------------------------------------------------------
 def print_status(status: dict) -> None:
@@ -71,25 +75,31 @@ def print_status(status: dict) -> None:
 
     Args:
         status: status dictionary to print
-    Returns: None
+        
+    Returns:
+        None
     """
 
     print(json.dumps(status, sort_keys=False, indent=2, default=str))
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# add_arcade_cname
 #
 # ----------------------------------------------------------
-def add_arcade_cname(arcade: str, source: str, target: str) -> bool:
+def add_arcade_cname(arcade: str,
+                     source: str,
+                     target: str) -> bool:
     """
     Add source -> target cname record to arcade
+    
     Args:
         arcade: The name of arcade
         source: Source string
         target: Target string
 
-    Returns: True/False
+    Returns:
+        True/False
 
     """
     r53 = boto3.client('route53')
@@ -119,17 +129,20 @@ def add_arcade_cname(arcade: str, source: str, target: str) -> bool:
     
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# delete_arcade_cname
 #
 # ----------------------------------------------------------
-def delete_arcade_cname(arcade: str, source: str) -> None:
+def delete_arcade_cname(arcade: str,
+                        source: str) -> None:
     """
     Delete cname start with source for an arcade
+
     Args:
         arcade: The name of arcade
         source: Source string
 
-    Returns: None
+    Returns:
+        None
 
     """
     r53 = boto3.client('route53')
@@ -152,7 +165,7 @@ def delete_arcade_cname(arcade: str, source: str) -> None:
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# get_account_id
 #
 # ----------------------------------------------------------
 def get_account_id() -> str:
@@ -163,11 +176,10 @@ def get_account_id() -> str:
     # print(json.dumps(response, sort_keys=False, indent=2, default=str))
     return response["Account"]
 
-# End merge
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# get_short_narc_id
 #
 # ----------------------------------------------------------
 def get_short_narc_id(narcid: str) -> str:
@@ -183,26 +195,20 @@ def get_short_narc_id(narcid: str) -> str:
     return "-".join(groups)
 
 
-#def is_number(self, num):
-#    """
-#    Helper function to determine if string is numeric or not (handles int, float, pos/neg"""
-#    try:
-#        float(num)
-#    except ValueError:
-#        return False
-#    return True
-
-
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# check_if_sig
 #
 # ----------------------------------------------------------
 def check_if_sg(sg_name: str) -> str:
     """
     Check to see if a SG is present.
-    Args: sg_name: security group name
-    Returns: security group id if the sg is there, empty string if not
+    
+    Args:
+        sg_name: security group name
+        
+    Returns:
+        security group id if the sg is there, empty string if not
     """
     client = boto3.client('ec2')
     response = client.describe_security_groups(
@@ -221,12 +227,17 @@ def check_if_sg(sg_name: str) -> str:
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# setup_arcade_session
 #
 # ----------------------------------------------------------
 def setup_arcade_session(arcade_name: str) -> boto3.session.Session:
     """
-    Create AWS session with arcade region set."""
+    Create AWS session with arcade region set.
+
+    Args:
+
+    Returns:
+    """
 
     # figure out what region cluster/arcade lives in
     # getting location from arcade scoped bucket is faster than looking for vpc

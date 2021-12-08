@@ -7,7 +7,7 @@ from botocore.exceptions import ClientError
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# put_parameter
 #
 # ----------------------------------------------------------
 def put_parameter(arcade_name: str,
@@ -41,10 +41,11 @@ def put_parameter(arcade_name: str,
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# delete_parameter
 #
 # ----------------------------------------------------------
-def delete_parameter(arcade_name: str, parameter_name: str) -> dict:
+def delete_parameter(arcade_name: str,
+                     parameter_name: str) -> dict:
     """
     Deletes a parameter in aws parameter store
 
@@ -61,7 +62,14 @@ def delete_parameter(arcade_name: str, parameter_name: str) -> dict:
     return response
     #
 
-def get_parameter(arcade_name: str, parameter_name: str, decryption=False) -> dict:
+# ----------------------------------------------------------
+#
+# get_parameter
+#
+# ----------------------------------------------------------
+def get_parameter(arcade_name: str,
+                  parameter_name: str,
+                  decryption=False) -> dict:
     """
     Gets parameter from AWS parameter store
 

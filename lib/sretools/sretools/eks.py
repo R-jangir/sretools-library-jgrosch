@@ -81,7 +81,8 @@ def get_eks_status(cluster_name: str) -> dict:
 # get_eks_nodegroup_status
 #
 # ----------------------------------------------------------
-def get_eks_nodegroup_status(cluster_name: str, node_group_name: str) -> dict:
+def get_eks_nodegroup_status(cluster_name: str,
+                             node_group_name: str) -> dict:
     """
     Return the status of a EKS nodegroup.
 
@@ -111,7 +112,9 @@ def get_eks_nodegroup_status(cluster_name: str, node_group_name: str) -> dict:
 # create_eks
 #
 # ----------------------------------------------------------
-def create_eks(cluster_prefix: str, gravitar: str, eks_version: str = '1.20') -> dict:
+def create_eks(cluster_prefix: str,
+               gravitar: str,
+               eks_version: str = '1.20') -> dict:
     """
     Create an EKS cluster.
 
@@ -191,8 +194,11 @@ def create_eks(cluster_prefix: str, gravitar: str, eks_version: str = '1.20') ->
 # create_eks_nodegroup
 #
 # ----------------------------------------------------------
-def create_eks_nodegroup(cluster_prefix: str, gravitar: str, nodes: int = 4,
-                         instance_type: str = 't3.medium', size: int = 20) -> dict:
+def create_eks_nodegroup(cluster_prefix: str,
+                         gravitar: str,
+                         nodes: int = 4,
+                         instance_type: str = 't3.medium',
+                         size: int = 20) -> dict:
     """
     Create an EKS nodegroup for the cluster.
 
@@ -275,7 +281,8 @@ def create_eks_nodegroup(cluster_prefix: str, gravitar: str, nodes: int = 4,
 # delete_eks
 #
 # ----------------------------------------------------------
-def delete_eks(cluster_prefix: str, gravitar: str) -> dict:
+def delete_eks(cluster_prefix: str,
+               gravitar: str) -> dict:
     """
     Delete EKS cluster with given cluster name.
 
@@ -320,7 +327,8 @@ def delete_eks(cluster_prefix: str, gravitar: str) -> dict:
 # delete_eks_nodegroup
 #
 # ----------------------------------------------------------
-def delete_eks_nodegroup(cluster_prefix: str, gravitar: str) -> dict:
+def delete_eks_nodegroup(cluster_prefix: str,
+                         gravitar: str) -> dict:
     """
     Delete eks nodegroup for the cluster.
 
@@ -426,7 +434,8 @@ def info_eks(cluster_name: str) -> dict:
 # info_eks_nodegroup
 #
 # ----------------------------------------------------------
-def info_eks_nodegroup(cluster_name: str, nodegroup: str) -> dict:
+def info_eks_nodegroup(cluster_name: str,
+                       nodegroup: str) -> dict:
     """
     Return the info of an EKS nodegroup as a dict.
 
@@ -459,7 +468,8 @@ def info_eks_nodegroup(cluster_name: str, nodegroup: str) -> dict:
 # apply_awsauth_configmap
 #
 # ----------------------------------------------------------
-def apply_awsauth_configmap(cluster_prefix: str, gravitar: str):
+def apply_awsauth_configmap(cluster_prefix: str,
+                            gravitar: str):
     """
     Apply AWS auth configmap to the EKS context.
 

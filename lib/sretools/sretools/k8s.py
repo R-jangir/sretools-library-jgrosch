@@ -14,6 +14,11 @@ from modules import utils
 def get_asteroid_running_services(asteroid_name):
     """
     Query K8s for an asteroid running services
+
+    Args:
+
+    Returns:
+    
     """
     k8s_apps_v1 = client.AppsV1Api()
     try:
@@ -40,6 +45,11 @@ def get_asteroid_running_services(asteroid_name):
 # ----------------------------------------------------------
 def load_arcade_k8s_config(arcade_name: str):
     """
+
+    Args:
+
+    Returns:
+    
     """
     cluster_name = f"asteroids-{arcade_name.replace('.', '-')}"
     arcade_session = utils.setup_arcade_session(arcade_name=arcade_name)

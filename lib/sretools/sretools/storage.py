@@ -9,15 +9,18 @@ from datetime import datetime
 # Begin merge
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# load_json
 #
 # ----------------------------------------------------------
-def load_json(bucket, s3_file_path) -> dict:
+def load_json(bucket: str,
+              s3_file_path: str) -> dict:
     """
     Load json object from json file in s3 bucket
+    
     Args:
         bucket: s3 bucket
         s3_file_path: Full path in s3 with filename
+
     Returns:
         dict: return the json object from json file in s3
         {}: if file is invalid or file path is invalid.
@@ -33,16 +36,18 @@ def load_json(bucket, s3_file_path) -> dict:
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# key_exists
 #
 # ----------------------------------------------------------
-def key_exists(bucket, s3_file_path) -> bool:
+def key_exists(bucket: str,
+               s3_file_path: str) -> bool:
     """
     Check for key in bucket.
 
     Args:
         bucket: s3 bucket
         s3_file_path: Full path in s3 with filename
+        
     Returns:
         bool: key exists
     """
@@ -56,11 +61,12 @@ def key_exists(bucket, s3_file_path) -> bool:
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# s3_file_timestamp
 #
 # ----------------------------------------------------------
 def s3_file_timestamp(session: boto3.session.Session, 
-                    bucket: str, s3_file_path: str):
+                      bucket: str,
+                      s3_file_path: str):
     """
     Returns Timestamp for a file in S3
 
@@ -75,21 +81,24 @@ def s3_file_timestamp(session: boto3.session.Session,
     s3_client = session.client('s3')
     obj = s3_client.get_object(Bucket=bucket, Key=s3_file_path)
     date = obj['LastModified']
+
     return date.strftime('%Y-%m-%d %H:%M:%S')
 
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# get_arcade_buckets
 #
 # ----------------------------------------------------------
-def get_arcade_buckets(session: boto3.session.Session, arcade: str) -> dict:
+def get_arcade_buckets(session: boto3.session.Session,
+                       arcade: str) -> dict:
     """
     Return the arcade buckets as a dictionary.
 
     Args:
         session: A boto3 session for accessing client and resource
         arcade: The name of arcade
+        
     Returns:
         A dictionary with key(app, infrastructure, assets): value (bucket name)
     """
@@ -102,16 +111,19 @@ def get_arcade_buckets(session: boto3.session.Session, arcade: str) -> dict:
     for bucket in buckets['Buckets']:
         if f"{arcade}" in bucket['Name']:
             bucket_dict[bucket['Name'].split('.')[-3]] = bucket['Name']
+
     return bucket_dict
 
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# upload_s3
 #
 # ----------------------------------------------------------
 def upload_to_s3(session: boto3.session.Session,
-                 bucket: str, data: str, key: str) -> bool:
+                 bucket: str,
+                 data: str,
+                 key: str) -> bool:
     """
     Uploads a json str to s3
 
@@ -120,6 +132,7 @@ def upload_to_s3(session: boto3.session.Session,
         bucket: s3 bucket name
         data: a serialized json str
         key: s3 object key
+        
     Returns:
         Bool: True (If upload was successful) False (If upload was unsuccessful)
     """
@@ -134,11 +147,15 @@ def upload_to_s3(session: boto3.session.Session,
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# upload_asteroid_json
 #
 # ----------------------------------------------------------
-def upload_asteroid_json(session: boto3.session.Session, bucket: str,
-                         prefix: str, name: str, version: str, data: str) -> str:
+def upload_asteroid_json(session: boto3.session.Session,
+                         bucket: str,
+                         prefix: str,
+                         name: str,
+                         version: str,
+                         data: str) -> str:
     """
     Upload asd/asteroid json to s3. Always add a new s3 key and
     update latest key to the new data.
@@ -151,7 +168,8 @@ def upload_asteroid_json(session: boto3.session.Session, bucket: str,
         version: version str
         data: a serialized json str
 
-    Returns: the s3 key of latest version or empty string
+    Returns:
+        the s3 key of latest version or empty string
 
     """
 
@@ -175,11 +193,12 @@ def upload_asteroid_json(session: boto3.session.Session, bucket: str,
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# find_s3_keys
 #
 # ----------------------------------------------------------
 def find_s3_keys(session: boto3.session.Session,
-                bucket: str, prefix: str) -> list:
+                 bucket: str,
+                 prefix: str) -> list:
     """
     Find objects from s3 bucket
 
@@ -188,7 +207,8 @@ def find_s3_keys(session: boto3.session.Session,
         bucket: s3 bucket name
         prefix: s3 key prefix
 
-    Returns: a list of keys matching prefix
+    Returns:
+        a list of keys matching prefix
 
     """
     try:
@@ -205,11 +225,12 @@ def find_s3_keys(session: boto3.session.Session,
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# s3_json_to_dict
 #
 # ----------------------------------------------------------
 def s3_json_to_dict(session: boto3.session.Session,
-                  bucket: str, s3_file_path: str) -> dict:
+                    bucket: str,
+                    s3_file_path: str) -> dict:
     """
     Load json file in s3 and return as a dictionary
 
@@ -233,7 +254,7 @@ def s3_json_to_dict(session: boto3.session.Session,
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# get_account_global_bucket
 #
 # ----------------------------------------------------------
 def get_account_global_bucket(session: boto3.session.Session) -> str:
@@ -244,7 +265,8 @@ def get_account_global_bucket(session: boto3.session.Session) -> str:
     Args:
         session: A boto3 session for accessing client and resource
 
-    Returns: the account global s3 bucket name
+    Returns:
+        the account global s3 bucket name
 
     """
     sts_client = session.client('sts')
@@ -264,10 +286,12 @@ def get_account_global_bucket(session: boto3.session.Session) -> str:
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# delete_s3_prefix
 #
 # ----------------------------------------------------------
-def delete_s3_prefix(session: boto3.session.Session, bucket: str, prefix: str) -> None:
+def delete_s3_prefix(session: boto3.session.Session,
+                     bucket: str,
+                     prefix: str) -> None:
     """
     Delete keys in s3 with prefix.
 
@@ -276,16 +300,19 @@ def delete_s3_prefix(session: boto3.session.Session, bucket: str, prefix: str) -
         bucket: s3 bucket name
         prefix: s3 key prefix
 
-    Returns: None
+    Returns:
+        None
 
     """
     bucket = session.resource('s3').Bucket(bucket)
     bucket.objects.filter(Prefix=prefix).delete()
 
+    return
+
 
 # ----------------------------------------------------------
 #
-# get_vmimport_role
+# download_s3_file
 #
 # ----------------------------------------------------------
 def download_s3_file(session: boto3.session.Session,
@@ -301,8 +328,11 @@ def download_s3_file(session: boto3.session.Session,
         key: s3 key
         filename: local file name
 
-    Returns: None
+    Returns:
+        None
     """
 
     session.resource('s3').Bucket(bucket).download_file(key, filename)
+
+    return
     #

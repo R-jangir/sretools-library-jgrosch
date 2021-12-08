@@ -8,6 +8,10 @@ import logging
 # ----------------------------------------------------------
 def add_log_level_argument(parser: argparse.parser) -> None:
     """
+    Args:
+
+    Returns:
+    
     """
     parser.add_argument("-v", "--verbose",
                         help="Increase output verbosity, default is WARNING",
@@ -23,6 +27,10 @@ def add_log_level_argument(parser: argparse.parser) -> None:
 # ----------------------------------------------------------
 def set_log_level(verbose: int) -> None:
     """
+    Args:
+
+    Returns:
+    
     """
     if verbose == 1:
         logging.basicConfig(level=logging.INFO)

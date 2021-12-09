@@ -6,3 +6,14 @@
 
 * sudo pip install --upgrade ./sretools
 
+// ----------------------------
+
+miranda% cat requirements.txt 
+
+PyYAML
+boto3
+botocore
+graphlib
+jsonschema
+kubernetes
+

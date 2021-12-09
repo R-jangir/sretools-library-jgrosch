@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: sretools
+Version: 0.5.0
+Summary: Library of the Arcade tools
+Home-page: https://github.com/josefgrosch/sretools-library
+Author: Josef Grosch
+Author-email: josef.grosch@addepar.com
+License: Copyright (c) 2021 Addepar, Inc.
+Description: ## sretools
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown

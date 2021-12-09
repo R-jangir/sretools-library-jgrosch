@@ -1,0 +1,8 @@
+PyYAML
+boto3
+botocore
+graphlib
+jsonschema
+kubernetes
+numpy
+pandas

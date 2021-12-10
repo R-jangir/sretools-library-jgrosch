@@ -32,15 +32,22 @@ import sys
 
 from botocore.exceptions import ClientError
 from fnmatch import translate
-from modules import storage
+from sretools import storage
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def aws_whoami():
     '''
     Simple self-id in the spirit of whoami(1).
 
-    Args: None.
+    Args:
+        None.
 
-    Returns: short login name for current AWS authenticated user.
+    Returns:
+        short login name for current AWS authenticated user.
     '''
     try:
         client = boto3.client('sts')
@@ -50,6 +57,11 @@ def aws_whoami():
         raise type(err)('aws_whoami() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def aws_tags_dict(taglist):
     '''
     Convenience function to relieve fumbling around with AWS tag lists.
@@ -74,6 +86,11 @@ def aws_tags_dict(taglist):
         raise type(err)('aws_tags_dict(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def wallclock():
     '''
     Prints the current time in RFC 3339 / ISO 8601 format.
@@ -93,6 +110,11 @@ def wallclock():
         raise type(err)('wallclock() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def afail():
     '''
     Used to reliably exit when -a (or $a) is thrown out of context.
@@ -106,6 +128,11 @@ def afail():
     sys.exit(87)
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def fetch_grv_meta(grv_id, region=None):
     '''
     Given a grv name or vpc id, return the basic identifier metadata
@@ -185,6 +212,11 @@ def fetch_grv_meta(grv_id, region=None):
         raise type(err)('fetch_grv_meta() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def validate_grv_id(grv_id):
     '''
     Validates a grv id with AWS, which can be a striing name for either:
@@ -275,6 +307,11 @@ def validate_grv_id(grv_id):
         raise type(err)('validate_grv_id(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def validate_create_id(create_session_uid_or_grv_id, grvs_list=None):
     '''
     Given the "grv create session id" UUID, return associated grv name.
@@ -310,6 +347,11 @@ def validate_create_id(create_session_uid_or_grv_id, grvs_list=None):
     return sresponse
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_key_pairs(grv_id='', region=''):
     '''
     List AWS key pairs globally, per region, or constrained to a given grv
@@ -370,6 +412,11 @@ def list_key_pairs(grv_id='', region=''):
         raise type(err)('validate_grv_id(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_global_vpcs():
     '''
     Lists AWS VPC\'s across all global regions for a given account.
@@ -409,6 +456,11 @@ def list_global_vpcs():
         raise type(err)('list_global_vpcs(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_grvs(grv_id=''):
     '''
     List VPC\'s associated with our account, across all AWS regions, in a manner
@@ -511,6 +563,11 @@ def list_grvs(grv_id=''):
         raise type(err)('list_grvs(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_route_tables(grv_id='', route_table_ids=[], region=None):
     '''
     Fetch a list of route tables associated with a given GRV,
@@ -584,6 +641,11 @@ def list_route_tables(grv_id='', route_table_ids=[], region=None):
         raise type(err)('list_route_tables(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_network_acls(acl_id=None, grv_id=None, region=None):
     '''
     List network acls, able to constrain to grv_id, or a single acl.
@@ -654,6 +716,11 @@ def list_network_acls(acl_id=None, grv_id=None, region=None):
         raise type(err)('list_network_acls(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_igw(igw_id=None, grv_id=None, region=None):
     '''
     Lists igw objects in several common contexts.
@@ -757,6 +824,11 @@ def list_igw(igw_id=None, grv_id=None, region=None):
     return keyed_igws
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def name_to_region(name):
     '''
     Returns an AWS geographic region for a given 'grv_id.tld'
@@ -800,6 +872,11 @@ def name_to_region(name):
         raise type(err)('name_to_region(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_logical_subnets(network):
     '''
     Return VPC subnet metadata list for a given logical subnet.
@@ -839,6 +916,11 @@ def list_logical_subnets(network):
         raise type(err)('list_logical_subnets(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_physical_subnets(grvname_or_logicalname, show_metadata=False):
     '''
     Given a grv name or logical network name, return information about the
@@ -921,6 +1003,11 @@ def list_physical_subnets(grvname_or_logicalname, show_metadata=False):
         raise type(err)('list_physical_subnets(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def validate_subnet_id(subnet_id):
     '''
     Validates a subnet id with AWS, which can be a striing name for either:
@@ -989,6 +1076,11 @@ def validate_subnet_id(subnet_id):
     return response
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_global_subnets():
     '''
     Lists AWS VPC's across all global regions for a given account.
@@ -1030,6 +1122,11 @@ def list_global_subnets():
         raise type(err)('list_global_subnets(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_vpc_subnets(grv_id):
     '''
     Simple interface to return all VPC subnets, given a grv name or VPC ID.
@@ -1073,6 +1170,11 @@ def list_vpc_subnets(grv_id):
         raise type(err)('list_vpc_subnets(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_grv_subnets(grv_id='', subnet_id='', sregion='', allregions=False):
     '''
     Lists subnets for a given VPC, (plural).
@@ -1216,9 +1318,14 @@ def list_grv_subnets(grv_id='', subnet_id='', sregion='', allregions=False):
     return keyed_subnets
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def get_paginated_reservations(filters=[], instance_ids=[]):
     '''
-    DEPRECATED - this doesn't appear to return all possible AWS instance
+    DEPRECATED - this doesn\'t appear to return all possible AWS instance
     classes.
 
     Given a filter or list of instance IDs, return a list of EC2 reservations,
@@ -1265,6 +1372,11 @@ def get_paginated_reservations(filters=[], instance_ids=[]):
     return all_reservations
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_nat_amis(region='', configpath=None):
     '''
     Returns a list of avaiable NAT Instance 'AMI's for a given region.
@@ -1315,9 +1427,14 @@ def list_nat_amis(region='', configpath=None):
         raise type(err)('list_nat_amis() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_default_amis(region='', configpath=None):
     '''
-    Returns a list of avaiable AMI's, based on our default image in grv config.
+    Returns a list of avaiable AMI\'s, based on our default image in grv config.
 
     Args:
       configpath - string path to grv config file.
@@ -1363,6 +1480,11 @@ def list_default_amis(region='', configpath=None):
         raise type(err)('list_default_amis() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_ssh_pub_keys(region='', grv_or_net_name=''):
     '''
     List ssh public keys available.
@@ -1421,6 +1543,11 @@ def list_ssh_pub_keys(region='', grv_or_net_name=''):
         raise type(err)('list_ssh_pub_keys() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_grv_security_groups(grv_or_net_name=''):
     '''
     List security groups available to a given GRV.
@@ -1489,6 +1616,11 @@ def list_grv_security_groups(grv_or_net_name=''):
         raise type(err)('list_default_amis() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_available_instance_types(region='', grv_or_net_name=''):
     '''
     List available instance types.
@@ -1498,6 +1630,11 @@ def list_available_instance_types(region='', grv_or_net_name=''):
     print('TODO workspot list_instance_types()')
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_grv_instances(grv_name='', phys_subnet='', logical_net='',):
     '''
     Lists AWS instances, in a specific GRV.
@@ -1624,6 +1761,11 @@ def list_grv_instances(grv_name='', phys_subnet='', logical_net='',):
     return keyed_instances
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def tld_to_zone_id(zone_string=None):
     '''
     Because boto3 is a terrible library.  Absolute design failure, in fact.
@@ -1682,6 +1824,11 @@ def tld_to_zone_id(zone_string=None):
     return _zone_id
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def tld_in_string(tld, name):
     '''
     Checks to see if tld or domain is the suffix for supplied domain name.
@@ -1751,6 +1898,11 @@ def tld_in_string(tld, name):
             "tld_in_string: tld='{0}', string='{1}': {2}".format(tld, name, err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def domain_walkback(fqdn):
     '''
     "walk back" a given fqdn from right to left,
@@ -1769,7 +1921,7 @@ def domain_walkback(fqdn):
     >>> print(domain_walkback('baz.bar.foo.tld.'))
     ('tld', 'foo.tld', 'bar.foo.tld', 'baz.bar.foo.tld')
 
-    Yep, this is legal, we're not discriminating- just handling dot
+    Yep, this is legal, we\'re not discriminating- just handling dot
     notation namespaces:
     >>> print(domain_walkback('baz_bar foo.tld.'))
     ('tld', 'baz_bar foo.tld')
@@ -1802,6 +1954,11 @@ def domain_walkback(fqdn):
     return tuple(fqdn_list)
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def zone_vpc_associations(zone):
     '''
     Given a route53 zone name, returns a list of all associated VPC's.
@@ -1830,6 +1987,11 @@ def zone_vpc_associations(zone):
     return vreturn
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def vpc_domains_enabled(grv_id):
     '''
     Given a VPC id or name, returns boolean value if *both* of the following
@@ -1875,6 +2037,11 @@ def vpc_domains_enabled(grv_id):
         raise type(err)("vpc_domains_enabled(): {}".format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def domain_find_zone_id(fqdn):
     '''
     Find the shortest zone name in AWS which may contain the supplied fqdn.
@@ -1915,7 +2082,7 @@ def domain_find_zone_id(fqdn):
 
 def r53_lookup(name='', dns_type=''):
     '''
-    Query AWS Route53 name for it's value.  Much like nslookup(1) or dig(1)
+    Query AWS Route53 name for it\'s value.  Much like nslookup(1) or dig(1)
     when queried with short options.
 
     Args:
@@ -1926,7 +2093,7 @@ def r53_lookup(name='', dns_type=''):
 
     Returns:
         List of string values, (usually only one).
-        String values are stripped of leading/trailing " and ' characters.
+        String values are stripped of leading/trailing \" and \' characters.
         Returns empty list if name does not exist.
 
         When multiple names are encountered, (perhaps different DNS types),
@@ -1952,7 +2119,11 @@ def r53_lookup(name='', dns_type=''):
         raise type(err)("r53_lookup(): {}".format(err))
     return lookup
 
-
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_dns_names(name='', zone='', dns_type='', show_zone=False):
     '''
     This function will simply perform the AWS route53 API variant of a DNS lookup.
@@ -2067,7 +2238,9 @@ def list_dns_names(name='', zone='', dns_type='', show_zone=False):
     ValueError
 
     https://boto3.readthedocs.io/en/develop/reference/services/route53.html#Route53.Client.list_resource_record_sets
+    
     '''
+
     name_data = {}
     rr_match_set = []
 
@@ -2167,6 +2340,11 @@ def list_dns_names(name='', zone='', dns_type='', show_zone=False):
     return name_data
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_dns_zones(zone=None, name=None):
     '''
     Lists DNS Zones or specific zone record, according to Route53.
@@ -2373,6 +2551,11 @@ def list_dns_zones(zone=None, name=None):
     return zones_return
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_iam_roles(grv_id=None, show_policy=False):
     '''
     Checks account for grv-specific IAM roles.
@@ -2390,7 +2573,7 @@ def list_iam_roles(grv_id=None, show_policy=False):
     Bugs:
     AWS/boto3 Cannot show tags.
     Boto3 apparently has not implemented any manner by which to fetch
-    tags for IAM roles, (even though docs say it's possible,
+    tags for IAM roles, (even though docs say it\'s possible,
     https://github.com/boto/boto3/issues/1794).  Therefore, IAM
     role names for GRV-specific resources must be prepended
     with the grv name, e.g. "decaf_sidamo.grv_role_name" to enable
@@ -2482,9 +2665,14 @@ def list_iam_roles(grv_id=None, show_policy=False):
         raise type(err)('list_iam_roles(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def check_reservation_eip(printlist=None):
     '''
-    Checks account reservation of inet elastic IP's.
+    Checks account reservation of inet elastic IP\'s.
     (Implicitly uses account for authenticated user).
 
     Args:
@@ -2506,6 +2694,11 @@ def check_reservation_eip(printlist=None):
     print('TODO: check_reservation_eip')
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def check_reservations_instances():
     '''
     Checks instances reservations, focused on returning  reservation limit,
@@ -2519,6 +2712,11 @@ def check_reservations_instances():
     print('TODO: check_reservation_hosts')
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def fetch_account_id():
     '''
     Reliably fetch and return account ID, and any optional aliases.
@@ -2578,6 +2776,11 @@ def fetch_account_id():
     return (_id, _aliases)
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def set_region(region=''):
     '''
     Manual shifter to set a region context for grv library interactions.
@@ -2669,6 +2872,11 @@ def set_region(region=''):
             region))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def fetch_available_regions():
     '''
     Return a list of regions available to our account.
@@ -2706,6 +2914,11 @@ def fetch_available_regions():
     return _avail_regions
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def region_resolver(startwith=[], allregions=True, geofilter='', geopriority=''):
     '''
     This function returns a list of AWS regions for use in iterative operations.
@@ -2907,6 +3120,11 @@ def fetch_available_azs(region=None):
     return azs
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def fetch_live_ipv4_netblocks(vpc=None):
     '''
     Fetch live/used ipv4 netblocks, in one of two ways:
@@ -2932,6 +3150,11 @@ def fetch_live_ipv4_netblocks(vpc=None):
 #    print 'TODO: fetch_live_ipv6_netblocks()'
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_lambdas(grv_id=None, region='Undefined'):
     '''
     Queries for information about lambdas.
@@ -3039,6 +3262,11 @@ def list_lambdas(grv_id=None, region='Undefined'):
         raise type(err)('list_lambdas(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_sqs_queues(grv_id=None, sqs_id=None, region='Undefined'):
     '''
     Queries for information about SQS queues and endpoints.
@@ -3198,6 +3426,11 @@ def list_sqs_queues(grv_id=None, sqs_id=None, region='Undefined'):
         raise type(err)('list_sqs_queues(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_grvs_s3_buckets(grv_id=None, bucket_id=None):
     '''
     Queries for information about GRV-created S3 buckets and endpoints.
@@ -3312,6 +3545,11 @@ def list_grvs_s3_buckets(grv_id=None, bucket_id=None):
         raise type(err)('list_grvs_s3_buckets() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_rds_instances(grv_id=None, rds_id=None):
     '''
     Queries for information about RDS instances and endpoints.
@@ -3346,6 +3584,11 @@ def list_rds_instances(grv_id=None, rds_id=None):
     print('TODO: list_rds_instances()')
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_vpc_endpoints(grv_id=None, region=None):
     '''
     Queries for information about VPC endpoints.
@@ -3438,6 +3681,11 @@ def list_vpc_endpoints(grv_id=None, region=None):
         raise type(err)('list_vpc_endpoints() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_available_endpoints(region=None, product=''):
     '''
     Returns a available amazon-owned service endpoints.  Used for deducing
@@ -3513,6 +3761,11 @@ def list_available_endpoints(region=None, product=''):
         raise type(err)('list_available_endpoints() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_sg(grv_id=None, sg_id=None):
     '''
     Queries for information about AWS SG's.
@@ -3536,7 +3789,7 @@ def list_sg(grv_id=None, sg_id=None):
 
     Returns:
         A dict keyed by Service Group object id, for all cases.
-        If None, return all SG's and basic metadata- but carefully does not
+        If None, return all SG\'s and basic metadata- but carefully does not
         recursively attach related objects, else this return would be too huge.
         If grv_id, same return as None, but filtered to reliably return
         SG's associated with objects in the grv_id given.
@@ -3549,6 +3802,11 @@ def list_sg(grv_id=None, sg_id=None):
     print('TODO: list_sg()')
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_acl(grv_id=None, acl_id=None):
     '''
     Queries for information about VPC ACL's.
@@ -3567,7 +3825,7 @@ def list_acl(grv_id=None, acl_id=None):
     Returns:
         A dict keyed by ACL object id, for all cases.
         If None, return all VPC ACL's and metadata across our account.
-        if grv_id, reliably return all VPC ACL's which belong to, or are
+        if grv_id, reliably return all VPC ACL\'s which belong to, or are
         attached to, the specified VPC.
         If acl_id, simply return the single ACL and metadata.
     '''
@@ -3576,6 +3834,11 @@ def list_acl(grv_id=None, acl_id=None):
     print('TODO: list_acl()')
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def source(fname=None):
     '''
     Simple parse UNIX file for configuration variables, returning a flat
@@ -3614,7 +3877,12 @@ def source(fname=None):
     '''
     return_dict = OrderedDict()
 
-    def _polish_corners(str_val):
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
+def _polish_corners(str_val):
         '''
         Helper to strip either "'" or '"' from quoted string values.
         Only operates if both beginning and end of string have the same quotes.
@@ -3663,6 +3931,11 @@ def source(fname=None):
     return return_dict
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def upsert_list(alist, avalue):
     '''
     A riff on builtin list append which behaves like an upsert.
@@ -3683,6 +3956,11 @@ def upsert_list(alist, avalue):
     return alist
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def sort_nets(list_of_addrs, reverse=False):
     '''
     IP address or network, list numeric sort.
@@ -3765,6 +4043,11 @@ def sort_nets(list_of_addrs, reverse=False):
     return return_ips
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def sort_ips(list_of_ips, reverse=False):
     '''
     Classic IP address list numeric sort.
@@ -3784,6 +4067,11 @@ def sort_ips(list_of_ips, reverse=False):
         raise type(err)('sort_ips(): {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def is_valid_fqdn(fqdn):
     """
     Determine if a string submitted is in fact a valid DNS record name.
@@ -3842,6 +4130,11 @@ def is_valid_fqdn(fqdn):
             "is_valid_fqdn() Ecxeption: fqdn='{0}', '{1}'".format(fqdn, err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def list_compare(a, b):
     '''
     Classic list comparison.
@@ -3858,6 +4151,11 @@ def list_compare(a, b):
     return [[x for x in a if x not in b], [x for x in b if x not in a]]
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def prettyPrint(anything=None):
     """
     Easy pretty print.
@@ -3879,6 +4177,11 @@ def prettyPrint(anything=None):
 # py variation on the 3 finger claw, to be used with copious try/except
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def yell(msg, _fdout=sys.stderr):
     '''Log to file (usually stderr), with progname: <log>'''
     # Note: refrain from using in libraries, this is here for user programs.
@@ -3887,6 +4190,11 @@ def yell(msg, _fdout=sys.stderr):
     _fdout.flush()
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def die(msg, _exit=111, _fdout=sys.stderr):
     '''Exit with a log message (usually a fatal error)'''
     # Note: refrain from using in libraries, this is here for user programs.
@@ -3895,6 +4203,11 @@ def die(msg, _exit=111, _fdout=sys.stderr):
     sys.exit(_exit)
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def debug(msg, outfile=sys.stderr):
     '''Print msg (usually stderr), with progname: <msg>'''
     if os.environ.get('DEBUG'):
@@ -3902,6 +4215,11 @@ def debug(msg, outfile=sys.stderr):
         outfile.flush()
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def flatten_dict(dd, separator='_', prefix=''):
     '''
     Flatten a dict object into key/value pairs.
@@ -3914,6 +4232,11 @@ def flatten_dict(dd, separator='_', prefix=''):
 # TODO: consolidate info_grvnets() and info_grvnames()
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def info_grvnames():
     '''
     For a given account, returns a list of all 'grvname' names.
@@ -3969,6 +4292,11 @@ def info_grvnames():
 # TODO: consolidate info_grvnets() and info_grvnames()
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def info_grvnets():
     '''
     For a given account, returns a list of all 'grvnet' DNS entries.
@@ -4028,6 +4356,11 @@ def info_grvnets():
 
 # TODO: generalize these lazy loadconfig functions into a single loader
 # which respects PATH, including relative location.
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def grvs_loadconfig(configpath=None):
     '''
     Convenience function for grv tooling, for loading often used config.
@@ -4054,6 +4387,11 @@ def grvs_loadconfig(configpath=None):
 # which respects PATH, including relative location.
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def grvs_loadconfig_net(configpath=None):
     '''
     Convenience function for grv tooling, often used.
@@ -4079,6 +4417,11 @@ def grvs_loadconfig_net(configpath=None):
         raise type(err)('grvs_loadconfig_net() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def grvs_supernets_config(configpath=None):
     '''
     Convenience function for grv tooling, often used.
@@ -4105,6 +4448,11 @@ def grvs_supernets_config(configpath=None):
         raise type(err)('grvs_supernets() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def ip_net_cidr(address):
     '''
     Given an IP address in CIDR format, return the network name
@@ -4130,6 +4478,11 @@ def ip_net_cidr(address):
         raise type(err)('ip_net_cidr() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def grv_net_config_physical(grv_name=None, grv_net=None, configpath=None, region=None):
     '''
     Intended to be used for:
@@ -4303,6 +4656,11 @@ def grv_net_config_physical(grv_name=None, grv_net=None, configpath=None, region
     return physical
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def grv_net_config_logical(grv_name=None, grv_net=None, configpath=None):
     '''
     Intended to define logical grv network layout from configuration.
@@ -4588,6 +4946,11 @@ def grv_net_config_logical(grv_name=None, grv_net=None, configpath=None):
     return grvd
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def ipv4_contiguous(supernet=None, subnet_cidr=None):
     '''
     Given an ipv4 supernet and subnet size, return list of contiguous ,
@@ -4639,6 +5002,11 @@ def ipv4_contiguous(supernet=None, subnet_cidr=None):
     return tuple(all_subnets)
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def ip_next(ip, in_mask=None, out_mask=None, _prev=False):
     '''
     Given an IP address or network, Returns next sequential IP address.
@@ -4679,7 +5047,7 @@ def ip_next(ip, in_mask=None, out_mask=None, _prev=False):
       out_mask: return object netmask
       type can be any of: str or int, octal or cidr formats.
       IMPORTANT: if the ip supplied is a single address,
-      then out_mask is applied to it, so we don't overlap or start
+      then out_mask is applied to it, so we don\'t overlap or start
       cidr blocks in non-contiguous  sections of ip space.
 
       _prev: boolean to return previous netblock, used to simplify
@@ -4760,6 +5128,11 @@ def ip_next(ip, in_mask=None, out_mask=None, _prev=False):
         raise type(err)('ip_next() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def ip_prior(ip, in_mask=None, out_mask=None):
     '''
     Identical compliment to ip_next(), but instead of returning next
@@ -4795,6 +5168,11 @@ def ip_prior(ip, in_mask=None, out_mask=None):
         raise type(err)('ip_prior() error: {}'.format(err))
 
 
+# ----------------------------------------------------------
+#
+# HERE
+#
+# ----------------------------------------------------------
 def redirect(handle=None):
     '''
     Hard redirect for output file handles, stdout/stderr being the primary use.
@@ -5088,52 +5466,52 @@ class configDict(dict):
 ##############################################################################
 
 
-def main(argv):
-    '''
-    Designed to be called by wrapper libraries in other languages, providing
-    a consistent tooling interface to these library routines.
-
-    This function requires the first arg to be the string name of a function
-    in this program.
-
-    Args:
-        argv, sys.argv global context.
-        First arg must match a function name in this library, the following
-        args should match that function's input args or kwargs.
-
-    Returns:
-        Function output as JSON for every case.
-        Error conditions returned for missing function name, or boiled up
-        from the actual function result.
-    '''
-    import json
-
-    try:
-        debug("TODO: this will allow calling py lib from wrappers.")
-        debug('Argument List: {0}'.format(str(argv)))
-        debug(globals())
-
-        # identify the function we are calling as first arg,
-        funk_name = argv.pop(0)
-        debug('func_name = {0}'.format(funk_name))
-        live_funk = globals()[funk_name]
-
-    except Warning as war:
-        print("Input Warning grv lib: {}".format(war), file=sys.stderr)
-    except KeyError as err:
-        raise KeyError("{} does not exist in grv library".format(str(err)))
-    except Exception as err:
-        raise type(err)("Input Error grv lib: {}".format(err))
-
-    try:
-        # call the actual function
-        print(json.dumps(live_funk(*argv), indent=1,))
-
-    except Warning as war:
-        print('grv lib runtime warning: {}'.format(war), file=sys.stderr)
-    except Exception as err:
-        raise type(err)('grv lib runtime error: {}'.format(err))
-
-
-if __name__ == '__main__':
-    main(sys.argv[1:])
+#def main(argv):
+#    '''
+#    Designed to be called by wrapper libraries in other languages, providing
+#    a consistent tooling interface to these library routines.
+#
+#    This function requires the first arg to be the string name of a function
+#    in this program.
+#
+#    Args:
+#        argv, sys.argv global context.
+#        First arg must match a function name in this library, the following
+#        args should match that function's input args or kwargs.
+#
+#    Returns:
+#        Function output as JSON for every case.
+#        Error conditions returned for missing function name, or boiled up
+#        from the actual function result.
+#    '''
+#    import json
+#
+#    try:
+#        debug("TODO: this will allow calling py lib from wrappers.")
+#        debug('Argument List: {0}'.format(str(argv)))
+#        debug(globals())
+#
+#        # identify the function we are calling as first arg,
+#        funk_name = argv.pop(0)
+#        debug('func_name = {0}'.format(funk_name))
+#        live_funk = globals()[funk_name]
+#
+#    except Warning as war:
+#        print("Input Warning grv lib: {}".format(war), file=sys.stderr)
+#    except KeyError as err:
+#        raise KeyError("{} does not exist in grv library".format(str(err)))
+#    except Exception as err:
+#        raise type(err)("Input Error grv lib: {}".format(err))
+#
+#    try:
+#        # call the actual function
+#        print(json.dumps(live_funk(*argv), indent=1,))
+#
+#    except Warning as war:
+#        print('grv lib runtime warning: {}'.format(war), file=sys.stderr)
+#    except Exception as err:
+#        raise type(err)('grv lib runtime error: {}'.format(err))
+#
+#
+#if __name__ == '__main__':
+#    main(sys.argv[1:])

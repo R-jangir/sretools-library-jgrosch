@@ -1,0 +1,18 @@
+{
+    "realm": [
+        {
+            "ADDEPAR_PLATFORM": "ConeyIsland",
+            "AWS_DEFAULT_REGION": "us-east-2",
+            "AWS_ACCESS_KEY": "foo",
+            "AWS_SECRET_KEY": "bar",
+            "OUTPUT": "json"
+        },
+        {
+            "ADDEPAR_PLATFORM": "addeparser",
+            "AWS_DEFAULT_REGION": "us-east-2",
+            "AWS_ACCESS_KEY": "pickle",
+            "AWS_SECRET_KEY": "bubbles",
+            "OUTPUT": "json"
+        }
+    ]
+}

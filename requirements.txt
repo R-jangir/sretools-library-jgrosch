@@ -1,0 +1,7 @@
+PyYAML
+boto3
+botocore
+graphlib
+jsonschema
+kubernetes
+pdoc3

@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>sretools.utils API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>sretools.utils</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import boto3
+import json
+import logging
+import os
+from sretools import storage
+
+
+# Begin merge
+# ----------------------------------------------------------
+#
+# aws_tags_dict
+#
+# ----------------------------------------------------------
+def aws_tags_dict(tag_list: list) -&gt; dict:
+    &#34;&#34;&#34;
+    Convenience function to relieve fumbling around with AWS tag lists.
+
+    Given a list of AWS tags, (common to most AWS object types), converts
+    the list into a dict keyed by tag:Key.
+
+    Args:
+        tag_list - list of dicts from AWS API tag.
+
+    Returns:
+        dict of Key, Value pairs.  If supplied tag list contains
+        no values, returns an empty dict.
+    &#34;&#34;&#34;
+    if tag_list is None or not isinstance(tag_list, list):
+        raise ValueError(f&#34;tag_list should be a list of dicts, got: {tag_list}&#34;)
+
+    return_dict = {}
+    for tagd in tag_list:
+        if &#39;Key&#39; not in tagd or &#39;Value&#39; not in tagd:
+            raise ValueError(f&#34;element of tag_list should be a tag dict, got {tagd}&#34;)
+        return_dict[tagd[&#39;Key&#39;]] = tagd[&#39;Value&#39;]
+    return return_dict
+
+# ----------------------------------------------------------
+#
+# check_dryrun
+#
+# ----------------------------------------------------------
+def check_dryrun(filename: str) -&gt; bool:
+    &#34;&#34;&#34;
+    Check dryrun option from os environ (GALAGA_DRYRUN)
+    This function needs to be invoked by installer at
+    the beginning of the main function
+
+    Args:
+        filename - the filename of the installer
+
+    Returns:
+        True if dryrun is set, else False
+    &#34;&#34;&#34;
+    dryrun = os.environ.get(&#39;GALAGA_DRYRUN&#39;)
+
+    if &#34;1&#34; == dryrun:
+        print(f&#34;Invoke installer {filename} with dryrun option.&#34;)
+        return True
+    else:
+        print(f&#34;Invoking installer {filename}.&#34;)
+        return False
+
+# ----------------------------------------------------------
+#
+# print_status
+#
+# ----------------------------------------------------------
+def print_status(status: dict) -&gt; None:
+    &#34;&#34;&#34;
+    Print status dictionary to json object
+    The purpose of this function is to resolve following error
+    when loading json object from json string:
+    TypeError: Object of type datetime is not JSON serializable
+
+    Args:
+        status: status dictionary to print
+        
+    Returns:
+        None
+    &#34;&#34;&#34;
+
+    print(json.dumps(status, sort_keys=False, indent=2, default=str))
+
+# ----------------------------------------------------------
+#
+# add_arcade_cname
+#
+# ----------------------------------------------------------
+def add_arcade_cname(arcade: str,
+                     source: str,
+                     target: str) -&gt; bool:
+    &#34;&#34;&#34;
+    Add source -&gt; target cname record to arcade
+    
+    Args:
+        arcade: The name of arcade
+        source: Source string
+        target: Target string
+
+    Returns:
+        True/False
+
+    &#34;&#34;&#34;
+    r53 = boto3.client(&#39;route53&#39;)
+    zones = r53.list_hosted_zones_by_name(DNSName=arcade)
+    zone_id = zones[&#39;HostedZones&#39;][0][&#39;Id&#39;]
+    try:
+        r53.change_resource_record_sets(
+            HostedZoneId=zone_id,
+            ChangeBatch={
+                &#39;Comment&#39;: f&#39;add {source} -&gt; {target}&#39;,
+                &#39;Changes&#39;: [
+                    {
+                        &#39;Action&#39;: &#39;UPSERT&#39;,
+                        &#39;ResourceRecordSet&#39;: {
+                            &#39;Name&#39;: source,
+                            &#39;Type&#39;: &#39;CNAME&#39;,
+                            &#39;TTL&#39;: 300,
+                            &#39;ResourceRecords&#39;: [{&#39;Value&#39;: target}]
+                        }
+                    }]
+            })
+        return True
+    except Exception as e:
+        logging.error(e)
+        return False
+    #
+    
+# ----------------------------------------------------------
+#
+# delete_arcade_cname
+#
+# ----------------------------------------------------------
+def delete_arcade_cname(arcade: str,
+                        source: str) -&gt; None:
+    &#34;&#34;&#34;
+    Delete cname start with source for an arcade
+
+    Args:
+        arcade: The name of arcade
+        source: Source string
+
+    Returns:
+        None
+
+    &#34;&#34;&#34;
+    r53 = boto3.client(&#39;route53&#39;)
+    zones = r53.list_hosted_zones_by_name(DNSName=arcade)
+    zone_id = zones[&#39;HostedZones&#39;][0][&#39;Id&#39;]
+    response = r53.list_resource_record_sets(HostedZoneId=zone_id,
+                                             StartRecordName=source, MaxItems=&#39;1&#39;)
+
+    if source in response[&#39;ResourceRecordSets&#39;][0][&#39;Name&#39;]:
+        r53.change_resource_record_sets(
+            HostedZoneId=zone_id,
+            ChangeBatch={
+                &#39;Comment&#39;: f&#39;delete {source}&#39;,
+                &#39;Changes&#39;: [
+                    {
+                        &#39;Action&#39;: &#39;DELETE&#39;,
+                        &#39;ResourceRecordSet&#39;: response[&#39;ResourceRecordSets&#39;][0]
+                    }]
+            })
+
+# ----------------------------------------------------------
+#
+# get_account_id
+#
+# ----------------------------------------------------------
+def get_account_id() -&gt; str:
+    &#34;&#34;&#34;
+    &#34;&#34;&#34;
+    client = boto3.client(&#39;sts&#39;)
+    response = client.get_caller_identity()
+    # print(json.dumps(response, sort_keys=False, indent=2, default=str))
+    return response[&#34;Account&#34;]
+
+
+# ----------------------------------------------------------
+#
+# get_short_narc_id
+#
+# ----------------------------------------------------------
+def get_short_narc_id(narcid: str) -&gt; str:
+    &#34;&#34;&#34;
+    Get the short narc id by using first 8 characters of asd/asteroid name
+    Args:
+        narcid: the original narc id
+    Returns: the short narc id in string format
+    &#34;&#34;&#34;
+    groups = narcid.split(&#39;-&#39;)
+    groups[1] = groups[1][:8]
+    groups[2] = groups[2][:8]
+    return &#34;-&#34;.join(groups)
+
+
+# ----------------------------------------------------------
+#
+# check_if_sig
+#
+# ----------------------------------------------------------
+def check_if_sg(sg_name: str) -&gt; str:
+    &#34;&#34;&#34;
+    Check to see if a SG is present.
+    
+    Args:
+        sg_name: security group name
+        
+    Returns:
+        security group id if the sg is there, empty string if not
+    &#34;&#34;&#34;
+    client = boto3.client(&#39;ec2&#39;)
+    response = client.describe_security_groups(
+        Filters=[
+            {
+                &#39;Name&#39;: &#39;tag:Name&#39;,
+                &#39;Values&#39;: [f&#34;{sg_name}*&#34;]
+            }
+        ]
+    )
+
+    if len(response[&#39;SecurityGroups&#39;]) != 1:
+        return &#34;&#34;
+    return response[&#39;SecurityGroups&#39;][0][&#39;GroupId&#39;]
+
+
+# ----------------------------------------------------------
+#
+# setup_arcade_session
+#
+# ----------------------------------------------------------
+def setup_arcade_session(arcade_name: str) -&gt; boto3.session.Session:
+    &#34;&#34;&#34;
+    Create AWS session with arcade region set.
+
+    Args:
+
+    Returns:
+    &#34;&#34;&#34;
+
+    # figure out what region cluster/arcade lives in
+    # getting location from arcade scoped bucket is faster than looking for vpc
+    bucket_session = boto3.session.Session(region_name=&#39;us-east-2&#39;)
+    s3_client = bucket_session.client(&#39;s3&#39;)
+    buckets = storage.get_arcade_buckets(bucket_session, arcade_name)
+    arcade_region = s3_client.get_bucket_location(Bucket=buckets[&#39;app&#39;])[&#39;LocationConstraint&#39;]
+    # print(&#34;----Arcade region----&#34;)
+    # print(arcade_region)
+
+    return boto3.session.Session(region_name=arcade_region)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="sretools.utils.add_arcade_cname"><code class="name flex">
+<span>def <span class="ident">add_arcade_cname</span></span>(<span>arcade: str, source: str, target: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add source -&gt; target cname record to arcade</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>arcade</code></strong></dt>
+<dd>The name of arcade</dd>
+<dt><strong><code>source</code></strong></dt>
+<dd>Source string</dd>
+<dt><strong><code>target</code></strong></dt>
+<dd>Target string</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>True/False</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_arcade_cname(arcade: str,
+                     source: str,
+                     target: str) -&gt; bool:
+    &#34;&#34;&#34;
+    Add source -&gt; target cname record to arcade
+    
+    Args:
+        arcade: The name of arcade
+        source: Source string
+        target: Target string
+
+    Returns:
+        True/False
+
+    &#34;&#34;&#34;
+    r53 = boto3.client(&#39;route53&#39;)
+    zones = r53.list_hosted_zones_by_name(DNSName=arcade)
+    zone_id = zones[&#39;HostedZones&#39;][0][&#39;Id&#39;]
+    try:
+        r53.change_resource_record_sets(
+            HostedZoneId=zone_id,
+            ChangeBatch={
+                &#39;Comment&#39;: f&#39;add {source} -&gt; {target}&#39;,
+                &#39;Changes&#39;: [
+                    {
+                        &#39;Action&#39;: &#39;UPSERT&#39;,
+                        &#39;ResourceRecordSet&#39;: {
+                            &#39;Name&#39;: source,
+                            &#39;Type&#39;: &#39;CNAME&#39;,
+                            &#39;TTL&#39;: 300,
+                            &#39;ResourceRecords&#39;: [{&#39;Value&#39;: target}]
+                        }
+                    }]
+            })
+        return True
+    except Exception as e:
+        logging.error(e)
+        return False
+    #</code></pre>
+</details>
+</dd>
+<dt id="sretools.utils.aws_tags_dict"><code class="name flex">
+<span>def <span class="ident">aws_tags_dict</span></span>(<span>tag_list: list) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convenience function to relieve fumbling around with AWS tag lists.</p>
+<p>Given a list of AWS tags, (common to most AWS object types), converts
+the list into a dict keyed by tag:Key.</p>
+<h2 id="args">Args</h2>
+<p>tag_list - list of dicts from AWS API tag.</p>
+<h2 id="returns">Returns</h2>
+<p>dict of Key, Value pairs.
+If supplied tag list contains
+no values, returns an empty dict.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def aws_tags_dict(tag_list: list) -&gt; dict:
+    &#34;&#34;&#34;
+    Convenience function to relieve fumbling around with AWS tag lists.
+
+    Given a list of AWS tags, (common to most AWS object types), converts
+    the list into a dict keyed by tag:Key.
+
+    Args:
+        tag_list - list of dicts from AWS API tag.
+
+    Returns:
+        dict of Key, Value pairs.  If supplied tag list contains
+        no values, returns an empty dict.
+    &#34;&#34;&#34;
+    if tag_list is None or not isinstance(tag_list, list):
+        raise ValueError(f&#34;tag_list should be a list of dicts, got: {tag_list}&#34;)
+
+    return_dict = {}
+    for tagd in tag_list:
+        if &#39;Key&#39; not in tagd or &#39;Value&#39; not in tagd:
+            raise ValueError(f&#34;element of tag_list should be a tag dict, got {tagd}&#34;)
+        return_dict[tagd[&#39;Key&#39;]] = tagd[&#39;Value&#39;]
+    return return_dict</code></pre>
+</details>
+</dd>
+<dt id="sretools.utils.check_dryrun"><code class="name flex">
+<span>def <span class="ident">check_dryrun</span></span>(<span>filename: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check dryrun option from os environ (GALAGA_DRYRUN)
+This function needs to be invoked by installer at
+the beginning of the main function</p>
+<h2 id="args">Args</h2>
+<p>filename - the filename of the installer</p>
+<h2 id="returns">Returns</h2>
+<p>True if dryrun is set, else False</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_dryrun(filename: str) -&gt; bool:
+    &#34;&#34;&#34;
+    Check dryrun option from os environ (GALAGA_DRYRUN)
+    This function needs to be invoked by installer at
+    the beginning of the main function
+
+    Args:
+        filename - the filename of the installer
+
+    Returns:
+        True if dryrun is set, else False
+    &#34;&#34;&#34;
+    dryrun = os.environ.get(&#39;GALAGA_DRYRUN&#39;)
+
+    if &#34;1&#34; == dryrun:
+        print(f&#34;Invoke installer {filename} with dryrun option.&#34;)
+        return True
+    else:
+        print(f&#34;Invoking installer {filename}.&#34;)
+        return False</code></pre>
+</details>
+</dd>
+<dt id="sretools.utils.check_if_sg"><code class="name flex">
+<span>def <span class="ident">check_if_sg</span></span>(<span>sg_name: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check to see if a SG is present.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>sg_name</code></strong></dt>
+<dd>security group name</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>security group id if the sg is there, empty string if not</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_if_sg(sg_name: str) -&gt; str:
+    &#34;&#34;&#34;
+    Check to see if a SG is present.
+    
+    Args:
+        sg_name: security group name
+        
+    Returns:
+        security group id if the sg is there, empty string if not
+    &#34;&#34;&#34;
+    client = boto3.client(&#39;ec2&#39;)
+    response = client.describe_security_groups(
+        Filters=[
+            {
+                &#39;Name&#39;: &#39;tag:Name&#39;,
+                &#39;Values&#39;: [f&#34;{sg_name}*&#34;]
+            }
+        ]
+    )
+
+    if len(response[&#39;SecurityGroups&#39;]) != 1:
+        return &#34;&#34;
+    return response[&#39;SecurityGroups&#39;][0][&#39;GroupId&#39;]</code></pre>
+</details>
+</dd>
+<dt id="sretools.utils.delete_arcade_cname"><code class="name flex">
+<span>def <span class="ident">delete_arcade_cname</span></span>(<span>arcade: str, source: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete cname start with source for an arcade</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>arcade</code></strong></dt>
+<dd>The name of arcade</dd>
+<dt><strong><code>source</code></strong></dt>
+<dd>Source string</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_arcade_cname(arcade: str,
+                        source: str) -&gt; None:
+    &#34;&#34;&#34;
+    Delete cname start with source for an arcade
+
+    Args:
+        arcade: The name of arcade
+        source: Source string
+
+    Returns:
+        None
+
+    &#34;&#34;&#34;
+    r53 = boto3.client(&#39;route53&#39;)
+    zones = r53.list_hosted_zones_by_name(DNSName=arcade)
+    zone_id = zones[&#39;HostedZones&#39;][0][&#39;Id&#39;]
+    response = r53.list_resource_record_sets(HostedZoneId=zone_id,
+                                             StartRecordName=source, MaxItems=&#39;1&#39;)
+
+    if source in response[&#39;ResourceRecordSets&#39;][0][&#39;Name&#39;]:
+        r53.change_resource_record_sets(
+            HostedZoneId=zone_id,
+            ChangeBatch={
+                &#39;Comment&#39;: f&#39;delete {source}&#39;,
+                &#39;Changes&#39;: [
+                    {
+                        &#39;Action&#39;: &#39;DELETE&#39;,
+                        &#39;ResourceRecordSet&#39;: response[&#39;ResourceRecordSets&#39;][0]
+                    }]
+            })</code></pre>
+</details>
+</dd>
+<dt id="sretools.utils.get_account_id"><code class="name flex">
+<span>def <span class="ident">get_account_id</span></span>(<span>) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_account_id() -&gt; str:
+    &#34;&#34;&#34;
+    &#34;&#34;&#34;
+    client = boto3.client(&#39;sts&#39;)
+    response = client.get_caller_identity()
+    # print(json.dumps(response, sort_keys=False, indent=2, default=str))
+    return response[&#34;Account&#34;]</code></pre>
+</details>
+</dd>
+<dt id="sretools.utils.get_short_narc_id"><code class="name flex">
+<span>def <span class="ident">get_short_narc_id</span></span>(<span>narcid: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the short narc id by using first 8 characters of asd/asteroid name</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>narcid</code></strong></dt>
+<dd>the original narc id</dd>
+</dl>
+<p>Returns: the short narc id in string format</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_short_narc_id(narcid: str) -&gt; str:
+    &#34;&#34;&#34;
+    Get the short narc id by using first 8 characters of asd/asteroid name
+    Args:
+        narcid: the original narc id
+    Returns: the short narc id in string format
+    &#34;&#34;&#34;
+    groups = narcid.split(&#39;-&#39;)
+    groups[1] = groups[1][:8]
+    groups[2] = groups[2][:8]
+    return &#34;-&#34;.join(groups)</code></pre>
+</details>
+</dd>
+<dt id="sretools.utils.print_status"><code class="name flex">
+<span>def <span class="ident">print_status</span></span>(<span>status: dict) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Print status dictionary to json object
+The purpose of this function is to resolve following error
+when loading json object from json string:
+TypeError: Object of type datetime is not JSON serializable</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>status</code></strong></dt>
+<dd>status dictionary to print</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_status(status: dict) -&gt; None:
+    &#34;&#34;&#34;
+    Print status dictionary to json object
+    The purpose of this function is to resolve following error
+    when loading json object from json string:
+    TypeError: Object of type datetime is not JSON serializable
+
+    Args:
+        status: status dictionary to print
+        
+    Returns:
+        None
+    &#34;&#34;&#34;
+
+    print(json.dumps(status, sort_keys=False, indent=2, default=str))</code></pre>
+</details>
+</dd>
+<dt id="sretools.utils.setup_arcade_session"><code class="name flex">
+<span>def <span class="ident">setup_arcade_session</span></span>(<span>arcade_name: str) ‑> boto3.session.Session</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create AWS session with arcade region set.</p>
+<p>Args:</p>
+<p>Returns:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup_arcade_session(arcade_name: str) -&gt; boto3.session.Session:
+    &#34;&#34;&#34;
+    Create AWS session with arcade region set.
+
+    Args:
+
+    Returns:
+    &#34;&#34;&#34;
+
+    # figure out what region cluster/arcade lives in
+    # getting location from arcade scoped bucket is faster than looking for vpc
+    bucket_session = boto3.session.Session(region_name=&#39;us-east-2&#39;)
+    s3_client = bucket_session.client(&#39;s3&#39;)
+    buckets = storage.get_arcade_buckets(bucket_session, arcade_name)
+    arcade_region = s3_client.get_bucket_location(Bucket=buckets[&#39;app&#39;])[&#39;LocationConstraint&#39;]
+    # print(&#34;----Arcade region----&#34;)
+    # print(arcade_region)
+
+    return boto3.session.Session(region_name=arcade_region)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="sretools" href="index.html">sretools</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="sretools.utils.add_arcade_cname" href="#sretools.utils.add_arcade_cname">add_arcade_cname</a></code></li>
+<li><code><a title="sretools.utils.aws_tags_dict" href="#sretools.utils.aws_tags_dict">aws_tags_dict</a></code></li>
+<li><code><a title="sretools.utils.check_dryrun" href="#sretools.utils.check_dryrun">check_dryrun</a></code></li>
+<li><code><a title="sretools.utils.check_if_sg" href="#sretools.utils.check_if_sg">check_if_sg</a></code></li>
+<li><code><a title="sretools.utils.delete_arcade_cname" href="#sretools.utils.delete_arcade_cname">delete_arcade_cname</a></code></li>
+<li><code><a title="sretools.utils.get_account_id" href="#sretools.utils.get_account_id">get_account_id</a></code></li>
+<li><code><a title="sretools.utils.get_short_narc_id" href="#sretools.utils.get_short_narc_id">get_short_narc_id</a></code></li>
+<li><code><a title="sretools.utils.print_status" href="#sretools.utils.print_status">print_status</a></code></li>
+<li><code><a title="sretools.utils.setup_arcade_session" href="#sretools.utils.setup_arcade_session">setup_arcade_session</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

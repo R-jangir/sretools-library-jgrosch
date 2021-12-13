@@ -1,0 +1,2492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>sretools.ipcalc API documentation</title>
+<meta name="description" content="IP subnet calculator …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>sretools.ipcalc</code></h1>
+</header>
+<section id="section-intro">
+<p>IP subnet calculator.</p>
+<div class="admonition moduleauthor">
+<p class="admonition-title">Moduleauthor:&ensp;Wijnand Modderman-Lenstra <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#109;&#97;&#122;&#101;&#64;&#112;&#121;&#116;&#104;&#48;&#110;&#46;&#111;&#114;&#103;">&#109;&#97;&#122;&#101;&#64;&#112;&#121;&#116;&#104;&#48;&#110;&#46;&#111;&#114;&#103;</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note:&ensp;BSD License</p>
+</div>
+<h1 id="about">About</h1>
+<p>This module allows you to perform network calculations.</p>
+<h1 id="references">References</h1>
+<p>References:
+* <a href="http://www.estoile.com/links/ipv6.pdf">http://www.estoile.com/links/ipv6.pdf</a>
+* <a href="http://www.iana.org/assignments/ipv4-address-space">http://www.iana.org/assignments/ipv4-address-space</a>
+* <a href="http://www.iana.org/assignments/multicast-addresses">http://www.iana.org/assignments/multicast-addresses</a>
+* <a href="http://www.iana.org/assignments/ipv6-address-space">http://www.iana.org/assignments/ipv6-address-space</a>
+* <a href="http://www.iana.org/assignments/ipv6-tla-assignments">http://www.iana.org/assignments/ipv6-tla-assignments</a>
+* <a href="http://www.iana.org/assignments/ipv6-multicast-addresses">http://www.iana.org/assignments/ipv6-multicast-addresses</a>
+* <a href="http://www.iana.org/assignments/ipv6-anycast-addresses">http://www.iana.org/assignments/ipv6-anycast-addresses</a></p>
+<h1 id="thanks">Thanks</h1>
+<p>Thanks to all who have contributed:</p>
+<p><a href="https://github.com/tehmaze/ipcalc/graphs/contributors">https://github.com/tehmaze/ipcalc/graphs/contributors</a></p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># -*- coding: utf-8 -*-
+# pep8-ignore: E501, E241
+# pylint: disable=invalid-name
+
+&#34;&#34;&#34;
+IP subnet calculator.
+
+.. moduleauthor:: Wijnand Modderman-Lenstra &lt;maze@pyth0n.org&gt;
+.. note:: BSD License
+
+About
+=====
+
+This module allows you to perform network calculations.
+
+References
+==========
+
+References:
+ * http://www.estoile.com/links/ipv6.pdf
+ * http://www.iana.org/assignments/ipv4-address-space
+ * http://www.iana.org/assignments/multicast-addresses
+ * http://www.iana.org/assignments/ipv6-address-space
+ * http://www.iana.org/assignments/ipv6-tla-assignments
+ * http://www.iana.org/assignments/ipv6-multicast-addresses
+ * http://www.iana.org/assignments/ipv6-anycast-addresses
+
+Thanks
+======
+
+Thanks to all who have contributed:
+
+https://github.com/tehmaze/ipcalc/graphs/contributors
+&#34;&#34;&#34;
+
+from __future__ import print_function
+
+__version__ = &#39;1.99.0&#39;
+
+
+import re
+import six
+
+
+MAX_IPV6 = (1 &lt;&lt; 128) - 1
+MAX_IPV4 = (1 &lt;&lt; 32) - 1
+BASE_6TO4 = (0x2002 &lt;&lt; 112)
+
+
+class IP(object):
+
+    &#34;&#34;&#34;
+    Represent a single IP address.
+
+    :param ip: the ip address
+    :type ip: :class:`IP` or str or long or int
+
+    &gt;&gt;&gt; localhost = IP(&#34;127.0.0.1&#34;)
+    &gt;&gt;&gt; print(localhost)
+    127.0.0.1
+    &gt;&gt;&gt; localhost6 = IP(&#34;::1&#34;)
+    &gt;&gt;&gt; print(localhost6)
+    0000:0000:0000:0000:0000:0000:0000:0001
+    &#34;&#34;&#34;
+
+    # Hex-to-Bin conversion masks
+    _bitmask = {
+        &#39;0&#39;: &#39;0000&#39;, &#39;1&#39;: &#39;0001&#39;, &#39;2&#39;: &#39;0010&#39;, &#39;3&#39;: &#39;0011&#39;,
+        &#39;4&#39;: &#39;0100&#39;, &#39;5&#39;: &#39;0101&#39;, &#39;6&#39;: &#39;0110&#39;, &#39;7&#39;: &#39;0111&#39;,
+        &#39;8&#39;: &#39;1000&#39;, &#39;9&#39;: &#39;1001&#39;, &#39;a&#39;: &#39;1010&#39;, &#39;b&#39;: &#39;1011&#39;,
+        &#39;c&#39;: &#39;1100&#39;, &#39;d&#39;: &#39;1101&#39;, &#39;e&#39;: &#39;1110&#39;, &#39;f&#39;: &#39;1111&#39;
+    }
+
+    # IP range specific information, see IANA allocations.
+    _range = {
+        # http://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
+        4: {
+            &#39;00000000&#39;:                 &#39;THIS HOST&#39;,             # 0/8
+            &#39;00001010&#39;:                 &#39;PRIVATE&#39;,               # 10/8
+            &#39;0110010001&#39;:               &#39;SHARED ADDRESS SPACE&#39;,  # 100.64/10
+            &#39;01111111&#39;:                 &#39;LOOPBACK&#39;,              # 127/8
+            &#39;101011000001&#39;:             &#39;PRIVATE&#39;,               # 172.16/12
+            &#39;110000000000000000000000&#39;: &#39;IETF PROTOCOL&#39;,         # 192/24
+            &#39;110000000000000000000010&#39;: &#39;TEST-NET-1&#39;,            # 192.0.2/24
+            &#39;110000000101100001100011&#39;: &#39;6TO4-RELAY ANYCAST&#39;,    # 192.88.99/24
+            &#39;1100000010101000&#39;:         &#39;PRIVATE&#39;,               # 192.168/16
+            &#39;110001100001001&#39;:          &#39;BENCHMARKING&#39;,          # 198.18/15
+            &#39;110001100011001&#39;:          &#39;TEST-NET-2&#39;,            # 198.51.100/24
+            &#39;110010110000000&#39;:          &#39;TEST-NET-3&#39;,            # 203.0.113/24
+            &#39;1111&#39;:                     &#39;RESERVED&#39;,              # 240/4
+
+        },
+        # http://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xhtml
+        6: {
+            &#39;0&#39; * 128:                          &#39;UNSPECIFIED&#39;,    # ::/128
+            &#39;0&#39; * 127 + &#39;1&#39;:                    &#39;LOOPBACK&#39;,       # ::1/128
+            &#39;0&#39; * 96:                           &#39;IPV4COMP&#39;,       # ::/96
+            &#39;0&#39; * 80 + &#39;1&#39; * 16:                &#39;IPV4MAP&#39;,        # ::ffff:0:0/96
+                                                                  # 64:ff9b::/96
+            &#39;00000000011001001111111110011011&#39; + 64 * &#39;0&#39;: &#39;IPV4-IPV6&#39;,
+            &#39;00000001&#39; + 56 * &#39;0&#39;:              &#39;DISCARD-ONLY&#39;,   # 100::/64
+            &#39;0010000000000001&#39; + 7 * &#39;0&#39;:       &#39;IETF PROTOCOL&#39;,  # 2001::/23
+            &#39;0010000000000001&#39; + 16 * &#39;0&#39;:      &#39;TEREDO&#39;,         # 2001::/32
+                                                                  # 2001:2::/48
+            &#39;00100000000000010000000000000010000000000000000&#39;: &#39;BENCHMARKING&#39;,
+            &#39;00100000000000010000110110111000&#39;: &#39;DOCUMENTATION&#39;,  # 2001:db8::/32
+            &#39;0010000000000001000000000001&#39;:     &#39;DEPRECATED&#39;,     # 2001:10::/28
+            &#39;0010000000000001000000000010&#39;:     &#39;ORCHIDv2&#39;,       # 2001:20::/28
+            &#39;0010000000000010&#39;:                 &#39;6TO4&#39;,           # 2002::/16
+            &#39;11111100000000000&#39;:                &#39;UNIQUE-LOCAL&#39;,   # fc00::/7
+            &#39;1111111010&#39;:                       &#39;LINK-LOCAL&#39;,     # fe80::/10
+        }
+    }
+
+    def __init__(self, ip, mask=None, version=0):
+        &#34;&#34;&#34;Initialize a new IPv4 or IPv6 address.&#34;&#34;&#34;
+        self.mask = mask
+        self.v = 0
+        # Parse input
+        if ip is None:
+            raise ValueError(&#39;Can not pass None&#39;)
+        elif isinstance(ip, IP):
+            self.ip = ip.ip
+            self.dq = ip.dq
+            self.v = ip.v
+            self.mask = ip.mask
+        elif isinstance(ip, six.integer_types):
+            self.ip = int(ip)
+            if self.ip &lt;= MAX_IPV4:
+                self.v = version or 4
+                self.dq = self._itodq(ip)
+            else:
+                self.v = version or 6
+                self.dq = self._itodq(ip)
+        else:
+            # network identifier
+            if &#39;%&#39; in ip:
+                ip = ip.split(&#39;%&#39;, 1)[0]
+            # If string is in CIDR or netmask notation
+            if &#39;/&#39; in ip:
+                ip, mask = ip.split(&#39;/&#39;, 1)
+                self.mask = mask
+            self.v = version or 0
+            self.dq = ip
+            self.ip = self._dqtoi(ip)
+            assert self.v != 0, &#39;Could not parse input&#39;
+        # Netmask defaults to one ip
+        if self.mask is None:
+            self.mask = {4: 32, 6: 128}[self.v]
+        # Netmask is numeric CIDR subnet
+        elif isinstance(self.mask, six.integer_types) or self.mask.isdigit():
+            self.mask = int(self.mask)
+        # Netmask is in subnet notation
+        elif isinstance(self.mask, six.string_types):
+            limit = [32, 128][&#39;:&#39; in self.mask]
+            inverted = ~self._dqtoi(self.mask)
+            if inverted == -1:
+                self.mask = 0
+            else:
+                count = 0
+                while inverted &amp; pow(2, count):
+                    count += 1
+                self.mask = (limit - count)
+        else:
+            raise ValueError(&#39;Invalid netmask&#39;)
+        # Validate subnet size
+        if self.v == 6:
+            self.dq = self._itodq(self.ip)
+            if not 0 &lt;= self.mask &lt;= 128:
+                raise ValueError(&#39;IPv6 subnet size must be between 0 and 128&#39;)
+        elif self.v == 4:
+            if not 0 &lt;= self.mask &lt;= 32:
+                raise ValueError(&#39;IPv4 subnet size must be between 0 and 32&#39;)
+
+    def bin(self):
+        &#34;&#34;&#34;Full-length binary representation of the IP address.
+
+        &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+        &gt;&gt;&gt; print(ip.bin())
+        01111111000000000000000000000001
+        &#34;&#34;&#34;
+        bits = self.v == 4 and 32 or 128
+        return bin(self.ip).split(&#39;b&#39;)[1].rjust(bits, &#39;0&#39;)
+
+    def hex(self):
+        &#34;&#34;&#34;Full-length hexadecimal representation of the IP address.
+
+        &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+        &gt;&gt;&gt; print(ip.hex())
+        7f000001
+        &#34;&#34;&#34;
+        if self.v == 4:
+            return &#39;%08x&#39; % self.ip
+        else:
+            return &#39;%032x&#39; % self.ip
+
+    def subnet(self):
+        &#34;&#34;&#34;CIDR subnet size.&#34;&#34;&#34;
+        return self.mask
+
+    def version(self):
+        &#34;&#34;&#34;IP version.
+
+        &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+        &gt;&gt;&gt; print(ip.version())
+        4
+        &#34;&#34;&#34;
+        return self.v
+
+    def info(self):
+        &#34;&#34;&#34;Show IANA allocation information for the current IP address.
+
+        &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+        &gt;&gt;&gt; print(ip.info())
+        LOOPBACK
+        &#34;&#34;&#34;
+        b = self.bin()
+        for i in range(len(b), 0, -1):
+            if b[:i] in self._range[self.v]:
+                return self._range[self.v][b[:i]]
+        return &#39;UNKNOWN&#39;
+
+    def _dqtoi(self, dq):
+        &#34;&#34;&#34;Convert dotquad or hextet to long.&#34;&#34;&#34;
+        # hex notation
+        if dq.startswith(&#39;0x&#39;):
+            return self._dqtoi_hex(dq)
+
+        # IPv6
+        if &#39;:&#39; in dq:
+            return self._dqtoi_ipv6(dq)
+        elif len(dq) == 32:
+            # Assume full heximal notation
+            self.v = 6
+            return int(dq, 16)
+
+        # IPv4
+        if &#39;.&#39; in dq:
+            return self._dqtoi_ipv4(dq)
+
+        raise ValueError(&#39;Invalid address input&#39;)
+
+    def _dqtoi_hex(self, dq):
+        ip = int(dq[2:], 16)
+        if ip &gt; MAX_IPV6:
+            raise ValueError(&#39;%s: IP address is bigger than 2^128&#39; % dq)
+        if ip &lt;= MAX_IPV4:
+            self.v = 4
+        else:
+            self.v = 6
+        return ip
+
+    def _dqtoi_ipv4(self, dq):
+        q = dq.split(&#39;.&#39;)
+        q.reverse()
+        if len(q) &gt; 4:
+            raise ValueError(&#39;%s: IPv4 address invalid: &#39;
+                             &#39;more than 4 bytes&#39; % dq)
+        for x in q:
+            if not 0 &lt;= int(x) &lt;= 255:
+                raise ValueError(&#39;%s: IPv4 address invalid: &#39;
+                                 &#39;bytes should be between 0 and 255&#39; % dq)
+        while len(q) &lt; 4:
+            q.insert(1, &#39;0&#39;)
+        self.v = 4
+        return sum(int(byte) &lt;&lt; 8 * index for index, byte in enumerate(q))
+
+    def _dqtoi_ipv6(self, dq):
+        # Split hextets
+        hx = dq.split(&#39;:&#39;)
+        if &#39;:::&#39; in dq:
+            raise ValueError(&#34;%s: IPv6 address can&#39;t contain :::&#34; % dq)
+        # Mixed address (or 4-in-6), ::ffff:192.0.2.42
+        if &#39;.&#39; in dq:
+            col_ind = dq.rfind(&#34;:&#34;)
+            ipv6part = dq[:col_ind] + &#34;:0:0&#34;
+            return self._dqtoi_ipv6(ipv6part) + self._dqtoi(hx[-1])
+        if len(hx) &gt; 8:
+            raise ValueError(&#39;%s: IPv6 address with more than 8 hexlets&#39; % dq)
+        elif len(hx) &lt; 8:
+            # No :: in address
+            if &#39;&#39; not in hx:
+                raise ValueError(&#39;%s: IPv6 address invalid: &#39;
+                                 &#39;compressed format malformed&#39; % dq)
+            elif not (dq.startswith(&#39;::&#39;) or dq.endswith(&#39;::&#39;)) and len([x for x in hx if x == &#39;&#39;]) &gt; 1:
+                raise ValueError(&#39;%s: IPv6 address invalid: &#39;
+                                 &#39;compressed format malformed&#39; % dq)
+            ix = hx.index(&#39;&#39;)
+            px = len(hx[ix + 1:])
+            for x in range(ix + px + 1, 8):
+                hx.insert(ix, &#39;0&#39;)
+        elif dq.endswith(&#39;::&#39;):
+            pass
+        elif &#39;&#39; in hx:
+            raise ValueError(&#39;%s: IPv6 address invalid: &#39;
+                             &#39;compressed format detected in full notation&#39; % dq())
+        ip = &#39;&#39;
+        hx = [x == &#39;&#39; and &#39;0&#39; or x for x in hx]
+        for h in hx:
+            if len(h) &lt; 4:
+                h = &#39;%04x&#39; % int(h, 16)
+            if not 0 &lt;= int(h, 16) &lt;= 0xffff:
+                raise ValueError(&#39;%r: IPv6 address invalid: &#39;
+                                 &#39;hexlets should be between 0x0000 and 0xffff&#39; % dq)
+            ip += h
+        self.v = 6
+        return int(ip, 16)
+
+    def _itodq(self, n):
+        &#34;&#34;&#34;Convert long to dotquad or hextet.&#34;&#34;&#34;
+        if self.v == 4:
+            return &#39;.&#39;.join(map(str, [
+                (n &gt;&gt; 24) &amp; 0xff,
+                (n &gt;&gt; 16) &amp; 0xff,
+                (n &gt;&gt; 8) &amp; 0xff,
+                n &amp; 0xff,
+            ]))
+        else:
+            n = &#39;%032x&#39; % n
+            return &#39;:&#39;.join(n[4 * x:4 * x + 4] for x in range(0, 8))
+
+    def __str__(self):
+        &#34;&#34;&#34;Return dotquad representation of the IP.
+
+        &gt;&gt;&gt; ip = IP(&#34;::1&#34;)
+        &gt;&gt;&gt; print(str(ip))
+        0000:0000:0000:0000:0000:0000:0000:0001
+        &#34;&#34;&#34;
+        return self.dq
+
+    def __repr__(self):
+        &#34;&#34;&#34;Return canonical representation of the IP.
+
+        &gt;&gt;&gt; repr(IP(&#34;::1&#34;))
+        &#34;IP(&#39;::1&#39;)&#34;
+        &gt;&gt;&gt; repr(IP(&#34;fe80:0000:0000:0000:abde:3eff:ffab:0012/64&#34;))
+        &#34;IP(&#39;fe80::abde:3eff:ffab:12/64&#39;)&#34;
+        &gt;&gt;&gt; repr(IP(&#34;1.2.3.4/29&#34;))
+        &#34;IP(&#39;1.2.3.4/29&#39;)&#34;
+        &gt;&gt;&gt; repr(IP(&#34;127.0.0.1/8&#34;))
+        &#34;IP(&#39;127.0.0.1/8&#39;)&#34;
+        &#34;&#34;&#34;
+        dq = self.dq if self.v == 4 else self.to_compressed()
+        args = (self.__class__.__name__, dq, self.mask)
+        if (self.version(), self.mask) in [(4, 32), (6, 128)]:
+            fmt = &#34;{0}(&#39;{1}&#39;)&#34;
+        else:
+            fmt = &#34;{0}(&#39;{1}/{2}&#39;)&#34;
+        return fmt.format(*args)
+
+    def __hash__(self):
+        &#34;&#34;&#34;Hash for collection operations and py:`hash()`.&#34;&#34;&#34;
+        return hash(self.to_tuple())
+
+    hash = __hash__
+
+    def __int__(self):
+        &#34;&#34;&#34;Convert to int.&#34;&#34;&#34;
+        return int(self.ip)
+
+    def __long__(self):
+        &#34;&#34;&#34;Convert to long.&#34;&#34;&#34;
+        return self.ip
+
+    def __lt__(self, other):
+        &#34;&#34;&#34;Less than other test.&#34;&#34;&#34;
+        return int(self) &lt; int(IP(other))
+
+    def __le__(self, other):
+        &#34;&#34;&#34;Less than or equal to other test.&#34;&#34;&#34;
+        return int(self) &lt;= int(IP(other))
+
+    def __ge__(self, other):
+        &#34;&#34;&#34;Greater than or equal to other test.&#34;&#34;&#34;
+        return int(self) &gt;= int(IP(other))
+
+    def __gt__(self, other):
+        &#34;&#34;&#34;Greater than other.&#34;&#34;&#34;
+        return int(self) &gt; int(IP(other))
+
+    def __eq__(self, other):
+        &#34;&#34;&#34;Test if other is address is equal to the current address.&#34;&#34;&#34;
+        return int(self) == int(IP(other))
+
+    def __ne__(self, other):
+        &#34;&#34;&#34;Test if other is address is not equal to the current address.&#34;&#34;&#34;
+        return int(self) != int(IP(other))
+
+    def __add__(self, offset):
+        &#34;&#34;&#34;Add numeric offset to the IP.&#34;&#34;&#34;
+        if not isinstance(offset, six.integer_types):
+            return ValueError(&#39;Value is not numeric&#39;)
+        return self.__class__(self.ip + offset, mask=self.mask, version=self.v)
+
+    def __sub__(self, offset):
+        &#34;&#34;&#34;Substract numeric offset from the IP.&#34;&#34;&#34;
+        if not isinstance(offset, six.integer_types):
+            return ValueError(&#39;Value is not numeric&#39;)
+        return self.__class__(self.ip - offset, mask=self.mask, version=self.v)
+
+    @staticmethod
+    def size():
+        &#34;&#34;&#34;Return network size.&#34;&#34;&#34;
+        return 1
+
+    def clone(self):
+        &#34;&#34;&#34;
+        Return a new &lt;IP&gt; object with a copy of this one.
+
+        &gt;&gt;&gt; ip = IP(&#39;127.0.0.1&#39;)
+        &gt;&gt;&gt; ip2 = ip.clone()
+        &gt;&gt;&gt; ip2
+        IP(&#39;127.0.0.1&#39;)
+        &gt;&gt;&gt; ip is ip2
+        False
+        &gt;&gt;&gt; ip == ip2
+        True
+        &gt;&gt;&gt; ip.mask = 24
+        &gt;&gt;&gt; ip2.mask
+        32
+        &#34;&#34;&#34;
+        return IP(self)
+
+    def to_compressed(self):
+        &#34;&#34;&#34;
+        Compress an IP address to its shortest possible compressed form.
+
+        &gt;&gt;&gt; print(IP(&#39;127.0.0.1&#39;).to_compressed())
+        127.1
+        &gt;&gt;&gt; print(IP(&#39;127.1.0.1&#39;).to_compressed())
+        127.1.1
+        &gt;&gt;&gt; print(IP(&#39;127.0.1.1&#39;).to_compressed())
+        127.0.1.1
+        &gt;&gt;&gt; print(IP(&#39;2001:1234:0000:0000:0000:0000:0000:5678&#39;).to_compressed())
+        2001:1234::5678
+        &gt;&gt;&gt; print(IP(&#39;1234:0000:0000:beef:0000:0000:0000:5678&#39;).to_compressed())
+        1234:0:0:beef::5678
+        &gt;&gt;&gt; print(IP(&#39;0000:0000:0000:0000:0000:0000:0000:0001&#39;).to_compressed())
+        ::1
+        &gt;&gt;&gt; print(IP(&#39;fe80:0000:0000:0000:0000:0000:0000:0000&#39;).to_compressed())
+        fe80::
+        &#34;&#34;&#34;
+        if self.v == 4:
+            quads = self.dq.split(&#39;.&#39;)
+            try:
+                zero = quads.index(&#39;0&#39;)
+                if zero == 1 and quads.index(&#39;0&#39;, zero + 1):
+                    quads.pop(zero)
+                    quads.pop(zero)
+                    return &#39;.&#39;.join(quads)
+                elif zero == 2:
+                    quads.pop(zero)
+                    return &#39;.&#39;.join(quads)
+            except ValueError:  # No zeroes
+                pass
+
+            return self.dq
+        else:
+            quads = map(lambda q: &#39;%x&#39; % (int(q, 16)), self.dq.split(&#39;:&#39;))
+            quadc = &#39;:%s:&#39; % (&#39;:&#39;.join(quads),)
+            zeros = [0, -1]
+
+            # Find the largest group of zeros
+            for match in re.finditer(r&#39;(:[:0]+)&#39;, quadc):
+                count = len(match.group(1)) - 1
+                if count &gt; zeros[0]:
+                    zeros = [count, match.start(1)]
+
+            count, where = zeros
+            if count:
+                quadc = quadc[:where] + &#39;:&#39; + quadc[where + count:]
+
+            quadc = re.sub(r&#39;((^:)|(:$))&#39;, &#39;&#39;, quadc)
+            quadc = re.sub(r&#39;((^:)|(:$))&#39;, &#39;::&#39;, quadc)
+
+            return quadc
+
+    def to_ipv4(self):
+        &#34;&#34;&#34;
+        Convert (an IPv6) IP address to an IPv4 address, if possible.
+
+        Only works for IPv4-compat (::/96), IPv4-mapped (::ffff/96), and 6-to-4
+        (2002::/16) addresses.
+
+        &gt;&gt;&gt; ip = IP(&#39;2002:c000:022a::&#39;)
+        &gt;&gt;&gt; print(ip.to_ipv4())
+        192.0.2.42
+        &#34;&#34;&#34;
+        if self.v == 4:
+            return self
+        else:
+            if self.bin().startswith(&#39;0&#39; * 96):
+                return IP(int(self), version=4)
+            elif self.bin().startswith(&#39;0&#39; * 80 + &#39;1&#39; * 16):
+                return IP(int(self) &amp; MAX_IPV4, version=4)
+            elif int(self) &amp; BASE_6TO4:
+                return IP((int(self) - BASE_6TO4) &gt;&gt; 80, version=4)
+            else:
+                return ValueError(&#39;%s: IPv6 address is not IPv4 compatible or mapped, &#39;
+                                  &#39;nor an 6-to-4 IP&#39; % self.dq)
+
+    @classmethod
+    def from_bin(cls, value):
+        &#34;&#34;&#34;Initialize a new network from binary notation.&#34;&#34;&#34;
+        value = value.lstrip(&#39;b&#39;)
+        if len(value) == 32:
+            return cls(int(value, 2))
+        elif len(value) == 128:
+            return cls(int(value, 2))
+        else:
+            return ValueError(&#39;%r: invalid binary notation&#39; % (value,))
+
+    @classmethod
+    def from_hex(cls, value):
+        &#34;&#34;&#34;Initialize a new network from hexadecimal notation.&#34;&#34;&#34;
+        if len(value) == 8:
+            return cls(int(value, 16))
+        elif len(value) == 32:
+            return cls(int(value, 16))
+        else:
+            raise ValueError(&#39;%r: invalid hexadecimal notation&#39; % (value,))
+
+    def to_ipv6(self, ip_type=&#39;6-to-4&#39;):
+        &#34;&#34;&#34;
+        Convert (an IPv4) IP address to an IPv6 address.
+
+        &gt;&gt;&gt; ip = IP(&#39;192.0.2.42&#39;)
+        &gt;&gt;&gt; print(ip.to_ipv6())
+        2002:c000:022a:0000:0000:0000:0000:0000
+
+        &gt;&gt;&gt; print(ip.to_ipv6(&#39;compat&#39;))
+        0000:0000:0000:0000:0000:0000:c000:022a
+
+        &gt;&gt;&gt; print(ip.to_ipv6(&#39;mapped&#39;))
+        0000:0000:0000:0000:0000:ffff:c000:022a
+        &#34;&#34;&#34;
+        assert ip_type in [&#39;6-to-4&#39;, &#39;compat&#39;, &#39;mapped&#39;], &#39;Conversion ip_type not supported&#39;
+        if self.v == 4:
+            if ip_type == &#39;6-to-4&#39;:
+                return IP(BASE_6TO4 | int(self) &lt;&lt; 80, version=6)
+            elif ip_type == &#39;compat&#39;:
+                return IP(int(self), version=6)
+            elif ip_type == &#39;mapped&#39;:
+                return IP(0xffff &lt;&lt; 32 | int(self), version=6)
+        else:
+            return self
+
+    def to_reverse(self):
+        &#34;&#34;&#34;Convert the IP address to a PTR record.
+
+        Using the .in-addr.arpa zone for IPv4 and .ip6.arpa for IPv6 addresses.
+
+        &gt;&gt;&gt; ip = IP(&#39;192.0.2.42&#39;)
+        &gt;&gt;&gt; print(ip.to_reverse())
+        42.2.0.192.in-addr.arpa
+        &gt;&gt;&gt; print(ip.to_ipv6().to_reverse())
+        0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.a.2.2.0.0.0.0.c.2.0.0.2.ip6.arpa
+        &#34;&#34;&#34;
+        if self.v == 4:
+            return &#39;.&#39;.join(list(self.dq.split(&#39;.&#39;)[::-1]) + [&#39;in-addr&#39;, &#39;arpa&#39;])
+        else:
+            return &#39;.&#39;.join(list(self.hex())[::-1] + [&#39;ip6&#39;, &#39;arpa&#39;])
+
+    def to_tuple(self):
+        &#34;&#34;&#34;Used for comparisons.&#34;&#34;&#34;
+        return (self.dq, self.mask)
+
+    def guess_network(self):
+        netmask = 0x100000000 - 2**(32-self.mask)
+        return Network(netmask &amp; self.ip, mask=self.mask)
+
+
+class Network(IP):
+
+    &#34;&#34;&#34;
+    Network slice calculations.
+
+    :param ip: network address
+    :type ip: :class:`IP` or str or long or int
+    :param mask: netmask
+    :type mask: int or str
+
+
+    &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+    &gt;&gt;&gt; print(localnet)
+    127.0.0.1/8
+    &#34;&#34;&#34;
+
+    def netmask(self):
+        &#34;&#34;&#34;
+        Network netmask derived from subnet size, as IP object.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+        &gt;&gt;&gt; print(localnet.netmask())
+        255.0.0.0
+        &#34;&#34;&#34;
+        return IP(self.netmask_long(), version=self.version())
+
+    def netmask_long(self):
+        &#34;&#34;&#34;
+        Network netmask derived from subnet size, as long.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+        &gt;&gt;&gt; print(localnet.netmask_long())
+        4278190080
+        &#34;&#34;&#34;
+        if self.version() == 4:
+            return (MAX_IPV4 &gt;&gt; (32 - self.mask)) &lt;&lt; (32 - self.mask)
+        else:
+            return (MAX_IPV6 &gt;&gt; (128 - self.mask)) &lt;&lt; (128 - self.mask)
+
+    def network(self):
+        &#34;&#34;&#34;
+        Network address, as IP object.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.128.99.3/8&#39;)
+        &gt;&gt;&gt; print(localnet.network())
+        127.0.0.0
+        &#34;&#34;&#34;
+        return IP(self.network_long(), version=self.version())
+
+    def network_long(self):
+        &#34;&#34;&#34;
+        Network address, as long.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.128.99.3/8&#39;)
+        &gt;&gt;&gt; print(localnet.network_long())
+        2130706432
+        &#34;&#34;&#34;
+        return self.ip &amp; self.netmask_long()
+
+    def broadcast(self):
+        &#34;&#34;&#34;
+        Broadcast address, as IP object.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+        &gt;&gt;&gt; print(localnet.broadcast())
+        127.255.255.255
+        &#34;&#34;&#34;
+        # XXX: IPv6 doesn&#39;t have a broadcast address, but it&#39;s used for other
+        #      calculations such as &lt;Network.host_last&gt;
+        return IP(self.broadcast_long(), version=self.version())
+
+    def broadcast_long(self):
+        &#34;&#34;&#34;
+        Broadcast address, as long.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+        &gt;&gt;&gt; print(localnet.broadcast_long())
+        2147483647
+        &#34;&#34;&#34;
+        if self.version() == 4:
+            return self.network_long() | (MAX_IPV4 - self.netmask_long())
+        else:
+            return self.network_long() \
+                | (MAX_IPV6 - self.netmask_long())
+
+    def host_first(self):
+        &#34;&#34;&#34;First available host in this subnet.&#34;&#34;&#34;
+        if (self.version() == 4 and self.mask &gt; 30) or \
+                (self.version() == 6 and self.mask &gt; 126):
+            return self
+        else:
+            return IP(self.network_long() + 1, version=self.version())
+
+    def host_last(self):
+        &#34;&#34;&#34;Last available host in this subnet.&#34;&#34;&#34;
+        if (self.version() == 4 and self.mask == 32) or \
+                (self.version() == 6 and self.mask == 128):
+            return self
+        elif (self.version() == 4 and self.mask == 31) or \
+                (self.version() == 6 and self.mask == 127):
+            return IP(int(self) + 1, version=self.version())
+        else:
+            return IP(self.broadcast_long() - 1, version=self.version())
+
+    def check_collision(self, other):
+        &#34;&#34;&#34;Check another network against the given network.&#34;&#34;&#34;
+        other = Network(other)
+        return self.network_long() &lt;= other.network_long() &lt;= self.broadcast_long() or \
+            other.network_long() &lt;= self.network_long() &lt;= other.broadcast_long()
+
+    def __str__(self):
+        &#34;&#34;&#34;
+        Return CIDR representation of the network.
+
+        &gt;&gt;&gt; net = Network(&#34;::1/64&#34;)
+        &gt;&gt;&gt; print(str(net))
+        0000:0000:0000:0000:0000:0000:0000:0001/64
+        &#34;&#34;&#34;
+        return &#34;%s/%d&#34; % (self.dq, self.mask)
+
+    def __contains__(self, ip):
+        &#34;&#34;&#34;
+        Check if the given ip is part of the network.
+
+        &gt;&gt;&gt; &#39;192.0.2.42&#39; in Network(&#39;192.0.2.0/24&#39;)
+        True
+        &gt;&gt;&gt; &#39;192.168.2.42&#39; in Network(&#39;192.0.2.0/24&#39;)
+        False
+        &#34;&#34;&#34;
+        return self.check_collision(ip)
+
+    def __lt__(self, other):
+        &#34;&#34;&#34;Compare less than.&#34;&#34;&#34;
+        return self.size() &lt; Network(other).size()
+
+    def __le__(self, other):
+        &#34;&#34;&#34;Compare less than or equal to.&#34;&#34;&#34;
+        return self.size() &lt;= Network(other).size()
+
+    def __gt__(self, other):
+        &#34;&#34;&#34;Compare greater than.&#34;&#34;&#34;
+        return self.size() &gt; Network(other).size()
+
+    def __ge__(self, other):
+        &#34;&#34;&#34;Compare greater than or equal to.&#34;&#34;&#34;
+        return self.size() &gt;= Network(other).size()
+
+    def __eq__(self, other):
+        &#34;&#34;&#34;Compare equal.&#34;&#34;&#34;
+        other = Network(other)
+        return int(self) == int(other) and self.size() == other.size()
+
+    def __ne__(self, other):
+        &#34;&#34;&#34;Compare not equal.&#34;&#34;&#34;
+        other = Network(other)
+        return int(self) != int(other) or self.size() != other.size()
+
+    def __hash__(self, other):
+        &#34;&#34;&#34;Hash the current network.&#34;&#34;&#34;
+        return hash(int(self))
+
+    def __getitem__(self, key):
+        &#34;&#34;&#34;Get the nth item or slice of the network.&#34;&#34;&#34;
+        if isinstance(key, slice):
+            # Work-around IPv6 subnets being huge. Slice indices don&#39;t like
+            # long int.
+            x = key.start or 0
+            slice_stop = (key.stop or self.size()) - 1
+            slice_step = key.step or 1
+            arr = list()
+            while x &lt; slice_stop:
+                arr.append(IP(int(self) + x, mask=self.subnet()))
+                x += slice_step
+            return tuple(arr)
+        else:
+            if key &gt;= self.size():
+                raise IndexError(&#34;Index out of range: %d &gt; %d&#34; % (key, self.size()-1))
+            return IP(int(self) + (key + self.size()) % self.size(), mask=self.subnet())
+
+    def __iter__(self):
+        &#34;&#34;&#34;Generate a range of usable host IP addresses within the network.
+
+        &gt;&gt;&gt; for ip in Network(&#39;192.168.114.0/30&#39;):
+        ...     print(str(ip))
+        ...
+        192.168.114.1
+        192.168.114.2
+        &#34;&#34;&#34;
+        curr = int(self.host_first())
+        stop = int(self.host_last())
+        while curr &lt;= stop:
+            yield IP(curr)
+            curr += 1
+
+    def has_key(self, ip):
+        &#34;&#34;&#34;
+        Check if the given ip is part of the network.
+
+        :param ip: the ip address
+        :type ip: :class:`IP` or str or long or int
+
+        &gt;&gt;&gt; net = Network(&#39;192.0.2.0/24&#39;)
+        &gt;&gt;&gt; net.has_key(&#39;192.168.2.0&#39;)
+        False
+        &gt;&gt;&gt; net.has_key(&#39;192.0.2.42&#39;)
+        True
+        &#34;&#34;&#34;
+        return self.__contains__(ip)
+
+    def size(self):
+        &#34;&#34;&#34;
+        Number of ip&#39;s within the network.
+
+        &gt;&gt;&gt; net = Network(&#39;192.0.2.0/24&#39;)
+        &gt;&gt;&gt; print(net.size())
+        256
+        &#34;&#34;&#34;
+        return 2 ** ({4: 32, 6: 128}[self.version()] - self.mask)
+
+    def __len__(self):
+        return self.size()
+
+
+if __name__ == &#39;__main__&#39;:
+    tests = [
+        (&#39;192.168.114.42&#39;, 23, [&#39;192.168.0.1&#39;, &#39;192.168.114.128&#39;, &#39;10.0.0.1&#39;]),
+        (&#39;123::&#39;, 128, [&#39;123:456::&#39;, &#39;::1&#39;, &#39;123::456&#39;]),
+        (&#39;::42&#39;, 64, [&#39;::1&#39;, &#39;1::&#39;]),
+        (&#39;2001:dead:beef:1:c01d:c01a::&#39;, 48, [&#39;2001:dead:beef:babe::&#39;]),
+        (&#39;10.10.0.0&#39;, &#39;255.255.255.0&#39;, [&#39;10.10.0.20&#39;, &#39;10.10.10.20&#39;]),
+        (&#39;2001:dead:beef:1:c01d:c01a::&#39;, &#39;ffff:ffff:ffff::&#39;, [&#39;2001:dead:beef:babe::&#39;]),
+        (&#39;10.10.0.0/255.255.240.0&#39;, None, [&#39;10.10.0.20&#39;, &#39;10.10.250.0&#39;]),
+    ]
+#
+    for address, netmask, test_ips in tests:
+        net = Network(address, netmask)
+        print(&#39;===========&#39;)
+        print(&#39;ip address: {0}&#39;.format(net))
+        print(&#39;to ipv6...: {0}&#39;.format(net.to_ipv6()))
+        print(&#39;ip version: {0}&#39;.format(net.version()))
+        print(&#39;ip info...: {0}&#39;.format(net.info()))
+        print(&#39;subnet....: {0}&#39;.format(net.subnet()))
+        print(&#39;num ip\&#39;s.. {0}:&#39;.format(net.size()))
+        print(&#39;integer...: {0}&#39;.format(int(net)))
+        print(&#39;hex.......: {0}&#39;.format(net.hex()))
+        print(&#39;netmask...: {0}&#39;.format(net.netmask()))
+        # Not implemented in IPv6
+        if net.version() == 4:
+            print(&#39;network...: {0}&#39;.format(net.network()))
+            print(&#39;broadcast.: {0}&#39;.format(net.broadcast()))
+        print(&#39;first host: {0}&#39;.format(net.host_first()))
+        print(&#39;reverse...: {0}&#39;.format(net.host_first().to_reverse()))
+        print(&#39;last host.: {0}&#39;.format(net.host_last()))
+        print(&#39;reverse...: {0}&#39;.format(net.host_last().to_reverse()))
+        for test_ip in test_ips:
+            print(&#39;{0} in network: {1}&#39;.format(test_ip, test_ip in net))</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="sretools.ipcalc.IP"><code class="flex name class">
+<span>class <span class="ident">IP</span></span>
+<span>(</span><span>ip, mask=None, version=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Represent a single IP address.</p>
+<p>:param ip: the ip address
+:type ip: :class:<code><a title="sretools.ipcalc.IP" href="#sretools.ipcalc.IP">IP</a></code> or str or long or int</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; localhost = IP(&quot;127.0.0.1&quot;)
+&gt;&gt;&gt; print(localhost)
+127.0.0.1
+&gt;&gt;&gt; localhost6 = IP(&quot;::1&quot;)
+&gt;&gt;&gt; print(localhost6)
+0000:0000:0000:0000:0000:0000:0000:0001
+</code></pre>
+<p>Initialize a new IPv4 or IPv6 address.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class IP(object):
+
+    &#34;&#34;&#34;
+    Represent a single IP address.
+
+    :param ip: the ip address
+    :type ip: :class:`IP` or str or long or int
+
+    &gt;&gt;&gt; localhost = IP(&#34;127.0.0.1&#34;)
+    &gt;&gt;&gt; print(localhost)
+    127.0.0.1
+    &gt;&gt;&gt; localhost6 = IP(&#34;::1&#34;)
+    &gt;&gt;&gt; print(localhost6)
+    0000:0000:0000:0000:0000:0000:0000:0001
+    &#34;&#34;&#34;
+
+    # Hex-to-Bin conversion masks
+    _bitmask = {
+        &#39;0&#39;: &#39;0000&#39;, &#39;1&#39;: &#39;0001&#39;, &#39;2&#39;: &#39;0010&#39;, &#39;3&#39;: &#39;0011&#39;,
+        &#39;4&#39;: &#39;0100&#39;, &#39;5&#39;: &#39;0101&#39;, &#39;6&#39;: &#39;0110&#39;, &#39;7&#39;: &#39;0111&#39;,
+        &#39;8&#39;: &#39;1000&#39;, &#39;9&#39;: &#39;1001&#39;, &#39;a&#39;: &#39;1010&#39;, &#39;b&#39;: &#39;1011&#39;,
+        &#39;c&#39;: &#39;1100&#39;, &#39;d&#39;: &#39;1101&#39;, &#39;e&#39;: &#39;1110&#39;, &#39;f&#39;: &#39;1111&#39;
+    }
+
+    # IP range specific information, see IANA allocations.
+    _range = {
+        # http://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
+        4: {
+            &#39;00000000&#39;:                 &#39;THIS HOST&#39;,             # 0/8
+            &#39;00001010&#39;:                 &#39;PRIVATE&#39;,               # 10/8
+            &#39;0110010001&#39;:               &#39;SHARED ADDRESS SPACE&#39;,  # 100.64/10
+            &#39;01111111&#39;:                 &#39;LOOPBACK&#39;,              # 127/8
+            &#39;101011000001&#39;:             &#39;PRIVATE&#39;,               # 172.16/12
+            &#39;110000000000000000000000&#39;: &#39;IETF PROTOCOL&#39;,         # 192/24
+            &#39;110000000000000000000010&#39;: &#39;TEST-NET-1&#39;,            # 192.0.2/24
+            &#39;110000000101100001100011&#39;: &#39;6TO4-RELAY ANYCAST&#39;,    # 192.88.99/24
+            &#39;1100000010101000&#39;:         &#39;PRIVATE&#39;,               # 192.168/16
+            &#39;110001100001001&#39;:          &#39;BENCHMARKING&#39;,          # 198.18/15
+            &#39;110001100011001&#39;:          &#39;TEST-NET-2&#39;,            # 198.51.100/24
+            &#39;110010110000000&#39;:          &#39;TEST-NET-3&#39;,            # 203.0.113/24
+            &#39;1111&#39;:                     &#39;RESERVED&#39;,              # 240/4
+
+        },
+        # http://www.iana.org/assignments/iana-ipv6-special-registry/iana-ipv6-special-registry.xhtml
+        6: {
+            &#39;0&#39; * 128:                          &#39;UNSPECIFIED&#39;,    # ::/128
+            &#39;0&#39; * 127 + &#39;1&#39;:                    &#39;LOOPBACK&#39;,       # ::1/128
+            &#39;0&#39; * 96:                           &#39;IPV4COMP&#39;,       # ::/96
+            &#39;0&#39; * 80 + &#39;1&#39; * 16:                &#39;IPV4MAP&#39;,        # ::ffff:0:0/96
+                                                                  # 64:ff9b::/96
+            &#39;00000000011001001111111110011011&#39; + 64 * &#39;0&#39;: &#39;IPV4-IPV6&#39;,
+            &#39;00000001&#39; + 56 * &#39;0&#39;:              &#39;DISCARD-ONLY&#39;,   # 100::/64
+            &#39;0010000000000001&#39; + 7 * &#39;0&#39;:       &#39;IETF PROTOCOL&#39;,  # 2001::/23
+            &#39;0010000000000001&#39; + 16 * &#39;0&#39;:      &#39;TEREDO&#39;,         # 2001::/32
+                                                                  # 2001:2::/48
+            &#39;00100000000000010000000000000010000000000000000&#39;: &#39;BENCHMARKING&#39;,
+            &#39;00100000000000010000110110111000&#39;: &#39;DOCUMENTATION&#39;,  # 2001:db8::/32
+            &#39;0010000000000001000000000001&#39;:     &#39;DEPRECATED&#39;,     # 2001:10::/28
+            &#39;0010000000000001000000000010&#39;:     &#39;ORCHIDv2&#39;,       # 2001:20::/28
+            &#39;0010000000000010&#39;:                 &#39;6TO4&#39;,           # 2002::/16
+            &#39;11111100000000000&#39;:                &#39;UNIQUE-LOCAL&#39;,   # fc00::/7
+            &#39;1111111010&#39;:                       &#39;LINK-LOCAL&#39;,     # fe80::/10
+        }
+    }
+
+    def __init__(self, ip, mask=None, version=0):
+        &#34;&#34;&#34;Initialize a new IPv4 or IPv6 address.&#34;&#34;&#34;
+        self.mask = mask
+        self.v = 0
+        # Parse input
+        if ip is None:
+            raise ValueError(&#39;Can not pass None&#39;)
+        elif isinstance(ip, IP):
+            self.ip = ip.ip
+            self.dq = ip.dq
+            self.v = ip.v
+            self.mask = ip.mask
+        elif isinstance(ip, six.integer_types):
+            self.ip = int(ip)
+            if self.ip &lt;= MAX_IPV4:
+                self.v = version or 4
+                self.dq = self._itodq(ip)
+            else:
+                self.v = version or 6
+                self.dq = self._itodq(ip)
+        else:
+            # network identifier
+            if &#39;%&#39; in ip:
+                ip = ip.split(&#39;%&#39;, 1)[0]
+            # If string is in CIDR or netmask notation
+            if &#39;/&#39; in ip:
+                ip, mask = ip.split(&#39;/&#39;, 1)
+                self.mask = mask
+            self.v = version or 0
+            self.dq = ip
+            self.ip = self._dqtoi(ip)
+            assert self.v != 0, &#39;Could not parse input&#39;
+        # Netmask defaults to one ip
+        if self.mask is None:
+            self.mask = {4: 32, 6: 128}[self.v]
+        # Netmask is numeric CIDR subnet
+        elif isinstance(self.mask, six.integer_types) or self.mask.isdigit():
+            self.mask = int(self.mask)
+        # Netmask is in subnet notation
+        elif isinstance(self.mask, six.string_types):
+            limit = [32, 128][&#39;:&#39; in self.mask]
+            inverted = ~self._dqtoi(self.mask)
+            if inverted == -1:
+                self.mask = 0
+            else:
+                count = 0
+                while inverted &amp; pow(2, count):
+                    count += 1
+                self.mask = (limit - count)
+        else:
+            raise ValueError(&#39;Invalid netmask&#39;)
+        # Validate subnet size
+        if self.v == 6:
+            self.dq = self._itodq(self.ip)
+            if not 0 &lt;= self.mask &lt;= 128:
+                raise ValueError(&#39;IPv6 subnet size must be between 0 and 128&#39;)
+        elif self.v == 4:
+            if not 0 &lt;= self.mask &lt;= 32:
+                raise ValueError(&#39;IPv4 subnet size must be between 0 and 32&#39;)
+
+    def bin(self):
+        &#34;&#34;&#34;Full-length binary representation of the IP address.
+
+        &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+        &gt;&gt;&gt; print(ip.bin())
+        01111111000000000000000000000001
+        &#34;&#34;&#34;
+        bits = self.v == 4 and 32 or 128
+        return bin(self.ip).split(&#39;b&#39;)[1].rjust(bits, &#39;0&#39;)
+
+    def hex(self):
+        &#34;&#34;&#34;Full-length hexadecimal representation of the IP address.
+
+        &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+        &gt;&gt;&gt; print(ip.hex())
+        7f000001
+        &#34;&#34;&#34;
+        if self.v == 4:
+            return &#39;%08x&#39; % self.ip
+        else:
+            return &#39;%032x&#39; % self.ip
+
+    def subnet(self):
+        &#34;&#34;&#34;CIDR subnet size.&#34;&#34;&#34;
+        return self.mask
+
+    def version(self):
+        &#34;&#34;&#34;IP version.
+
+        &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+        &gt;&gt;&gt; print(ip.version())
+        4
+        &#34;&#34;&#34;
+        return self.v
+
+    def info(self):
+        &#34;&#34;&#34;Show IANA allocation information for the current IP address.
+
+        &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+        &gt;&gt;&gt; print(ip.info())
+        LOOPBACK
+        &#34;&#34;&#34;
+        b = self.bin()
+        for i in range(len(b), 0, -1):
+            if b[:i] in self._range[self.v]:
+                return self._range[self.v][b[:i]]
+        return &#39;UNKNOWN&#39;
+
+    def _dqtoi(self, dq):
+        &#34;&#34;&#34;Convert dotquad or hextet to long.&#34;&#34;&#34;
+        # hex notation
+        if dq.startswith(&#39;0x&#39;):
+            return self._dqtoi_hex(dq)
+
+        # IPv6
+        if &#39;:&#39; in dq:
+            return self._dqtoi_ipv6(dq)
+        elif len(dq) == 32:
+            # Assume full heximal notation
+            self.v = 6
+            return int(dq, 16)
+
+        # IPv4
+        if &#39;.&#39; in dq:
+            return self._dqtoi_ipv4(dq)
+
+        raise ValueError(&#39;Invalid address input&#39;)
+
+    def _dqtoi_hex(self, dq):
+        ip = int(dq[2:], 16)
+        if ip &gt; MAX_IPV6:
+            raise ValueError(&#39;%s: IP address is bigger than 2^128&#39; % dq)
+        if ip &lt;= MAX_IPV4:
+            self.v = 4
+        else:
+            self.v = 6
+        return ip
+
+    def _dqtoi_ipv4(self, dq):
+        q = dq.split(&#39;.&#39;)
+        q.reverse()
+        if len(q) &gt; 4:
+            raise ValueError(&#39;%s: IPv4 address invalid: &#39;
+                             &#39;more than 4 bytes&#39; % dq)
+        for x in q:
+            if not 0 &lt;= int(x) &lt;= 255:
+                raise ValueError(&#39;%s: IPv4 address invalid: &#39;
+                                 &#39;bytes should be between 0 and 255&#39; % dq)
+        while len(q) &lt; 4:
+            q.insert(1, &#39;0&#39;)
+        self.v = 4
+        return sum(int(byte) &lt;&lt; 8 * index for index, byte in enumerate(q))
+
+    def _dqtoi_ipv6(self, dq):
+        # Split hextets
+        hx = dq.split(&#39;:&#39;)
+        if &#39;:::&#39; in dq:
+            raise ValueError(&#34;%s: IPv6 address can&#39;t contain :::&#34; % dq)
+        # Mixed address (or 4-in-6), ::ffff:192.0.2.42
+        if &#39;.&#39; in dq:
+            col_ind = dq.rfind(&#34;:&#34;)
+            ipv6part = dq[:col_ind] + &#34;:0:0&#34;
+            return self._dqtoi_ipv6(ipv6part) + self._dqtoi(hx[-1])
+        if len(hx) &gt; 8:
+            raise ValueError(&#39;%s: IPv6 address with more than 8 hexlets&#39; % dq)
+        elif len(hx) &lt; 8:
+            # No :: in address
+            if &#39;&#39; not in hx:
+                raise ValueError(&#39;%s: IPv6 address invalid: &#39;
+                                 &#39;compressed format malformed&#39; % dq)
+            elif not (dq.startswith(&#39;::&#39;) or dq.endswith(&#39;::&#39;)) and len([x for x in hx if x == &#39;&#39;]) &gt; 1:
+                raise ValueError(&#39;%s: IPv6 address invalid: &#39;
+                                 &#39;compressed format malformed&#39; % dq)
+            ix = hx.index(&#39;&#39;)
+            px = len(hx[ix + 1:])
+            for x in range(ix + px + 1, 8):
+                hx.insert(ix, &#39;0&#39;)
+        elif dq.endswith(&#39;::&#39;):
+            pass
+        elif &#39;&#39; in hx:
+            raise ValueError(&#39;%s: IPv6 address invalid: &#39;
+                             &#39;compressed format detected in full notation&#39; % dq())
+        ip = &#39;&#39;
+        hx = [x == &#39;&#39; and &#39;0&#39; or x for x in hx]
+        for h in hx:
+            if len(h) &lt; 4:
+                h = &#39;%04x&#39; % int(h, 16)
+            if not 0 &lt;= int(h, 16) &lt;= 0xffff:
+                raise ValueError(&#39;%r: IPv6 address invalid: &#39;
+                                 &#39;hexlets should be between 0x0000 and 0xffff&#39; % dq)
+            ip += h
+        self.v = 6
+        return int(ip, 16)
+
+    def _itodq(self, n):
+        &#34;&#34;&#34;Convert long to dotquad or hextet.&#34;&#34;&#34;
+        if self.v == 4:
+            return &#39;.&#39;.join(map(str, [
+                (n &gt;&gt; 24) &amp; 0xff,
+                (n &gt;&gt; 16) &amp; 0xff,
+                (n &gt;&gt; 8) &amp; 0xff,
+                n &amp; 0xff,
+            ]))
+        else:
+            n = &#39;%032x&#39; % n
+            return &#39;:&#39;.join(n[4 * x:4 * x + 4] for x in range(0, 8))
+
+    def __str__(self):
+        &#34;&#34;&#34;Return dotquad representation of the IP.
+
+        &gt;&gt;&gt; ip = IP(&#34;::1&#34;)
+        &gt;&gt;&gt; print(str(ip))
+        0000:0000:0000:0000:0000:0000:0000:0001
+        &#34;&#34;&#34;
+        return self.dq
+
+    def __repr__(self):
+        &#34;&#34;&#34;Return canonical representation of the IP.
+
+        &gt;&gt;&gt; repr(IP(&#34;::1&#34;))
+        &#34;IP(&#39;::1&#39;)&#34;
+        &gt;&gt;&gt; repr(IP(&#34;fe80:0000:0000:0000:abde:3eff:ffab:0012/64&#34;))
+        &#34;IP(&#39;fe80::abde:3eff:ffab:12/64&#39;)&#34;
+        &gt;&gt;&gt; repr(IP(&#34;1.2.3.4/29&#34;))
+        &#34;IP(&#39;1.2.3.4/29&#39;)&#34;
+        &gt;&gt;&gt; repr(IP(&#34;127.0.0.1/8&#34;))
+        &#34;IP(&#39;127.0.0.1/8&#39;)&#34;
+        &#34;&#34;&#34;
+        dq = self.dq if self.v == 4 else self.to_compressed()
+        args = (self.__class__.__name__, dq, self.mask)
+        if (self.version(), self.mask) in [(4, 32), (6, 128)]:
+            fmt = &#34;{0}(&#39;{1}&#39;)&#34;
+        else:
+            fmt = &#34;{0}(&#39;{1}/{2}&#39;)&#34;
+        return fmt.format(*args)
+
+    def __hash__(self):
+        &#34;&#34;&#34;Hash for collection operations and py:`hash()`.&#34;&#34;&#34;
+        return hash(self.to_tuple())
+
+    hash = __hash__
+
+    def __int__(self):
+        &#34;&#34;&#34;Convert to int.&#34;&#34;&#34;
+        return int(self.ip)
+
+    def __long__(self):
+        &#34;&#34;&#34;Convert to long.&#34;&#34;&#34;
+        return self.ip
+
+    def __lt__(self, other):
+        &#34;&#34;&#34;Less than other test.&#34;&#34;&#34;
+        return int(self) &lt; int(IP(other))
+
+    def __le__(self, other):
+        &#34;&#34;&#34;Less than or equal to other test.&#34;&#34;&#34;
+        return int(self) &lt;= int(IP(other))
+
+    def __ge__(self, other):
+        &#34;&#34;&#34;Greater than or equal to other test.&#34;&#34;&#34;
+        return int(self) &gt;= int(IP(other))
+
+    def __gt__(self, other):
+        &#34;&#34;&#34;Greater than other.&#34;&#34;&#34;
+        return int(self) &gt; int(IP(other))
+
+    def __eq__(self, other):
+        &#34;&#34;&#34;Test if other is address is equal to the current address.&#34;&#34;&#34;
+        return int(self) == int(IP(other))
+
+    def __ne__(self, other):
+        &#34;&#34;&#34;Test if other is address is not equal to the current address.&#34;&#34;&#34;
+        return int(self) != int(IP(other))
+
+    def __add__(self, offset):
+        &#34;&#34;&#34;Add numeric offset to the IP.&#34;&#34;&#34;
+        if not isinstance(offset, six.integer_types):
+            return ValueError(&#39;Value is not numeric&#39;)
+        return self.__class__(self.ip + offset, mask=self.mask, version=self.v)
+
+    def __sub__(self, offset):
+        &#34;&#34;&#34;Substract numeric offset from the IP.&#34;&#34;&#34;
+        if not isinstance(offset, six.integer_types):
+            return ValueError(&#39;Value is not numeric&#39;)
+        return self.__class__(self.ip - offset, mask=self.mask, version=self.v)
+
+    @staticmethod
+    def size():
+        &#34;&#34;&#34;Return network size.&#34;&#34;&#34;
+        return 1
+
+    def clone(self):
+        &#34;&#34;&#34;
+        Return a new &lt;IP&gt; object with a copy of this one.
+
+        &gt;&gt;&gt; ip = IP(&#39;127.0.0.1&#39;)
+        &gt;&gt;&gt; ip2 = ip.clone()
+        &gt;&gt;&gt; ip2
+        IP(&#39;127.0.0.1&#39;)
+        &gt;&gt;&gt; ip is ip2
+        False
+        &gt;&gt;&gt; ip == ip2
+        True
+        &gt;&gt;&gt; ip.mask = 24
+        &gt;&gt;&gt; ip2.mask
+        32
+        &#34;&#34;&#34;
+        return IP(self)
+
+    def to_compressed(self):
+        &#34;&#34;&#34;
+        Compress an IP address to its shortest possible compressed form.
+
+        &gt;&gt;&gt; print(IP(&#39;127.0.0.1&#39;).to_compressed())
+        127.1
+        &gt;&gt;&gt; print(IP(&#39;127.1.0.1&#39;).to_compressed())
+        127.1.1
+        &gt;&gt;&gt; print(IP(&#39;127.0.1.1&#39;).to_compressed())
+        127.0.1.1
+        &gt;&gt;&gt; print(IP(&#39;2001:1234:0000:0000:0000:0000:0000:5678&#39;).to_compressed())
+        2001:1234::5678
+        &gt;&gt;&gt; print(IP(&#39;1234:0000:0000:beef:0000:0000:0000:5678&#39;).to_compressed())
+        1234:0:0:beef::5678
+        &gt;&gt;&gt; print(IP(&#39;0000:0000:0000:0000:0000:0000:0000:0001&#39;).to_compressed())
+        ::1
+        &gt;&gt;&gt; print(IP(&#39;fe80:0000:0000:0000:0000:0000:0000:0000&#39;).to_compressed())
+        fe80::
+        &#34;&#34;&#34;
+        if self.v == 4:
+            quads = self.dq.split(&#39;.&#39;)
+            try:
+                zero = quads.index(&#39;0&#39;)
+                if zero == 1 and quads.index(&#39;0&#39;, zero + 1):
+                    quads.pop(zero)
+                    quads.pop(zero)
+                    return &#39;.&#39;.join(quads)
+                elif zero == 2:
+                    quads.pop(zero)
+                    return &#39;.&#39;.join(quads)
+            except ValueError:  # No zeroes
+                pass
+
+            return self.dq
+        else:
+            quads = map(lambda q: &#39;%x&#39; % (int(q, 16)), self.dq.split(&#39;:&#39;))
+            quadc = &#39;:%s:&#39; % (&#39;:&#39;.join(quads),)
+            zeros = [0, -1]
+
+            # Find the largest group of zeros
+            for match in re.finditer(r&#39;(:[:0]+)&#39;, quadc):
+                count = len(match.group(1)) - 1
+                if count &gt; zeros[0]:
+                    zeros = [count, match.start(1)]
+
+            count, where = zeros
+            if count:
+                quadc = quadc[:where] + &#39;:&#39; + quadc[where + count:]
+
+            quadc = re.sub(r&#39;((^:)|(:$))&#39;, &#39;&#39;, quadc)
+            quadc = re.sub(r&#39;((^:)|(:$))&#39;, &#39;::&#39;, quadc)
+
+            return quadc
+
+    def to_ipv4(self):
+        &#34;&#34;&#34;
+        Convert (an IPv6) IP address to an IPv4 address, if possible.
+
+        Only works for IPv4-compat (::/96), IPv4-mapped (::ffff/96), and 6-to-4
+        (2002::/16) addresses.
+
+        &gt;&gt;&gt; ip = IP(&#39;2002:c000:022a::&#39;)
+        &gt;&gt;&gt; print(ip.to_ipv4())
+        192.0.2.42
+        &#34;&#34;&#34;
+        if self.v == 4:
+            return self
+        else:
+            if self.bin().startswith(&#39;0&#39; * 96):
+                return IP(int(self), version=4)
+            elif self.bin().startswith(&#39;0&#39; * 80 + &#39;1&#39; * 16):
+                return IP(int(self) &amp; MAX_IPV4, version=4)
+            elif int(self) &amp; BASE_6TO4:
+                return IP((int(self) - BASE_6TO4) &gt;&gt; 80, version=4)
+            else:
+                return ValueError(&#39;%s: IPv6 address is not IPv4 compatible or mapped, &#39;
+                                  &#39;nor an 6-to-4 IP&#39; % self.dq)
+
+    @classmethod
+    def from_bin(cls, value):
+        &#34;&#34;&#34;Initialize a new network from binary notation.&#34;&#34;&#34;
+        value = value.lstrip(&#39;b&#39;)
+        if len(value) == 32:
+            return cls(int(value, 2))
+        elif len(value) == 128:
+            return cls(int(value, 2))
+        else:
+            return ValueError(&#39;%r: invalid binary notation&#39; % (value,))
+
+    @classmethod
+    def from_hex(cls, value):
+        &#34;&#34;&#34;Initialize a new network from hexadecimal notation.&#34;&#34;&#34;
+        if len(value) == 8:
+            return cls(int(value, 16))
+        elif len(value) == 32:
+            return cls(int(value, 16))
+        else:
+            raise ValueError(&#39;%r: invalid hexadecimal notation&#39; % (value,))
+
+    def to_ipv6(self, ip_type=&#39;6-to-4&#39;):
+        &#34;&#34;&#34;
+        Convert (an IPv4) IP address to an IPv6 address.
+
+        &gt;&gt;&gt; ip = IP(&#39;192.0.2.42&#39;)
+        &gt;&gt;&gt; print(ip.to_ipv6())
+        2002:c000:022a:0000:0000:0000:0000:0000
+
+        &gt;&gt;&gt; print(ip.to_ipv6(&#39;compat&#39;))
+        0000:0000:0000:0000:0000:0000:c000:022a
+
+        &gt;&gt;&gt; print(ip.to_ipv6(&#39;mapped&#39;))
+        0000:0000:0000:0000:0000:ffff:c000:022a
+        &#34;&#34;&#34;
+        assert ip_type in [&#39;6-to-4&#39;, &#39;compat&#39;, &#39;mapped&#39;], &#39;Conversion ip_type not supported&#39;
+        if self.v == 4:
+            if ip_type == &#39;6-to-4&#39;:
+                return IP(BASE_6TO4 | int(self) &lt;&lt; 80, version=6)
+            elif ip_type == &#39;compat&#39;:
+                return IP(int(self), version=6)
+            elif ip_type == &#39;mapped&#39;:
+                return IP(0xffff &lt;&lt; 32 | int(self), version=6)
+        else:
+            return self
+
+    def to_reverse(self):
+        &#34;&#34;&#34;Convert the IP address to a PTR record.
+
+        Using the .in-addr.arpa zone for IPv4 and .ip6.arpa for IPv6 addresses.
+
+        &gt;&gt;&gt; ip = IP(&#39;192.0.2.42&#39;)
+        &gt;&gt;&gt; print(ip.to_reverse())
+        42.2.0.192.in-addr.arpa
+        &gt;&gt;&gt; print(ip.to_ipv6().to_reverse())
+        0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.a.2.2.0.0.0.0.c.2.0.0.2.ip6.arpa
+        &#34;&#34;&#34;
+        if self.v == 4:
+            return &#39;.&#39;.join(list(self.dq.split(&#39;.&#39;)[::-1]) + [&#39;in-addr&#39;, &#39;arpa&#39;])
+        else:
+            return &#39;.&#39;.join(list(self.hex())[::-1] + [&#39;ip6&#39;, &#39;arpa&#39;])
+
+    def to_tuple(self):
+        &#34;&#34;&#34;Used for comparisons.&#34;&#34;&#34;
+        return (self.dq, self.mask)
+
+    def guess_network(self):
+        netmask = 0x100000000 - 2**(32-self.mask)
+        return Network(netmask &amp; self.ip, mask=self.mask)</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="sretools.ipcalc.Network" href="#sretools.ipcalc.Network">Network</a></li>
+</ul>
+<h3>Static methods</h3>
+<dl>
+<dt id="sretools.ipcalc.IP.from_bin"><code class="name flex">
+<span>def <span class="ident">from_bin</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialize a new network from binary notation.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def from_bin(cls, value):
+    &#34;&#34;&#34;Initialize a new network from binary notation.&#34;&#34;&#34;
+    value = value.lstrip(&#39;b&#39;)
+    if len(value) == 32:
+        return cls(int(value, 2))
+    elif len(value) == 128:
+        return cls(int(value, 2))
+    else:
+        return ValueError(&#39;%r: invalid binary notation&#39; % (value,))</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.from_hex"><code class="name flex">
+<span>def <span class="ident">from_hex</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialize a new network from hexadecimal notation.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def from_hex(cls, value):
+    &#34;&#34;&#34;Initialize a new network from hexadecimal notation.&#34;&#34;&#34;
+    if len(value) == 8:
+        return cls(int(value, 16))
+    elif len(value) == 32:
+        return cls(int(value, 16))
+    else:
+        raise ValueError(&#39;%r: invalid hexadecimal notation&#39; % (value,))</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.size"><code class="name flex">
+<span>def <span class="ident">size</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return network size.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def size():
+    &#34;&#34;&#34;Return network size.&#34;&#34;&#34;
+    return 1</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="sretools.ipcalc.IP.bin"><code class="name flex">
+<span>def <span class="ident">bin</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Full-length binary representation of the IP address.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; ip = IP(&quot;127.0.0.1&quot;)
+&gt;&gt;&gt; print(ip.bin())
+01111111000000000000000000000001
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bin(self):
+    &#34;&#34;&#34;Full-length binary representation of the IP address.
+
+    &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+    &gt;&gt;&gt; print(ip.bin())
+    01111111000000000000000000000001
+    &#34;&#34;&#34;
+    bits = self.v == 4 and 32 or 128
+    return bin(self.ip).split(&#39;b&#39;)[1].rjust(bits, &#39;0&#39;)</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.clone"><code class="name flex">
+<span>def <span class="ident">clone</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a new <IP> object with a copy of this one.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; ip = IP('127.0.0.1')
+&gt;&gt;&gt; ip2 = ip.clone()
+&gt;&gt;&gt; ip2
+IP('127.0.0.1')
+&gt;&gt;&gt; ip is ip2
+False
+&gt;&gt;&gt; ip == ip2
+True
+&gt;&gt;&gt; ip.mask = 24
+&gt;&gt;&gt; ip2.mask
+32
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clone(self):
+    &#34;&#34;&#34;
+    Return a new &lt;IP&gt; object with a copy of this one.
+
+    &gt;&gt;&gt; ip = IP(&#39;127.0.0.1&#39;)
+    &gt;&gt;&gt; ip2 = ip.clone()
+    &gt;&gt;&gt; ip2
+    IP(&#39;127.0.0.1&#39;)
+    &gt;&gt;&gt; ip is ip2
+    False
+    &gt;&gt;&gt; ip == ip2
+    True
+    &gt;&gt;&gt; ip.mask = 24
+    &gt;&gt;&gt; ip2.mask
+    32
+    &#34;&#34;&#34;
+    return IP(self)</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.guess_network"><code class="name flex">
+<span>def <span class="ident">guess_network</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def guess_network(self):
+    netmask = 0x100000000 - 2**(32-self.mask)
+    return Network(netmask &amp; self.ip, mask=self.mask)</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.hash"><code class="name flex">
+<span>def <span class="ident">hash</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Hash for collection operations and py:<code>hash()</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def __hash__(self):
+    &#34;&#34;&#34;Hash for collection operations and py:`hash()`.&#34;&#34;&#34;
+    return hash(self.to_tuple())</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.hex"><code class="name flex">
+<span>def <span class="ident">hex</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Full-length hexadecimal representation of the IP address.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; ip = IP(&quot;127.0.0.1&quot;)
+&gt;&gt;&gt; print(ip.hex())
+7f000001
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hex(self):
+    &#34;&#34;&#34;Full-length hexadecimal representation of the IP address.
+
+    &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+    &gt;&gt;&gt; print(ip.hex())
+    7f000001
+    &#34;&#34;&#34;
+    if self.v == 4:
+        return &#39;%08x&#39; % self.ip
+    else:
+        return &#39;%032x&#39; % self.ip</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.info"><code class="name flex">
+<span>def <span class="ident">info</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Show IANA allocation information for the current IP address.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; ip = IP(&quot;127.0.0.1&quot;)
+&gt;&gt;&gt; print(ip.info())
+LOOPBACK
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def info(self):
+    &#34;&#34;&#34;Show IANA allocation information for the current IP address.
+
+    &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+    &gt;&gt;&gt; print(ip.info())
+    LOOPBACK
+    &#34;&#34;&#34;
+    b = self.bin()
+    for i in range(len(b), 0, -1):
+        if b[:i] in self._range[self.v]:
+            return self._range[self.v][b[:i]]
+    return &#39;UNKNOWN&#39;</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.subnet"><code class="name flex">
+<span>def <span class="ident">subnet</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>CIDR subnet size.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def subnet(self):
+    &#34;&#34;&#34;CIDR subnet size.&#34;&#34;&#34;
+    return self.mask</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.to_compressed"><code class="name flex">
+<span>def <span class="ident">to_compressed</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compress an IP address to its shortest possible compressed form.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; print(IP('127.0.0.1').to_compressed())
+127.1
+&gt;&gt;&gt; print(IP('127.1.0.1').to_compressed())
+127.1.1
+&gt;&gt;&gt; print(IP('127.0.1.1').to_compressed())
+127.0.1.1
+&gt;&gt;&gt; print(IP('2001:1234:0000:0000:0000:0000:0000:5678').to_compressed())
+2001:1234::5678
+&gt;&gt;&gt; print(IP('1234:0000:0000:beef:0000:0000:0000:5678').to_compressed())
+1234:0:0:beef::5678
+&gt;&gt;&gt; print(IP('0000:0000:0000:0000:0000:0000:0000:0001').to_compressed())
+::1
+&gt;&gt;&gt; print(IP('fe80:0000:0000:0000:0000:0000:0000:0000').to_compressed())
+fe80::
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_compressed(self):
+    &#34;&#34;&#34;
+    Compress an IP address to its shortest possible compressed form.
+
+    &gt;&gt;&gt; print(IP(&#39;127.0.0.1&#39;).to_compressed())
+    127.1
+    &gt;&gt;&gt; print(IP(&#39;127.1.0.1&#39;).to_compressed())
+    127.1.1
+    &gt;&gt;&gt; print(IP(&#39;127.0.1.1&#39;).to_compressed())
+    127.0.1.1
+    &gt;&gt;&gt; print(IP(&#39;2001:1234:0000:0000:0000:0000:0000:5678&#39;).to_compressed())
+    2001:1234::5678
+    &gt;&gt;&gt; print(IP(&#39;1234:0000:0000:beef:0000:0000:0000:5678&#39;).to_compressed())
+    1234:0:0:beef::5678
+    &gt;&gt;&gt; print(IP(&#39;0000:0000:0000:0000:0000:0000:0000:0001&#39;).to_compressed())
+    ::1
+    &gt;&gt;&gt; print(IP(&#39;fe80:0000:0000:0000:0000:0000:0000:0000&#39;).to_compressed())
+    fe80::
+    &#34;&#34;&#34;
+    if self.v == 4:
+        quads = self.dq.split(&#39;.&#39;)
+        try:
+            zero = quads.index(&#39;0&#39;)
+            if zero == 1 and quads.index(&#39;0&#39;, zero + 1):
+                quads.pop(zero)
+                quads.pop(zero)
+                return &#39;.&#39;.join(quads)
+            elif zero == 2:
+                quads.pop(zero)
+                return &#39;.&#39;.join(quads)
+        except ValueError:  # No zeroes
+            pass
+
+        return self.dq
+    else:
+        quads = map(lambda q: &#39;%x&#39; % (int(q, 16)), self.dq.split(&#39;:&#39;))
+        quadc = &#39;:%s:&#39; % (&#39;:&#39;.join(quads),)
+        zeros = [0, -1]
+
+        # Find the largest group of zeros
+        for match in re.finditer(r&#39;(:[:0]+)&#39;, quadc):
+            count = len(match.group(1)) - 1
+            if count &gt; zeros[0]:
+                zeros = [count, match.start(1)]
+
+        count, where = zeros
+        if count:
+            quadc = quadc[:where] + &#39;:&#39; + quadc[where + count:]
+
+        quadc = re.sub(r&#39;((^:)|(:$))&#39;, &#39;&#39;, quadc)
+        quadc = re.sub(r&#39;((^:)|(:$))&#39;, &#39;::&#39;, quadc)
+
+        return quadc</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.to_ipv4"><code class="name flex">
+<span>def <span class="ident">to_ipv4</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert (an IPv6) IP address to an IPv4 address, if possible.</p>
+<p>Only works for IPv4-compat (::/96), IPv4-mapped (::ffff/96), and 6-to-4
+(2002::/16) addresses.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; ip = IP('2002:c000:022a::')
+&gt;&gt;&gt; print(ip.to_ipv4())
+192.0.2.42
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_ipv4(self):
+    &#34;&#34;&#34;
+    Convert (an IPv6) IP address to an IPv4 address, if possible.
+
+    Only works for IPv4-compat (::/96), IPv4-mapped (::ffff/96), and 6-to-4
+    (2002::/16) addresses.
+
+    &gt;&gt;&gt; ip = IP(&#39;2002:c000:022a::&#39;)
+    &gt;&gt;&gt; print(ip.to_ipv4())
+    192.0.2.42
+    &#34;&#34;&#34;
+    if self.v == 4:
+        return self
+    else:
+        if self.bin().startswith(&#39;0&#39; * 96):
+            return IP(int(self), version=4)
+        elif self.bin().startswith(&#39;0&#39; * 80 + &#39;1&#39; * 16):
+            return IP(int(self) &amp; MAX_IPV4, version=4)
+        elif int(self) &amp; BASE_6TO4:
+            return IP((int(self) - BASE_6TO4) &gt;&gt; 80, version=4)
+        else:
+            return ValueError(&#39;%s: IPv6 address is not IPv4 compatible or mapped, &#39;
+                              &#39;nor an 6-to-4 IP&#39; % self.dq)</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.to_ipv6"><code class="name flex">
+<span>def <span class="ident">to_ipv6</span></span>(<span>self, ip_type='6-to-4')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert (an IPv4) IP address to an IPv6 address.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; ip = IP('192.0.2.42')
+&gt;&gt;&gt; print(ip.to_ipv6())
+2002:c000:022a:0000:0000:0000:0000:0000
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; print(ip.to_ipv6('compat'))
+0000:0000:0000:0000:0000:0000:c000:022a
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; print(ip.to_ipv6('mapped'))
+0000:0000:0000:0000:0000:ffff:c000:022a
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_ipv6(self, ip_type=&#39;6-to-4&#39;):
+    &#34;&#34;&#34;
+    Convert (an IPv4) IP address to an IPv6 address.
+
+    &gt;&gt;&gt; ip = IP(&#39;192.0.2.42&#39;)
+    &gt;&gt;&gt; print(ip.to_ipv6())
+    2002:c000:022a:0000:0000:0000:0000:0000
+
+    &gt;&gt;&gt; print(ip.to_ipv6(&#39;compat&#39;))
+    0000:0000:0000:0000:0000:0000:c000:022a
+
+    &gt;&gt;&gt; print(ip.to_ipv6(&#39;mapped&#39;))
+    0000:0000:0000:0000:0000:ffff:c000:022a
+    &#34;&#34;&#34;
+    assert ip_type in [&#39;6-to-4&#39;, &#39;compat&#39;, &#39;mapped&#39;], &#39;Conversion ip_type not supported&#39;
+    if self.v == 4:
+        if ip_type == &#39;6-to-4&#39;:
+            return IP(BASE_6TO4 | int(self) &lt;&lt; 80, version=6)
+        elif ip_type == &#39;compat&#39;:
+            return IP(int(self), version=6)
+        elif ip_type == &#39;mapped&#39;:
+            return IP(0xffff &lt;&lt; 32 | int(self), version=6)
+    else:
+        return self</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.to_reverse"><code class="name flex">
+<span>def <span class="ident">to_reverse</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert the IP address to a PTR record.</p>
+<p>Using the .in-addr.arpa zone for IPv4 and .ip6.arpa for IPv6 addresses.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; ip = IP('192.0.2.42')
+&gt;&gt;&gt; print(ip.to_reverse())
+42.2.0.192.in-addr.arpa
+&gt;&gt;&gt; print(ip.to_ipv6().to_reverse())
+0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.a.2.2.0.0.0.0.c.2.0.0.2.ip6.arpa
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_reverse(self):
+    &#34;&#34;&#34;Convert the IP address to a PTR record.
+
+    Using the .in-addr.arpa zone for IPv4 and .ip6.arpa for IPv6 addresses.
+
+    &gt;&gt;&gt; ip = IP(&#39;192.0.2.42&#39;)
+    &gt;&gt;&gt; print(ip.to_reverse())
+    42.2.0.192.in-addr.arpa
+    &gt;&gt;&gt; print(ip.to_ipv6().to_reverse())
+    0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.a.2.2.0.0.0.0.c.2.0.0.2.ip6.arpa
+    &#34;&#34;&#34;
+    if self.v == 4:
+        return &#39;.&#39;.join(list(self.dq.split(&#39;.&#39;)[::-1]) + [&#39;in-addr&#39;, &#39;arpa&#39;])
+    else:
+        return &#39;.&#39;.join(list(self.hex())[::-1] + [&#39;ip6&#39;, &#39;arpa&#39;])</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.to_tuple"><code class="name flex">
+<span>def <span class="ident">to_tuple</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Used for comparisons.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_tuple(self):
+    &#34;&#34;&#34;Used for comparisons.&#34;&#34;&#34;
+    return (self.dq, self.mask)</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.IP.version"><code class="name flex">
+<span>def <span class="ident">version</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>IP version.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; ip = IP(&quot;127.0.0.1&quot;)
+&gt;&gt;&gt; print(ip.version())
+4
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def version(self):
+    &#34;&#34;&#34;IP version.
+
+    &gt;&gt;&gt; ip = IP(&#34;127.0.0.1&#34;)
+    &gt;&gt;&gt; print(ip.version())
+    4
+    &#34;&#34;&#34;
+    return self.v</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="sretools.ipcalc.Network"><code class="flex name class">
+<span>class <span class="ident">Network</span></span>
+<span>(</span><span>ip, mask=None, version=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Network slice calculations.</p>
+<p>:param ip: network address
+:type ip: :class:<code><a title="sretools.ipcalc.IP" href="#sretools.ipcalc.IP">IP</a></code> or str or long or int
+:param mask: netmask
+:type mask: int or str</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; localnet = Network('127.0.0.1/8')
+&gt;&gt;&gt; print(localnet)
+127.0.0.1/8
+</code></pre>
+<p>Initialize a new IPv4 or IPv6 address.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Network(IP):
+
+    &#34;&#34;&#34;
+    Network slice calculations.
+
+    :param ip: network address
+    :type ip: :class:`IP` or str or long or int
+    :param mask: netmask
+    :type mask: int or str
+
+
+    &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+    &gt;&gt;&gt; print(localnet)
+    127.0.0.1/8
+    &#34;&#34;&#34;
+
+    def netmask(self):
+        &#34;&#34;&#34;
+        Network netmask derived from subnet size, as IP object.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+        &gt;&gt;&gt; print(localnet.netmask())
+        255.0.0.0
+        &#34;&#34;&#34;
+        return IP(self.netmask_long(), version=self.version())
+
+    def netmask_long(self):
+        &#34;&#34;&#34;
+        Network netmask derived from subnet size, as long.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+        &gt;&gt;&gt; print(localnet.netmask_long())
+        4278190080
+        &#34;&#34;&#34;
+        if self.version() == 4:
+            return (MAX_IPV4 &gt;&gt; (32 - self.mask)) &lt;&lt; (32 - self.mask)
+        else:
+            return (MAX_IPV6 &gt;&gt; (128 - self.mask)) &lt;&lt; (128 - self.mask)
+
+    def network(self):
+        &#34;&#34;&#34;
+        Network address, as IP object.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.128.99.3/8&#39;)
+        &gt;&gt;&gt; print(localnet.network())
+        127.0.0.0
+        &#34;&#34;&#34;
+        return IP(self.network_long(), version=self.version())
+
+    def network_long(self):
+        &#34;&#34;&#34;
+        Network address, as long.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.128.99.3/8&#39;)
+        &gt;&gt;&gt; print(localnet.network_long())
+        2130706432
+        &#34;&#34;&#34;
+        return self.ip &amp; self.netmask_long()
+
+    def broadcast(self):
+        &#34;&#34;&#34;
+        Broadcast address, as IP object.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+        &gt;&gt;&gt; print(localnet.broadcast())
+        127.255.255.255
+        &#34;&#34;&#34;
+        # XXX: IPv6 doesn&#39;t have a broadcast address, but it&#39;s used for other
+        #      calculations such as &lt;Network.host_last&gt;
+        return IP(self.broadcast_long(), version=self.version())
+
+    def broadcast_long(self):
+        &#34;&#34;&#34;
+        Broadcast address, as long.
+
+        &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+        &gt;&gt;&gt; print(localnet.broadcast_long())
+        2147483647
+        &#34;&#34;&#34;
+        if self.version() == 4:
+            return self.network_long() | (MAX_IPV4 - self.netmask_long())
+        else:
+            return self.network_long() \
+                | (MAX_IPV6 - self.netmask_long())
+
+    def host_first(self):
+        &#34;&#34;&#34;First available host in this subnet.&#34;&#34;&#34;
+        if (self.version() == 4 and self.mask &gt; 30) or \
+                (self.version() == 6 and self.mask &gt; 126):
+            return self
+        else:
+            return IP(self.network_long() + 1, version=self.version())
+
+    def host_last(self):
+        &#34;&#34;&#34;Last available host in this subnet.&#34;&#34;&#34;
+        if (self.version() == 4 and self.mask == 32) or \
+                (self.version() == 6 and self.mask == 128):
+            return self
+        elif (self.version() == 4 and self.mask == 31) or \
+                (self.version() == 6 and self.mask == 127):
+            return IP(int(self) + 1, version=self.version())
+        else:
+            return IP(self.broadcast_long() - 1, version=self.version())
+
+    def check_collision(self, other):
+        &#34;&#34;&#34;Check another network against the given network.&#34;&#34;&#34;
+        other = Network(other)
+        return self.network_long() &lt;= other.network_long() &lt;= self.broadcast_long() or \
+            other.network_long() &lt;= self.network_long() &lt;= other.broadcast_long()
+
+    def __str__(self):
+        &#34;&#34;&#34;
+        Return CIDR representation of the network.
+
+        &gt;&gt;&gt; net = Network(&#34;::1/64&#34;)
+        &gt;&gt;&gt; print(str(net))
+        0000:0000:0000:0000:0000:0000:0000:0001/64
+        &#34;&#34;&#34;
+        return &#34;%s/%d&#34; % (self.dq, self.mask)
+
+    def __contains__(self, ip):
+        &#34;&#34;&#34;
+        Check if the given ip is part of the network.
+
+        &gt;&gt;&gt; &#39;192.0.2.42&#39; in Network(&#39;192.0.2.0/24&#39;)
+        True
+        &gt;&gt;&gt; &#39;192.168.2.42&#39; in Network(&#39;192.0.2.0/24&#39;)
+        False
+        &#34;&#34;&#34;
+        return self.check_collision(ip)
+
+    def __lt__(self, other):
+        &#34;&#34;&#34;Compare less than.&#34;&#34;&#34;
+        return self.size() &lt; Network(other).size()
+
+    def __le__(self, other):
+        &#34;&#34;&#34;Compare less than or equal to.&#34;&#34;&#34;
+        return self.size() &lt;= Network(other).size()
+
+    def __gt__(self, other):
+        &#34;&#34;&#34;Compare greater than.&#34;&#34;&#34;
+        return self.size() &gt; Network(other).size()
+
+    def __ge__(self, other):
+        &#34;&#34;&#34;Compare greater than or equal to.&#34;&#34;&#34;
+        return self.size() &gt;= Network(other).size()
+
+    def __eq__(self, other):
+        &#34;&#34;&#34;Compare equal.&#34;&#34;&#34;
+        other = Network(other)
+        return int(self) == int(other) and self.size() == other.size()
+
+    def __ne__(self, other):
+        &#34;&#34;&#34;Compare not equal.&#34;&#34;&#34;
+        other = Network(other)
+        return int(self) != int(other) or self.size() != other.size()
+
+    def __hash__(self, other):
+        &#34;&#34;&#34;Hash the current network.&#34;&#34;&#34;
+        return hash(int(self))
+
+    def __getitem__(self, key):
+        &#34;&#34;&#34;Get the nth item or slice of the network.&#34;&#34;&#34;
+        if isinstance(key, slice):
+            # Work-around IPv6 subnets being huge. Slice indices don&#39;t like
+            # long int.
+            x = key.start or 0
+            slice_stop = (key.stop or self.size()) - 1
+            slice_step = key.step or 1
+            arr = list()
+            while x &lt; slice_stop:
+                arr.append(IP(int(self) + x, mask=self.subnet()))
+                x += slice_step
+            return tuple(arr)
+        else:
+            if key &gt;= self.size():
+                raise IndexError(&#34;Index out of range: %d &gt; %d&#34; % (key, self.size()-1))
+            return IP(int(self) + (key + self.size()) % self.size(), mask=self.subnet())
+
+    def __iter__(self):
+        &#34;&#34;&#34;Generate a range of usable host IP addresses within the network.
+
+        &gt;&gt;&gt; for ip in Network(&#39;192.168.114.0/30&#39;):
+        ...     print(str(ip))
+        ...
+        192.168.114.1
+        192.168.114.2
+        &#34;&#34;&#34;
+        curr = int(self.host_first())
+        stop = int(self.host_last())
+        while curr &lt;= stop:
+            yield IP(curr)
+            curr += 1
+
+    def has_key(self, ip):
+        &#34;&#34;&#34;
+        Check if the given ip is part of the network.
+
+        :param ip: the ip address
+        :type ip: :class:`IP` or str or long or int
+
+        &gt;&gt;&gt; net = Network(&#39;192.0.2.0/24&#39;)
+        &gt;&gt;&gt; net.has_key(&#39;192.168.2.0&#39;)
+        False
+        &gt;&gt;&gt; net.has_key(&#39;192.0.2.42&#39;)
+        True
+        &#34;&#34;&#34;
+        return self.__contains__(ip)
+
+    def size(self):
+        &#34;&#34;&#34;
+        Number of ip&#39;s within the network.
+
+        &gt;&gt;&gt; net = Network(&#39;192.0.2.0/24&#39;)
+        &gt;&gt;&gt; print(net.size())
+        256
+        &#34;&#34;&#34;
+        return 2 ** ({4: 32, 6: 128}[self.version()] - self.mask)
+
+    def __len__(self):
+        return self.size()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="sretools.ipcalc.IP" href="#sretools.ipcalc.IP">IP</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="sretools.ipcalc.Network.broadcast"><code class="name flex">
+<span>def <span class="ident">broadcast</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Broadcast address, as IP object.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; localnet = Network('127.0.0.1/8')
+&gt;&gt;&gt; print(localnet.broadcast())
+127.255.255.255
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def broadcast(self):
+    &#34;&#34;&#34;
+    Broadcast address, as IP object.
+
+    &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+    &gt;&gt;&gt; print(localnet.broadcast())
+    127.255.255.255
+    &#34;&#34;&#34;
+    # XXX: IPv6 doesn&#39;t have a broadcast address, but it&#39;s used for other
+    #      calculations such as &lt;Network.host_last&gt;
+    return IP(self.broadcast_long(), version=self.version())</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.Network.broadcast_long"><code class="name flex">
+<span>def <span class="ident">broadcast_long</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Broadcast address, as long.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; localnet = Network('127.0.0.1/8')
+&gt;&gt;&gt; print(localnet.broadcast_long())
+2147483647
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def broadcast_long(self):
+    &#34;&#34;&#34;
+    Broadcast address, as long.
+
+    &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+    &gt;&gt;&gt; print(localnet.broadcast_long())
+    2147483647
+    &#34;&#34;&#34;
+    if self.version() == 4:
+        return self.network_long() | (MAX_IPV4 - self.netmask_long())
+    else:
+        return self.network_long() \
+            | (MAX_IPV6 - self.netmask_long())</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.Network.check_collision"><code class="name flex">
+<span>def <span class="ident">check_collision</span></span>(<span>self, other)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check another network against the given network.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_collision(self, other):
+    &#34;&#34;&#34;Check another network against the given network.&#34;&#34;&#34;
+    other = Network(other)
+    return self.network_long() &lt;= other.network_long() &lt;= self.broadcast_long() or \
+        other.network_long() &lt;= self.network_long() &lt;= other.broadcast_long()</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.Network.has_key"><code class="name flex">
+<span>def <span class="ident">has_key</span></span>(<span>self, ip)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check if the given ip is part of the network.</p>
+<p>:param ip: the ip address
+:type ip: :class:<code><a title="sretools.ipcalc.IP" href="#sretools.ipcalc.IP">IP</a></code> or str or long or int</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; net = Network('192.0.2.0/24')
+&gt;&gt;&gt; net.has_key('192.168.2.0')
+False
+&gt;&gt;&gt; net.has_key('192.0.2.42')
+True
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def has_key(self, ip):
+    &#34;&#34;&#34;
+    Check if the given ip is part of the network.
+
+    :param ip: the ip address
+    :type ip: :class:`IP` or str or long or int
+
+    &gt;&gt;&gt; net = Network(&#39;192.0.2.0/24&#39;)
+    &gt;&gt;&gt; net.has_key(&#39;192.168.2.0&#39;)
+    False
+    &gt;&gt;&gt; net.has_key(&#39;192.0.2.42&#39;)
+    True
+    &#34;&#34;&#34;
+    return self.__contains__(ip)</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.Network.host_first"><code class="name flex">
+<span>def <span class="ident">host_first</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>First available host in this subnet.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def host_first(self):
+    &#34;&#34;&#34;First available host in this subnet.&#34;&#34;&#34;
+    if (self.version() == 4 and self.mask &gt; 30) or \
+            (self.version() == 6 and self.mask &gt; 126):
+        return self
+    else:
+        return IP(self.network_long() + 1, version=self.version())</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.Network.host_last"><code class="name flex">
+<span>def <span class="ident">host_last</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Last available host in this subnet.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def host_last(self):
+    &#34;&#34;&#34;Last available host in this subnet.&#34;&#34;&#34;
+    if (self.version() == 4 and self.mask == 32) or \
+            (self.version() == 6 and self.mask == 128):
+        return self
+    elif (self.version() == 4 and self.mask == 31) or \
+            (self.version() == 6 and self.mask == 127):
+        return IP(int(self) + 1, version=self.version())
+    else:
+        return IP(self.broadcast_long() - 1, version=self.version())</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.Network.netmask"><code class="name flex">
+<span>def <span class="ident">netmask</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Network netmask derived from subnet size, as IP object.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; localnet = Network('127.0.0.1/8')
+&gt;&gt;&gt; print(localnet.netmask())
+255.0.0.0
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def netmask(self):
+    &#34;&#34;&#34;
+    Network netmask derived from subnet size, as IP object.
+
+    &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+    &gt;&gt;&gt; print(localnet.netmask())
+    255.0.0.0
+    &#34;&#34;&#34;
+    return IP(self.netmask_long(), version=self.version())</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.Network.netmask_long"><code class="name flex">
+<span>def <span class="ident">netmask_long</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Network netmask derived from subnet size, as long.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; localnet = Network('127.0.0.1/8')
+&gt;&gt;&gt; print(localnet.netmask_long())
+4278190080
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def netmask_long(self):
+    &#34;&#34;&#34;
+    Network netmask derived from subnet size, as long.
+
+    &gt;&gt;&gt; localnet = Network(&#39;127.0.0.1/8&#39;)
+    &gt;&gt;&gt; print(localnet.netmask_long())
+    4278190080
+    &#34;&#34;&#34;
+    if self.version() == 4:
+        return (MAX_IPV4 &gt;&gt; (32 - self.mask)) &lt;&lt; (32 - self.mask)
+    else:
+        return (MAX_IPV6 &gt;&gt; (128 - self.mask)) &lt;&lt; (128 - self.mask)</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.Network.network"><code class="name flex">
+<span>def <span class="ident">network</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Network address, as IP object.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; localnet = Network('127.128.99.3/8')
+&gt;&gt;&gt; print(localnet.network())
+127.0.0.0
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def network(self):
+    &#34;&#34;&#34;
+    Network address, as IP object.
+
+    &gt;&gt;&gt; localnet = Network(&#39;127.128.99.3/8&#39;)
+    &gt;&gt;&gt; print(localnet.network())
+    127.0.0.0
+    &#34;&#34;&#34;
+    return IP(self.network_long(), version=self.version())</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.Network.network_long"><code class="name flex">
+<span>def <span class="ident">network_long</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Network address, as long.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; localnet = Network('127.128.99.3/8')
+&gt;&gt;&gt; print(localnet.network_long())
+2130706432
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def network_long(self):
+    &#34;&#34;&#34;
+    Network address, as long.
+
+    &gt;&gt;&gt; localnet = Network(&#39;127.128.99.3/8&#39;)
+    &gt;&gt;&gt; print(localnet.network_long())
+    2130706432
+    &#34;&#34;&#34;
+    return self.ip &amp; self.netmask_long()</code></pre>
+</details>
+</dd>
+<dt id="sretools.ipcalc.Network.size"><code class="name flex">
+<span>def <span class="ident">size</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Number of ip's within the network.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; net = Network('192.0.2.0/24')
+&gt;&gt;&gt; print(net.size())
+256
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def size(self):
+    &#34;&#34;&#34;
+    Number of ip&#39;s within the network.
+
+    &gt;&gt;&gt; net = Network(&#39;192.0.2.0/24&#39;)
+    &gt;&gt;&gt; print(net.size())
+    256
+    &#34;&#34;&#34;
+    return 2 ** ({4: 32, 6: 128}[self.version()] - self.mask)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="sretools.ipcalc.IP" href="#sretools.ipcalc.IP">IP</a></b></code>:
+<ul class="hlist">
+<li><code><a title="sretools.ipcalc.IP.bin" href="#sretools.ipcalc.IP.bin">bin</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.clone" href="#sretools.ipcalc.IP.clone">clone</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.from_bin" href="#sretools.ipcalc.IP.from_bin">from_bin</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.from_hex" href="#sretools.ipcalc.IP.from_hex">from_hex</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.hash" href="#sretools.ipcalc.IP.hash">hash</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.hex" href="#sretools.ipcalc.IP.hex">hex</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.info" href="#sretools.ipcalc.IP.info">info</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.subnet" href="#sretools.ipcalc.IP.subnet">subnet</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.to_compressed" href="#sretools.ipcalc.IP.to_compressed">to_compressed</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.to_ipv4" href="#sretools.ipcalc.IP.to_ipv4">to_ipv4</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.to_ipv6" href="#sretools.ipcalc.IP.to_ipv6">to_ipv6</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.to_reverse" href="#sretools.ipcalc.IP.to_reverse">to_reverse</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.to_tuple" href="#sretools.ipcalc.IP.to_tuple">to_tuple</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.version" href="#sretools.ipcalc.IP.version">version</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#references">References</a></li>
+<li><a href="#thanks">Thanks</a></li>
+</ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="sretools" href="index.html">sretools</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="sretools.ipcalc.IP" href="#sretools.ipcalc.IP">IP</a></code></h4>
+<ul class="two-column">
+<li><code><a title="sretools.ipcalc.IP.bin" href="#sretools.ipcalc.IP.bin">bin</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.clone" href="#sretools.ipcalc.IP.clone">clone</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.from_bin" href="#sretools.ipcalc.IP.from_bin">from_bin</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.from_hex" href="#sretools.ipcalc.IP.from_hex">from_hex</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.guess_network" href="#sretools.ipcalc.IP.guess_network">guess_network</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.hash" href="#sretools.ipcalc.IP.hash">hash</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.hex" href="#sretools.ipcalc.IP.hex">hex</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.info" href="#sretools.ipcalc.IP.info">info</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.size" href="#sretools.ipcalc.IP.size">size</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.subnet" href="#sretools.ipcalc.IP.subnet">subnet</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.to_compressed" href="#sretools.ipcalc.IP.to_compressed">to_compressed</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.to_ipv4" href="#sretools.ipcalc.IP.to_ipv4">to_ipv4</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.to_ipv6" href="#sretools.ipcalc.IP.to_ipv6">to_ipv6</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.to_reverse" href="#sretools.ipcalc.IP.to_reverse">to_reverse</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.to_tuple" href="#sretools.ipcalc.IP.to_tuple">to_tuple</a></code></li>
+<li><code><a title="sretools.ipcalc.IP.version" href="#sretools.ipcalc.IP.version">version</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="sretools.ipcalc.Network" href="#sretools.ipcalc.Network">Network</a></code></h4>
+<ul class="two-column">
+<li><code><a title="sretools.ipcalc.Network.broadcast" href="#sretools.ipcalc.Network.broadcast">broadcast</a></code></li>
+<li><code><a title="sretools.ipcalc.Network.broadcast_long" href="#sretools.ipcalc.Network.broadcast_long">broadcast_long</a></code></li>
+<li><code><a title="sretools.ipcalc.Network.check_collision" href="#sretools.ipcalc.Network.check_collision">check_collision</a></code></li>
+<li><code><a title="sretools.ipcalc.Network.has_key" href="#sretools.ipcalc.Network.has_key">has_key</a></code></li>
+<li><code><a title="sretools.ipcalc.Network.host_first" href="#sretools.ipcalc.Network.host_first">host_first</a></code></li>
+<li><code><a title="sretools.ipcalc.Network.host_last" href="#sretools.ipcalc.Network.host_last">host_last</a></code></li>
+<li><code><a title="sretools.ipcalc.Network.netmask" href="#sretools.ipcalc.Network.netmask">netmask</a></code></li>
+<li><code><a title="sretools.ipcalc.Network.netmask_long" href="#sretools.ipcalc.Network.netmask_long">netmask_long</a></code></li>
+<li><code><a title="sretools.ipcalc.Network.network" href="#sretools.ipcalc.Network.network">network</a></code></li>
+<li><code><a title="sretools.ipcalc.Network.network_long" href="#sretools.ipcalc.Network.network_long">network_long</a></code></li>
+<li><code><a title="sretools.ipcalc.Network.size" href="#sretools.ipcalc.Network.size">size</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

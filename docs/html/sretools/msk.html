@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>sretools.msk API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>sretools.msk</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import base64
+import boto3
+import logging
+import time
+import yaml
+
+from botocore.exceptions import ClientError
+from sretools import grv
+
+
+# ----------------------------------------------------------
+#
+# get_msk_status
+#
+# ----------------------------------------------------------
+def get_msk_status(cluster_name: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Return the status of a MSK cluster.
+
+    Args:
+        cluster_name: cluster name
+        
+    Returns:
+        status dict of the response or exception dict
+    &#34;&#34;&#34;
+    client = boto3.client(&#39;kafka&#39;)
+    response = client.list_clusters(ClusterNameFilter=cluster_name)
+    if not response[&#39;ClusterInfoList&#39;]:
+        return {}
+    logging.debug(response[&#39;ClusterInfoList&#39;])
+    return response[&#39;ClusterInfoList&#39;][0]
+
+
+# ----------------------------------------------------------
+#
+# get_msk_configuration
+#
+# ----------------------------------------------------------
+def get_msk_configuration(cluster_name: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Return the status of a MSK configuration.
+
+    Args:
+        cluster_name: the name of the cluster
+        
+    Returns:
+        status dict of the response or empty dict
+    &#34;&#34;&#34;
+    if not cluster_name:
+        return {}
+
+    client = boto3.client(&#39;kafka&#39;)
+    response = client.list_configurations()
+
+    for configuration in response[&#39;Configurations&#39;]:
+        if configuration[&#39;Name&#39;].endswith(cluster_name):
+            return configuration
+    return {}
+
+
+# ----------------------------------------------------------
+#
+# create_msk
+#
+# ----------------------------------------------------------
+def create_msk(cluster_prefix: str,
+               gravitar: str,
+               instance_type: str,
+               brokers_per_az: int,
+               ebs_size: int,
+               kafka_version: str = &#39;2.6.2&#39;) -&gt; dict:
+    &#34;&#34;&#34;
+    Create an EKS cluster.
+
+    Args:
+        cluster_prefix: the prefix of a cluster
+        gravitar: gravitar name
+        instance_type: kafka instance type kafka.m5.large
+        brokers_per_az: brokers per az
+        ebs_size: size of the ebs volume per broker
+        kafka_version: kafka version. Defaults to &#39;2.6.2&#39;.
+        
+    Returns:
+        status dict of the response or exception dict
+    &#34;&#34;&#34;
+    msk_name = f&#34;{cluster_prefix}-{gravitar.replace(&#39;_&#39;, &#39;&#39;).replace(&#39;.&#39;, &#39;-&#39;)}&#34;
+
+    status = get_msk_status(msk_name)
+
+    if not status:
+        # Create the cluster when it does not exist.
+        msk_sg_name = f&#34;{cluster_prefix}_msk.{gravitar}&#34;
+
+        vpc_id = grv.get_vpc_id(gravitar)
+        msk_sg_id = grv.check_if_sg(msk_sg_name)
+        if not msk_sg_id:
+            msk_sg_id = grv.create_grv_sg(sg_name=msk_sg_name, vpc_id=vpc_id)
+
+        client = boto3.client(&#39;kafka&#39;)
+
+        core_subnets = grv.find_grv_subnets(gravitar, &#34;core&#34;)
+        number_of_brokers = len(core_subnets) * brokers_per_az
+        msk_config = get_msk_configuration(msk_name)
+        if not msk_config:
+            return msk_config
+        msk_config_arn = msk_config[&#39;Arn&#39;]
+        msk_config_rev = msk_config[&#39;LatestRevision&#39;][&#39;Revision&#39;]
+        print(f&#39;Creating MSK cluster {msk_name}...&#39;)
+        status = client.create_cluster(
+            BrokerNodeGroupInfo={
+                &#39;BrokerAZDistribution&#39;: &#39;DEFAULT&#39;,
+                &#39;ClientSubnets&#39;: core_subnets,
+                &#39;InstanceType&#39;: &#39;kafka.m5.large&#39;,
+                &#39;StorageInfo&#39;: {
+                    &#39;EbsStorageInfo&#39;: {
+                        &#39;VolumeSize&#39;: ebs_size
+                    }
+                },
+                &#39;SecurityGroups&#39;: [msk_sg_id]
+            },
+            ClusterName=msk_name,
+            ConfigurationInfo={
+                &#39;Arn&#39;: msk_config_arn,
+                &#39;Revision&#39;: msk_config_rev
+            },
+            EncryptionInfo={
+                &#39;EncryptionInTransit&#39;: {
+                    &#39;ClientBroker&#39;: &#39;TLS_PLAINTEXT&#39;,
+                    &#39;InCluster&#39;: True
+                }
+            },
+            EnhancedMonitoring=&#39;PER_TOPIC_PER_BROKER&#39;,
+            KafkaVersion=kafka_version,
+            NumberOfBrokerNodes=number_of_brokers,
+            Tags={
+                &#39;grv_name&#39;: gravitar,
+            }
+        )
+
+        while &#39;CREATING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for the MSK cluster {msk_name} to be active.&#39;)
+            time.sleep(120)
+            status = get_msk_status(msk_name)
+
+        print(f&#34;Cluster {msk_name} is created!&#34;)
+        return status
+    elif &#39;CREATING&#39; == status[&#39;State&#39;]:
+        while &#39;CREATING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for the MSK cluster {msk_name} to be active.&#39;)
+            time.sleep(120)
+            status = get_msk_status(msk_name)
+        return status
+    else:
+        print(f&#39;MSK cluster {msk_name} already exists, status: {status[&#34;State&#34;]}&#39;)
+        return status
+
+
+# ----------------------------------------------------------
+#
+# create_msk_configuration
+#
+# ----------------------------------------------------------
+def create_msk_configuration(cluster_prefix: str,
+                             gravitar: str,
+                             kafka_version: str,
+                             server_properties: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Create an MSK configuration for the MSK cluster, if it doesn&#39;t already exist.
+
+    Args:
+        cluster_prefix: the prefix of a cluster
+        gravitar: gravitar name
+        kafka_version: version of kafka for this configuration
+        server_properties: kafka options
+        
+    Returns:
+        status dict of the response or get
+    &#34;&#34;&#34;
+    msk_name = f&#34;{cluster_prefix}-{gravitar.replace(&#39;_&#39;, &#39;&#39;).replace(&#39;.&#39;, &#39;-&#39;)}&#34;
+
+    status = get_msk_configuration(msk_name)
+
+    if not status:
+        msk_client = boto3.client(&#39;kafka&#39;)
+        print(f&#39;Creating MSK configuration {msk_name}...&#39;)
+        status = msk_client.create_configuration(
+            Description=f&#34;Configuration for {msk_name}&#34;,
+            KafkaVersions=[
+                kafka_version,
+            ],
+            Name=msk_name,
+            ServerProperties=server_properties
+        )
+
+    return status
+
+
+# ----------------------------------------------------------
+#
+# delete_msk
+#
+# ----------------------------------------------------------
+def delete_msk(cluster_prefix: str,
+               gravitar: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Delete MSK cluster with given cluster prefix.
+
+    Args:
+        cluster_prefix: name of the msk to be deleted
+        gravitar: name of gravitar
+        
+    Returns:
+        empty dict if deletion happens otherwise status is returned
+    &#34;&#34;&#34;
+    msk_name = f&#34;{cluster_prefix}-{gravitar.replace(&#39;_&#39;, &#39;&#39;).replace(&#39;.&#39;, &#39;-&#39;)}&#34;
+    msk_sg_name = f&#34;{cluster_prefix}_msk.{gravitar}&#34;
+
+    status = get_msk_status(msk_name)
+
+    if not status:
+        grv.delete_grv_sg(msk_sg_name)
+        return status
+
+    if status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+        while status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for msk cluster {msk_name} to be deleted.&#39;)
+            time.sleep(30)
+            status = get_msk_status(msk_name)
+    else:
+        client = boto3.client(&#39;kafka&#39;)
+        print(f&#39;Deleting msk cluster {msk_name}...&#39;)
+        msk_arn = status[&#39;ClusterArn&#39;]
+        status = client.delete_cluster(ClusterArn=msk_arn)
+
+        while status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for msk cluster {msk_name} to be deleted.&#39;)
+            time.sleep(30)
+            status = get_msk_status(msk_name)
+
+    grv.delete_grv_sg(msk_sg_name)
+    return status
+
+
+# ----------------------------------------------------------
+#
+# delete_msk_configuration
+#
+# ----------------------------------------------------------
+def delete_msk_configuration(cluster_prefix: str,
+                             gravitar: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Delete msk nodegroup for the cluster.
+
+    Args:
+        cluster_prefix: the prefix of cluster
+        gravitar: the name of gravitar
+        
+    Returns:
+        empty dict if deletion happens otherwise status is returned
+    &#34;&#34;&#34;
+    msk_name = f&#34;{cluster_prefix}-{gravitar.replace(&#39;_&#39;, &#39;&#39;).replace(&#39;.&#39;, &#39;-&#39;)}&#34;
+
+    status = get_msk_configuration(msk_name)
+
+    if not status:
+        return status
+
+    if status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+        while status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for msk configuration {msk_name} to be deleted.&#39;)
+            time.sleep(30)
+            status = get_msk_configuration(msk_name)
+            logging.debug(status)
+    else:
+        msk_client = boto3.client(&#39;kafka&#39;)
+        msk_config_arn = status[&#39;Arn&#39;]
+        status = msk_client.delete_configuration(Arn=msk_config_arn)
+
+        while status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for msk configuration {msk_name} to be deleted.&#39;)
+            time.sleep(30)
+            status = get_msk_configuration(msk_name)
+            logging.debug(status)
+
+    logging.debug(status)
+    return status</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="sretools.msk.create_msk"><code class="name flex">
+<span>def <span class="ident">create_msk</span></span>(<span>cluster_prefix: str, gravitar: str, instance_type: str, brokers_per_az: int, ebs_size: int, kafka_version: str = '2.6.2') ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an EKS cluster.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cluster_prefix</code></strong></dt>
+<dd>the prefix of a cluster</dd>
+<dt><strong><code>gravitar</code></strong></dt>
+<dd>gravitar name</dd>
+<dt><strong><code>instance_type</code></strong></dt>
+<dd>kafka instance type kafka.m5.large</dd>
+<dt><strong><code>brokers_per_az</code></strong></dt>
+<dd>brokers per az</dd>
+<dt><strong><code>ebs_size</code></strong></dt>
+<dd>size of the ebs volume per broker</dd>
+<dt><strong><code>kafka_version</code></strong></dt>
+<dd>kafka version. Defaults to '2.6.2'.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>status dict of the response or exception dict</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_msk(cluster_prefix: str,
+               gravitar: str,
+               instance_type: str,
+               brokers_per_az: int,
+               ebs_size: int,
+               kafka_version: str = &#39;2.6.2&#39;) -&gt; dict:
+    &#34;&#34;&#34;
+    Create an EKS cluster.
+
+    Args:
+        cluster_prefix: the prefix of a cluster
+        gravitar: gravitar name
+        instance_type: kafka instance type kafka.m5.large
+        brokers_per_az: brokers per az
+        ebs_size: size of the ebs volume per broker
+        kafka_version: kafka version. Defaults to &#39;2.6.2&#39;.
+        
+    Returns:
+        status dict of the response or exception dict
+    &#34;&#34;&#34;
+    msk_name = f&#34;{cluster_prefix}-{gravitar.replace(&#39;_&#39;, &#39;&#39;).replace(&#39;.&#39;, &#39;-&#39;)}&#34;
+
+    status = get_msk_status(msk_name)
+
+    if not status:
+        # Create the cluster when it does not exist.
+        msk_sg_name = f&#34;{cluster_prefix}_msk.{gravitar}&#34;
+
+        vpc_id = grv.get_vpc_id(gravitar)
+        msk_sg_id = grv.check_if_sg(msk_sg_name)
+        if not msk_sg_id:
+            msk_sg_id = grv.create_grv_sg(sg_name=msk_sg_name, vpc_id=vpc_id)
+
+        client = boto3.client(&#39;kafka&#39;)
+
+        core_subnets = grv.find_grv_subnets(gravitar, &#34;core&#34;)
+        number_of_brokers = len(core_subnets) * brokers_per_az
+        msk_config = get_msk_configuration(msk_name)
+        if not msk_config:
+            return msk_config
+        msk_config_arn = msk_config[&#39;Arn&#39;]
+        msk_config_rev = msk_config[&#39;LatestRevision&#39;][&#39;Revision&#39;]
+        print(f&#39;Creating MSK cluster {msk_name}...&#39;)
+        status = client.create_cluster(
+            BrokerNodeGroupInfo={
+                &#39;BrokerAZDistribution&#39;: &#39;DEFAULT&#39;,
+                &#39;ClientSubnets&#39;: core_subnets,
+                &#39;InstanceType&#39;: &#39;kafka.m5.large&#39;,
+                &#39;StorageInfo&#39;: {
+                    &#39;EbsStorageInfo&#39;: {
+                        &#39;VolumeSize&#39;: ebs_size
+                    }
+                },
+                &#39;SecurityGroups&#39;: [msk_sg_id]
+            },
+            ClusterName=msk_name,
+            ConfigurationInfo={
+                &#39;Arn&#39;: msk_config_arn,
+                &#39;Revision&#39;: msk_config_rev
+            },
+            EncryptionInfo={
+                &#39;EncryptionInTransit&#39;: {
+                    &#39;ClientBroker&#39;: &#39;TLS_PLAINTEXT&#39;,
+                    &#39;InCluster&#39;: True
+                }
+            },
+            EnhancedMonitoring=&#39;PER_TOPIC_PER_BROKER&#39;,
+            KafkaVersion=kafka_version,
+            NumberOfBrokerNodes=number_of_brokers,
+            Tags={
+                &#39;grv_name&#39;: gravitar,
+            }
+        )
+
+        while &#39;CREATING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for the MSK cluster {msk_name} to be active.&#39;)
+            time.sleep(120)
+            status = get_msk_status(msk_name)
+
+        print(f&#34;Cluster {msk_name} is created!&#34;)
+        return status
+    elif &#39;CREATING&#39; == status[&#39;State&#39;]:
+        while &#39;CREATING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for the MSK cluster {msk_name} to be active.&#39;)
+            time.sleep(120)
+            status = get_msk_status(msk_name)
+        return status
+    else:
+        print(f&#39;MSK cluster {msk_name} already exists, status: {status[&#34;State&#34;]}&#39;)
+        return status</code></pre>
+</details>
+</dd>
+<dt id="sretools.msk.create_msk_configuration"><code class="name flex">
+<span>def <span class="ident">create_msk_configuration</span></span>(<span>cluster_prefix: str, gravitar: str, kafka_version: str, server_properties: str) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an MSK configuration for the MSK cluster, if it doesn't already exist.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cluster_prefix</code></strong></dt>
+<dd>the prefix of a cluster</dd>
+<dt><strong><code>gravitar</code></strong></dt>
+<dd>gravitar name</dd>
+<dt><strong><code>kafka_version</code></strong></dt>
+<dd>version of kafka for this configuration</dd>
+<dt><strong><code>server_properties</code></strong></dt>
+<dd>kafka options</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>status dict of the response or get</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_msk_configuration(cluster_prefix: str,
+                             gravitar: str,
+                             kafka_version: str,
+                             server_properties: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Create an MSK configuration for the MSK cluster, if it doesn&#39;t already exist.
+
+    Args:
+        cluster_prefix: the prefix of a cluster
+        gravitar: gravitar name
+        kafka_version: version of kafka for this configuration
+        server_properties: kafka options
+        
+    Returns:
+        status dict of the response or get
+    &#34;&#34;&#34;
+    msk_name = f&#34;{cluster_prefix}-{gravitar.replace(&#39;_&#39;, &#39;&#39;).replace(&#39;.&#39;, &#39;-&#39;)}&#34;
+
+    status = get_msk_configuration(msk_name)
+
+    if not status:
+        msk_client = boto3.client(&#39;kafka&#39;)
+        print(f&#39;Creating MSK configuration {msk_name}...&#39;)
+        status = msk_client.create_configuration(
+            Description=f&#34;Configuration for {msk_name}&#34;,
+            KafkaVersions=[
+                kafka_version,
+            ],
+            Name=msk_name,
+            ServerProperties=server_properties
+        )
+
+    return status</code></pre>
+</details>
+</dd>
+<dt id="sretools.msk.delete_msk"><code class="name flex">
+<span>def <span class="ident">delete_msk</span></span>(<span>cluster_prefix: str, gravitar: str) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete MSK cluster with given cluster prefix.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cluster_prefix</code></strong></dt>
+<dd>name of the msk to be deleted</dd>
+<dt><strong><code>gravitar</code></strong></dt>
+<dd>name of gravitar</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>empty dict if deletion happens otherwise status is returned</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_msk(cluster_prefix: str,
+               gravitar: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Delete MSK cluster with given cluster prefix.
+
+    Args:
+        cluster_prefix: name of the msk to be deleted
+        gravitar: name of gravitar
+        
+    Returns:
+        empty dict if deletion happens otherwise status is returned
+    &#34;&#34;&#34;
+    msk_name = f&#34;{cluster_prefix}-{gravitar.replace(&#39;_&#39;, &#39;&#39;).replace(&#39;.&#39;, &#39;-&#39;)}&#34;
+    msk_sg_name = f&#34;{cluster_prefix}_msk.{gravitar}&#34;
+
+    status = get_msk_status(msk_name)
+
+    if not status:
+        grv.delete_grv_sg(msk_sg_name)
+        return status
+
+    if status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+        while status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for msk cluster {msk_name} to be deleted.&#39;)
+            time.sleep(30)
+            status = get_msk_status(msk_name)
+    else:
+        client = boto3.client(&#39;kafka&#39;)
+        print(f&#39;Deleting msk cluster {msk_name}...&#39;)
+        msk_arn = status[&#39;ClusterArn&#39;]
+        status = client.delete_cluster(ClusterArn=msk_arn)
+
+        while status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for msk cluster {msk_name} to be deleted.&#39;)
+            time.sleep(30)
+            status = get_msk_status(msk_name)
+
+    grv.delete_grv_sg(msk_sg_name)
+    return status</code></pre>
+</details>
+</dd>
+<dt id="sretools.msk.delete_msk_configuration"><code class="name flex">
+<span>def <span class="ident">delete_msk_configuration</span></span>(<span>cluster_prefix: str, gravitar: str) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete msk nodegroup for the cluster.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cluster_prefix</code></strong></dt>
+<dd>the prefix of cluster</dd>
+<dt><strong><code>gravitar</code></strong></dt>
+<dd>the name of gravitar</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>empty dict if deletion happens otherwise status is returned</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_msk_configuration(cluster_prefix: str,
+                             gravitar: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Delete msk nodegroup for the cluster.
+
+    Args:
+        cluster_prefix: the prefix of cluster
+        gravitar: the name of gravitar
+        
+    Returns:
+        empty dict if deletion happens otherwise status is returned
+    &#34;&#34;&#34;
+    msk_name = f&#34;{cluster_prefix}-{gravitar.replace(&#39;_&#39;, &#39;&#39;).replace(&#39;.&#39;, &#39;-&#39;)}&#34;
+
+    status = get_msk_configuration(msk_name)
+
+    if not status:
+        return status
+
+    if status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+        while status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for msk configuration {msk_name} to be deleted.&#39;)
+            time.sleep(30)
+            status = get_msk_configuration(msk_name)
+            logging.debug(status)
+    else:
+        msk_client = boto3.client(&#39;kafka&#39;)
+        msk_config_arn = status[&#39;Arn&#39;]
+        status = msk_client.delete_configuration(Arn=msk_config_arn)
+
+        while status and &#39;DELETING&#39; == status[&#39;State&#39;]:
+            print(f&#39;Waiting for msk configuration {msk_name} to be deleted.&#39;)
+            time.sleep(30)
+            status = get_msk_configuration(msk_name)
+            logging.debug(status)
+
+    logging.debug(status)
+    return status</code></pre>
+</details>
+</dd>
+<dt id="sretools.msk.get_msk_configuration"><code class="name flex">
+<span>def <span class="ident">get_msk_configuration</span></span>(<span>cluster_name: str) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the status of a MSK configuration.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cluster_name</code></strong></dt>
+<dd>the name of the cluster</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>status dict of the response or empty dict</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_msk_configuration(cluster_name: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Return the status of a MSK configuration.
+
+    Args:
+        cluster_name: the name of the cluster
+        
+    Returns:
+        status dict of the response or empty dict
+    &#34;&#34;&#34;
+    if not cluster_name:
+        return {}
+
+    client = boto3.client(&#39;kafka&#39;)
+    response = client.list_configurations()
+
+    for configuration in response[&#39;Configurations&#39;]:
+        if configuration[&#39;Name&#39;].endswith(cluster_name):
+            return configuration
+    return {}</code></pre>
+</details>
+</dd>
+<dt id="sretools.msk.get_msk_status"><code class="name flex">
+<span>def <span class="ident">get_msk_status</span></span>(<span>cluster_name: str) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the status of a MSK cluster.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cluster_name</code></strong></dt>
+<dd>cluster name</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>status dict of the response or exception dict</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_msk_status(cluster_name: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Return the status of a MSK cluster.
+
+    Args:
+        cluster_name: cluster name
+        
+    Returns:
+        status dict of the response or exception dict
+    &#34;&#34;&#34;
+    client = boto3.client(&#39;kafka&#39;)
+    response = client.list_clusters(ClusterNameFilter=cluster_name)
+    if not response[&#39;ClusterInfoList&#39;]:
+        return {}
+    logging.debug(response[&#39;ClusterInfoList&#39;])
+    return response[&#39;ClusterInfoList&#39;][0]</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="sretools" href="index.html">sretools</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="sretools.msk.create_msk" href="#sretools.msk.create_msk">create_msk</a></code></li>
+<li><code><a title="sretools.msk.create_msk_configuration" href="#sretools.msk.create_msk_configuration">create_msk_configuration</a></code></li>
+<li><code><a title="sretools.msk.delete_msk" href="#sretools.msk.delete_msk">delete_msk</a></code></li>
+<li><code><a title="sretools.msk.delete_msk_configuration" href="#sretools.msk.delete_msk_configuration">delete_msk_configuration</a></code></li>
+<li><code><a title="sretools.msk.get_msk_configuration" href="#sretools.msk.get_msk_configuration">get_msk_configuration</a></code></li>
+<li><code><a title="sretools.msk.get_msk_status" href="#sretools.msk.get_msk_status">get_msk_status</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

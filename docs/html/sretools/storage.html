@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>sretools.storage API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>sretools.storage</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import boto3
+import hashlib
+import json
+import logging
+
+from botocore.exceptions import ClientError, NoCredentialsError
+from datetime import datetime
+
+# Begin merge
+# ----------------------------------------------------------
+#
+# load_json
+#
+# ----------------------------------------------------------
+def load_json(bucket: str,
+              s3_file_path: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Load json object from json file in s3 bucket
+    
+    Args:
+        bucket: s3 bucket
+        s3_file_path: Full path in s3 with filename
+
+    Returns:
+        dict: return the json object from json file in s3
+        {}: if file is invalid or file path is invalid.
+    &#34;&#34;&#34;
+
+    s3_client = boto3.client(&#39;s3&#39;)
+    try:
+        obj = s3_client.get_object(Bucket=bucket, Key=s3_file_path)
+        return json.loads(obj[&#39;Body&#39;].read().decode(&#39;utf-8&#39;))
+    except Exception as e:
+        logging.error(f&#34;Exception: {e}&#34;)
+        return {}
+
+# ----------------------------------------------------------
+#
+# key_exists
+#
+# ----------------------------------------------------------
+def key_exists(bucket: str,
+               s3_file_path: str) -&gt; bool:
+    &#34;&#34;&#34;
+    Check for key in bucket.
+
+    Args:
+        bucket: s3 bucket
+        s3_file_path: Full path in s3 with filename
+        
+    Returns:
+        bool: key exists
+    &#34;&#34;&#34;
+    s3_client = boto3.client(&#39;s3&#39;)
+    response = s3_client.list_objects_v2(Bucket=bucket,
+                                         Prefix=s3_file_path)
+    return &#39;Contents&#39; in response
+
+
+# End merge
+
+# ----------------------------------------------------------
+#
+# s3_file_timestamp
+#
+# ----------------------------------------------------------
+def s3_file_timestamp(session: boto3.session.Session, 
+                      bucket: str,
+                      s3_file_path: str):
+    &#34;&#34;&#34;
+    Returns Timestamp for a file in S3
+
+    Args:
+        session (boto3.session.Session): [Boto3 Session]
+        bucket (str): [Name of the S3 Bucket]
+        s3_file_path (str): [S3 file path]
+
+    Returns:
+        [type]: [description]
+    &#34;&#34;&#34;
+    s3_client = session.client(&#39;s3&#39;)
+    obj = s3_client.get_object(Bucket=bucket, Key=s3_file_path)
+    date = obj[&#39;LastModified&#39;]
+
+    return date.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;)
+
+
+# ----------------------------------------------------------
+#
+# get_arcade_buckets
+#
+# ----------------------------------------------------------
+def get_arcade_buckets(session: boto3.session.Session,
+                       arcade: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Return the arcade buckets as a dictionary.
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        arcade: The name of arcade
+        
+    Returns:
+        A dictionary with key(app, infrastructure, assets): value (bucket name)
+    &#34;&#34;&#34;
+    arcade = arcade.replace(&#39;_&#39;, &#39;&#39;)
+    s3_client = session.client(&#39;s3&#39;)
+
+    bucket_dict = {}
+    buckets = s3_client.list_buckets()
+
+    for bucket in buckets[&#39;Buckets&#39;]:
+        if f&#34;{arcade}&#34; in bucket[&#39;Name&#39;]:
+            bucket_dict[bucket[&#39;Name&#39;].split(&#39;.&#39;)[-3]] = bucket[&#39;Name&#39;]
+
+    return bucket_dict
+
+
+# ----------------------------------------------------------
+#
+# upload_s3
+#
+# ----------------------------------------------------------
+def upload_to_s3(session: boto3.session.Session,
+                 bucket: str,
+                 data: str,
+                 key: str) -&gt; bool:
+    &#34;&#34;&#34;
+    Uploads a json str to s3
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        data: a serialized json str
+        key: s3 object key
+        
+    Returns:
+        Bool: True (If upload was successful) False (If upload was unsuccessful)
+    &#34;&#34;&#34;
+    client = session.client(&#39;s3&#39;)
+    try:
+        client.put_object(Bucket=bucket, Key=key, Body=data)
+        return True
+    except (ClientError, NoCredentialsError) as e:
+        logging.error(f&#39;AWS error: {e}&#39;)
+        return False
+
+
+# ----------------------------------------------------------
+#
+# upload_asteroid_json
+#
+# ----------------------------------------------------------
+def upload_asteroid_json(session: boto3.session.Session,
+                         bucket: str,
+                         prefix: str,
+                         name: str,
+                         version: str,
+                         data: str) -&gt; str:
+    &#34;&#34;&#34;
+    Upload asd/asteroid json to s3. Always add a new s3 key and
+    update latest key to the new data.
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        prefix: prefix of the s3 key (&#39;asd&#39; or &#39;asteroid&#39;)
+        name: asd service or asteroid name
+        version: version str
+        data: a serialized json str
+
+    Returns:
+        the s3 key of latest version or empty string
+
+    &#34;&#34;&#34;
+
+    date_radix = datetime.utcnow().strftime(&#34;%Y/%m/%d/%H/%M&#34;)
+    filename = f&#34;{name}.json&#34;
+    hash_json = hashlib.md5(str(filename).encode(&#39;utf-8&#39;)).hexdigest()
+    radix_hash = f&#34;{prefix}/{name}/{version}/{date_radix}/{hash_json}.json&#34;
+    radix_hash_latest = f&#39;{prefix}/{name}/latest/latest.json&#39;
+
+    new_version = upload_to_s3(session, bucket, data, radix_hash)
+
+    new_latest = upload_to_s3(session, bucket, data, radix_hash_latest)
+
+    if new_version and new_latest:
+        print(f&#39;{bucket} {radix_hash}&#39;)
+        print(f&#39;{bucket} {radix_hash_latest}&#39;)
+        return radix_hash_latest
+    else:
+        return &#39;&#39;
+
+
+# ----------------------------------------------------------
+#
+# find_s3_keys
+#
+# ----------------------------------------------------------
+def find_s3_keys(session: boto3.session.Session,
+                 bucket: str,
+                 prefix: str) -&gt; list:
+    &#34;&#34;&#34;
+    Find objects from s3 bucket
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        prefix: s3 key prefix
+
+    Returns:
+        a list of keys matching prefix
+
+    &#34;&#34;&#34;
+    try:
+        s3_client = session.client(&#39;s3&#39;)
+        response = s3_client.list_objects(Bucket=bucket, Prefix=prefix)
+        output = []
+        for content in response.get(&#39;Contents&#39;, []):
+            output.append(content.get(&#39;Key&#39;))
+        return output
+    except (ClientError, NoCredentialsError) as e:
+        logging.info(f&#39;AWS error: {e} for key: {prefix}&#39;)
+        return []
+
+
+# ----------------------------------------------------------
+#
+# s3_json_to_dict
+#
+# ----------------------------------------------------------
+def s3_json_to_dict(session: boto3.session.Session,
+                    bucket: str,
+                    s3_file_path: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Load json file in s3 and return as a dictionary
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: bucket name
+        s3_file_path: Full path in S3 with filename
+
+    Returns:
+        dict: return the dictionary from json file in s3, or empty dictionary
+    &#34;&#34;&#34;
+
+    s3_client = session.client(&#39;s3&#39;)
+    try:
+        obj = s3_client.get_object(Bucket=bucket, Key=s3_file_path)
+        return json.loads(obj[&#39;Body&#39;].read())
+    except Exception as e:
+        logging.info(f&#34;Exception: {e} for key: {s3_file_path}&#34;)
+        return {}
+
+
+# ----------------------------------------------------------
+#
+# get_account_global_bucket
+#
+# ----------------------------------------------------------
+def get_account_global_bucket(session: boto3.session.Session) -&gt; str:
+    &#34;&#34;&#34;
+    Get account global s3 bucket.
+    If the bucket does not exits, create a new one
+
+    Args:
+        session: A boto3 session for accessing client and resource
+
+    Returns:
+        the account global s3 bucket name
+
+    &#34;&#34;&#34;
+    sts_client = session.client(&#39;sts&#39;)
+    account_id = sts_client.get_caller_identity().get(&#39;Account&#39;)
+    account_hash = hashlib.md5(account_id.encode(&#39;utf-8&#39;)).hexdigest()
+    bucket_name = f&#34;asd-{account_hash}&#34;
+
+    resource = session.resource(&#39;s3&#39;)
+    bucket = resource.Bucket(bucket_name)
+
+    if not bucket.creation_date:
+        resource.create_bucket(Bucket=bucket_name,
+                               CreateBucketConfiguration=
+                               {&#39;LocationConstraint&#39;: session.region_name})
+    return bucket_name
+
+
+# ----------------------------------------------------------
+#
+# delete_s3_prefix
+#
+# ----------------------------------------------------------
+def delete_s3_prefix(session: boto3.session.Session,
+                     bucket: str,
+                     prefix: str) -&gt; None:
+    &#34;&#34;&#34;
+    Delete keys in s3 with prefix.
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        prefix: s3 key prefix
+
+    Returns:
+        None
+
+    &#34;&#34;&#34;
+    bucket = session.resource(&#39;s3&#39;).Bucket(bucket)
+    bucket.objects.filter(Prefix=prefix).delete()
+
+    return
+
+
+# ----------------------------------------------------------
+#
+# download_s3_file
+#
+# ----------------------------------------------------------
+def download_s3_file(session: boto3.session.Session,
+                     bucket: str,
+                     key: str,
+                     filename: str) -&gt; None:
+    &#34;&#34;&#34;
+    Download s3 file to local.
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        key: s3 key
+        filename: local file name
+
+    Returns:
+        None
+    &#34;&#34;&#34;
+
+    session.resource(&#39;s3&#39;).Bucket(bucket).download_file(key, filename)
+
+    return
+    #</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="sretools.storage.delete_s3_prefix"><code class="name flex">
+<span>def <span class="ident">delete_s3_prefix</span></span>(<span>session: boto3.session.Session, bucket: str, prefix: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delete keys in s3 with prefix.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>session</code></strong></dt>
+<dd>A boto3 session for accessing client and resource</dd>
+<dt><strong><code>bucket</code></strong></dt>
+<dd>s3 bucket name</dd>
+<dt><strong><code>prefix</code></strong></dt>
+<dd>s3 key prefix</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delete_s3_prefix(session: boto3.session.Session,
+                     bucket: str,
+                     prefix: str) -&gt; None:
+    &#34;&#34;&#34;
+    Delete keys in s3 with prefix.
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        prefix: s3 key prefix
+
+    Returns:
+        None
+
+    &#34;&#34;&#34;
+    bucket = session.resource(&#39;s3&#39;).Bucket(bucket)
+    bucket.objects.filter(Prefix=prefix).delete()
+
+    return</code></pre>
+</details>
+</dd>
+<dt id="sretools.storage.download_s3_file"><code class="name flex">
+<span>def <span class="ident">download_s3_file</span></span>(<span>session: boto3.session.Session, bucket: str, key: str, filename: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Download s3 file to local.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>session</code></strong></dt>
+<dd>A boto3 session for accessing client and resource</dd>
+<dt><strong><code>bucket</code></strong></dt>
+<dd>s3 bucket name</dd>
+<dt><strong><code>key</code></strong></dt>
+<dd>s3 key</dd>
+<dt><strong><code>filename</code></strong></dt>
+<dd>local file name</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def download_s3_file(session: boto3.session.Session,
+                     bucket: str,
+                     key: str,
+                     filename: str) -&gt; None:
+    &#34;&#34;&#34;
+    Download s3 file to local.
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        key: s3 key
+        filename: local file name
+
+    Returns:
+        None
+    &#34;&#34;&#34;
+
+    session.resource(&#39;s3&#39;).Bucket(bucket).download_file(key, filename)
+
+    return
+    #</code></pre>
+</details>
+</dd>
+<dt id="sretools.storage.find_s3_keys"><code class="name flex">
+<span>def <span class="ident">find_s3_keys</span></span>(<span>session: boto3.session.Session, bucket: str, prefix: str) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Find objects from s3 bucket</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>session</code></strong></dt>
+<dd>A boto3 session for accessing client and resource</dd>
+<dt><strong><code>bucket</code></strong></dt>
+<dd>s3 bucket name</dd>
+<dt><strong><code>prefix</code></strong></dt>
+<dd>s3 key prefix</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>a list of keys matching prefix</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_s3_keys(session: boto3.session.Session,
+                 bucket: str,
+                 prefix: str) -&gt; list:
+    &#34;&#34;&#34;
+    Find objects from s3 bucket
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        prefix: s3 key prefix
+
+    Returns:
+        a list of keys matching prefix
+
+    &#34;&#34;&#34;
+    try:
+        s3_client = session.client(&#39;s3&#39;)
+        response = s3_client.list_objects(Bucket=bucket, Prefix=prefix)
+        output = []
+        for content in response.get(&#39;Contents&#39;, []):
+            output.append(content.get(&#39;Key&#39;))
+        return output
+    except (ClientError, NoCredentialsError) as e:
+        logging.info(f&#39;AWS error: {e} for key: {prefix}&#39;)
+        return []</code></pre>
+</details>
+</dd>
+<dt id="sretools.storage.get_account_global_bucket"><code class="name flex">
+<span>def <span class="ident">get_account_global_bucket</span></span>(<span>session: boto3.session.Session) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get account global s3 bucket.
+If the bucket does not exits, create a new one</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>session</code></strong></dt>
+<dd>A boto3 session for accessing client and resource</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>the account global s3 bucket name</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_account_global_bucket(session: boto3.session.Session) -&gt; str:
+    &#34;&#34;&#34;
+    Get account global s3 bucket.
+    If the bucket does not exits, create a new one
+
+    Args:
+        session: A boto3 session for accessing client and resource
+
+    Returns:
+        the account global s3 bucket name
+
+    &#34;&#34;&#34;
+    sts_client = session.client(&#39;sts&#39;)
+    account_id = sts_client.get_caller_identity().get(&#39;Account&#39;)
+    account_hash = hashlib.md5(account_id.encode(&#39;utf-8&#39;)).hexdigest()
+    bucket_name = f&#34;asd-{account_hash}&#34;
+
+    resource = session.resource(&#39;s3&#39;)
+    bucket = resource.Bucket(bucket_name)
+
+    if not bucket.creation_date:
+        resource.create_bucket(Bucket=bucket_name,
+                               CreateBucketConfiguration=
+                               {&#39;LocationConstraint&#39;: session.region_name})
+    return bucket_name</code></pre>
+</details>
+</dd>
+<dt id="sretools.storage.get_arcade_buckets"><code class="name flex">
+<span>def <span class="ident">get_arcade_buckets</span></span>(<span>session: boto3.session.Session, arcade: str) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the arcade buckets as a dictionary.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>session</code></strong></dt>
+<dd>A boto3 session for accessing client and resource</dd>
+<dt><strong><code>arcade</code></strong></dt>
+<dd>The name of arcade</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A dictionary with key(app, infrastructure, assets): value (bucket name)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_arcade_buckets(session: boto3.session.Session,
+                       arcade: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Return the arcade buckets as a dictionary.
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        arcade: The name of arcade
+        
+    Returns:
+        A dictionary with key(app, infrastructure, assets): value (bucket name)
+    &#34;&#34;&#34;
+    arcade = arcade.replace(&#39;_&#39;, &#39;&#39;)
+    s3_client = session.client(&#39;s3&#39;)
+
+    bucket_dict = {}
+    buckets = s3_client.list_buckets()
+
+    for bucket in buckets[&#39;Buckets&#39;]:
+        if f&#34;{arcade}&#34; in bucket[&#39;Name&#39;]:
+            bucket_dict[bucket[&#39;Name&#39;].split(&#39;.&#39;)[-3]] = bucket[&#39;Name&#39;]
+
+    return bucket_dict</code></pre>
+</details>
+</dd>
+<dt id="sretools.storage.key_exists"><code class="name flex">
+<span>def <span class="ident">key_exists</span></span>(<span>bucket: str, s3_file_path: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check for key in bucket.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>bucket</code></strong></dt>
+<dd>s3 bucket</dd>
+<dt><strong><code>s3_file_path</code></strong></dt>
+<dd>Full path in s3 with filename</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>key exists</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def key_exists(bucket: str,
+               s3_file_path: str) -&gt; bool:
+    &#34;&#34;&#34;
+    Check for key in bucket.
+
+    Args:
+        bucket: s3 bucket
+        s3_file_path: Full path in s3 with filename
+        
+    Returns:
+        bool: key exists
+    &#34;&#34;&#34;
+    s3_client = boto3.client(&#39;s3&#39;)
+    response = s3_client.list_objects_v2(Bucket=bucket,
+                                         Prefix=s3_file_path)
+    return &#39;Contents&#39; in response</code></pre>
+</details>
+</dd>
+<dt id="sretools.storage.load_json"><code class="name flex">
+<span>def <span class="ident">load_json</span></span>(<span>bucket: str, s3_file_path: str) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Load json object from json file in s3 bucket</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>bucket</code></strong></dt>
+<dd>s3 bucket</dd>
+<dt><strong><code>s3_file_path</code></strong></dt>
+<dd>Full path in s3 with filename</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>return the json object from json file in s3</dd>
+</dl>
+<p>{}: if file is invalid or file path is invalid.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_json(bucket: str,
+              s3_file_path: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Load json object from json file in s3 bucket
+    
+    Args:
+        bucket: s3 bucket
+        s3_file_path: Full path in s3 with filename
+
+    Returns:
+        dict: return the json object from json file in s3
+        {}: if file is invalid or file path is invalid.
+    &#34;&#34;&#34;
+
+    s3_client = boto3.client(&#39;s3&#39;)
+    try:
+        obj = s3_client.get_object(Bucket=bucket, Key=s3_file_path)
+        return json.loads(obj[&#39;Body&#39;].read().decode(&#39;utf-8&#39;))
+    except Exception as e:
+        logging.error(f&#34;Exception: {e}&#34;)
+        return {}</code></pre>
+</details>
+</dd>
+<dt id="sretools.storage.s3_file_timestamp"><code class="name flex">
+<span>def <span class="ident">s3_file_timestamp</span></span>(<span>session: boto3.session.Session, bucket: str, s3_file_path: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns Timestamp for a file in S3</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>session</code></strong> :&ensp;<code>boto3.session.Session</code></dt>
+<dd>[Boto3 Session]</dd>
+<dt><strong><code>bucket</code></strong> :&ensp;<code>str</code></dt>
+<dd>[Name of the S3 Bucket]</dd>
+<dt><strong><code>s3_file_path</code></strong> :&ensp;<code>str</code></dt>
+<dd>[S3 file path]</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>[type]</code></dt>
+<dd>[description]</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def s3_file_timestamp(session: boto3.session.Session, 
+                      bucket: str,
+                      s3_file_path: str):
+    &#34;&#34;&#34;
+    Returns Timestamp for a file in S3
+
+    Args:
+        session (boto3.session.Session): [Boto3 Session]
+        bucket (str): [Name of the S3 Bucket]
+        s3_file_path (str): [S3 file path]
+
+    Returns:
+        [type]: [description]
+    &#34;&#34;&#34;
+    s3_client = session.client(&#39;s3&#39;)
+    obj = s3_client.get_object(Bucket=bucket, Key=s3_file_path)
+    date = obj[&#39;LastModified&#39;]
+
+    return date.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;)</code></pre>
+</details>
+</dd>
+<dt id="sretools.storage.s3_json_to_dict"><code class="name flex">
+<span>def <span class="ident">s3_json_to_dict</span></span>(<span>session: boto3.session.Session, bucket: str, s3_file_path: str) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Load json file in s3 and return as a dictionary</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>session</code></strong></dt>
+<dd>A boto3 session for accessing client and resource</dd>
+<dt><strong><code>bucket</code></strong></dt>
+<dd>bucket name</dd>
+<dt><strong><code>s3_file_path</code></strong></dt>
+<dd>Full path in S3 with filename</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>return the dictionary from json file in s3, or empty dictionary</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def s3_json_to_dict(session: boto3.session.Session,
+                    bucket: str,
+                    s3_file_path: str) -&gt; dict:
+    &#34;&#34;&#34;
+    Load json file in s3 and return as a dictionary
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: bucket name
+        s3_file_path: Full path in S3 with filename
+
+    Returns:
+        dict: return the dictionary from json file in s3, or empty dictionary
+    &#34;&#34;&#34;
+
+    s3_client = session.client(&#39;s3&#39;)
+    try:
+        obj = s3_client.get_object(Bucket=bucket, Key=s3_file_path)
+        return json.loads(obj[&#39;Body&#39;].read())
+    except Exception as e:
+        logging.info(f&#34;Exception: {e} for key: {s3_file_path}&#34;)
+        return {}</code></pre>
+</details>
+</dd>
+<dt id="sretools.storage.upload_asteroid_json"><code class="name flex">
+<span>def <span class="ident">upload_asteroid_json</span></span>(<span>session: boto3.session.Session, bucket: str, prefix: str, name: str, version: str, data: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Upload asd/asteroid json to s3. Always add a new s3 key and
+update latest key to the new data.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>session</code></strong></dt>
+<dd>A boto3 session for accessing client and resource</dd>
+<dt><strong><code>bucket</code></strong></dt>
+<dd>s3 bucket name</dd>
+<dt><strong><code>prefix</code></strong></dt>
+<dd>prefix of the s3 key ('asd' or 'asteroid')</dd>
+<dt><strong><code>name</code></strong></dt>
+<dd>asd service or asteroid name</dd>
+<dt><strong><code>version</code></strong></dt>
+<dd>version str</dd>
+<dt><strong><code>data</code></strong></dt>
+<dd>a serialized json str</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>the s3 key of latest version or empty string</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def upload_asteroid_json(session: boto3.session.Session,
+                         bucket: str,
+                         prefix: str,
+                         name: str,
+                         version: str,
+                         data: str) -&gt; str:
+    &#34;&#34;&#34;
+    Upload asd/asteroid json to s3. Always add a new s3 key and
+    update latest key to the new data.
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        prefix: prefix of the s3 key (&#39;asd&#39; or &#39;asteroid&#39;)
+        name: asd service or asteroid name
+        version: version str
+        data: a serialized json str
+
+    Returns:
+        the s3 key of latest version or empty string
+
+    &#34;&#34;&#34;
+
+    date_radix = datetime.utcnow().strftime(&#34;%Y/%m/%d/%H/%M&#34;)
+    filename = f&#34;{name}.json&#34;
+    hash_json = hashlib.md5(str(filename).encode(&#39;utf-8&#39;)).hexdigest()
+    radix_hash = f&#34;{prefix}/{name}/{version}/{date_radix}/{hash_json}.json&#34;
+    radix_hash_latest = f&#39;{prefix}/{name}/latest/latest.json&#39;
+
+    new_version = upload_to_s3(session, bucket, data, radix_hash)
+
+    new_latest = upload_to_s3(session, bucket, data, radix_hash_latest)
+
+    if new_version and new_latest:
+        print(f&#39;{bucket} {radix_hash}&#39;)
+        print(f&#39;{bucket} {radix_hash_latest}&#39;)
+        return radix_hash_latest
+    else:
+        return &#39;&#39;</code></pre>
+</details>
+</dd>
+<dt id="sretools.storage.upload_to_s3"><code class="name flex">
+<span>def <span class="ident">upload_to_s3</span></span>(<span>session: boto3.session.Session, bucket: str, data: str, key: str) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Uploads a json str to s3</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>session</code></strong></dt>
+<dd>A boto3 session for accessing client and resource</dd>
+<dt><strong><code>bucket</code></strong></dt>
+<dd>s3 bucket name</dd>
+<dt><strong><code>data</code></strong></dt>
+<dd>a serialized json str</dd>
+<dt><strong><code>key</code></strong></dt>
+<dd>s3 object key</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Bool</code></dt>
+<dd>True (If upload was successful) False (If upload was unsuccessful)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def upload_to_s3(session: boto3.session.Session,
+                 bucket: str,
+                 data: str,
+                 key: str) -&gt; bool:
+    &#34;&#34;&#34;
+    Uploads a json str to s3
+
+    Args:
+        session: A boto3 session for accessing client and resource
+        bucket: s3 bucket name
+        data: a serialized json str
+        key: s3 object key
+        
+    Returns:
+        Bool: True (If upload was successful) False (If upload was unsuccessful)
+    &#34;&#34;&#34;
+    client = session.client(&#39;s3&#39;)
+    try:
+        client.put_object(Bucket=bucket, Key=key, Body=data)
+        return True
+    except (ClientError, NoCredentialsError) as e:
+        logging.error(f&#39;AWS error: {e}&#39;)
+        return False</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="sretools" href="index.html">sretools</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="sretools.storage.delete_s3_prefix" href="#sretools.storage.delete_s3_prefix">delete_s3_prefix</a></code></li>
+<li><code><a title="sretools.storage.download_s3_file" href="#sretools.storage.download_s3_file">download_s3_file</a></code></li>
+<li><code><a title="sretools.storage.find_s3_keys" href="#sretools.storage.find_s3_keys">find_s3_keys</a></code></li>
+<li><code><a title="sretools.storage.get_account_global_bucket" href="#sretools.storage.get_account_global_bucket">get_account_global_bucket</a></code></li>
+<li><code><a title="sretools.storage.get_arcade_buckets" href="#sretools.storage.get_arcade_buckets">get_arcade_buckets</a></code></li>
+<li><code><a title="sretools.storage.key_exists" href="#sretools.storage.key_exists">key_exists</a></code></li>
+<li><code><a title="sretools.storage.load_json" href="#sretools.storage.load_json">load_json</a></code></li>
+<li><code><a title="sretools.storage.s3_file_timestamp" href="#sretools.storage.s3_file_timestamp">s3_file_timestamp</a></code></li>
+<li><code><a title="sretools.storage.s3_json_to_dict" href="#sretools.storage.s3_json_to_dict">s3_json_to_dict</a></code></li>
+<li><code><a title="sretools.storage.upload_asteroid_json" href="#sretools.storage.upload_asteroid_json">upload_asteroid_json</a></code></li>
+<li><code><a title="sretools.storage.upload_to_s3" href="#sretools.storage.upload_to_s3">upload_to_s3</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

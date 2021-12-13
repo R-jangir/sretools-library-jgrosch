@@ -1,11 +1,11 @@
 ## Install
 
 
-* cd /home/josef.grosch/Git/sretools-library/lib/sretools
 * cd /home/josef.grosch/Git/sretools-library/lib
 * sudo pip install ./sretools
-
 * sudo pip install --upgrade ./sretools
+* cd /home/josef.grosch/Git/sretools-library/docs
+* pdoc --html sretools
 
 // ----------------------------
 
@@ -17,4 +17,5 @@ botocore
 graphlib
 jsonschema
 kubernetes
+pdoc3
 

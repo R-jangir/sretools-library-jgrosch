@@ -3,7 +3,7 @@ import time
 import os, sys
 from botocore.exceptions import ClientError
 
-from sretools import grv, utils
+from sretools import utils, grv
 
 # ----------------------------------------------------------
 #

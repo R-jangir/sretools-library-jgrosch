@@ -2,6 +2,7 @@
 
 
 * cd /home/josef.grosch/Git/sretools-library/lib/sretools
+* cd /home/josef.grosch/Git/sretools-library/lib
 * sudo pip install ./sretools
 
 * sudo pip install --upgrade ./sretools

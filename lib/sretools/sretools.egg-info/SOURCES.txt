@@ -3,9 +3,11 @@ setup.py
 sretools/__init__.py
 sretools/alb.py
 sretools/ami.py
+sretools/aws.py
 sretools/cloudmap.py
 sretools/ecr.py
 sretools/eks.py
+sretools/grv.py
 sretools/ipcalc.py
 sretools/k8s.py
 sretools/log.py

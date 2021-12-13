@@ -3899,26 +3899,26 @@ def _polish_corners(str_val):
             raise type(err)(
                 "Internal Error for source(): {}".format(err))
 
-    try:
-        conf_file = open(fname)
-        for line in conf_file.readlines():
-            # strip newlines separately (covers quotes edge case),
-            line = line.strip().rstrip()
-            if re.match('[a-zA-Z]\w*=', line):
-                # regex explained:
-                #                re.match('[a-zA-Z]\w*=', line)
-                #                     ^      ^       ^ ^^
-                #                     |      |       | ||
-                # beginning of newline|      |       | ||
-                #      alphA, first char only|       | ||
-                #                    alphAnum, or '_'| ||
-                #      (py equavalent to [a-zA-z0-9_]) ||
-                #              zero or more of previous||
-                #                var assignment delmiter|
-                #
-                # Value comes after that, even whitespace is a legal Null.
-                # Compiled regex machine is cached during runtime for loop.
-                _kvpair = line.split('=', 1)
+        try:
+            conf_file = open(fname)
+            for line in conf_file.readlines():
+                # strip newlines separately (covers quotes edge case),
+                line = line.strip().rstrip()
+                if re.match('[a-zA-Z]\w*=', line):
+                    # regex explained:
+                    #                re.match('[a-zA-Z]\w*=', line)
+                    #                     ^      ^       ^ ^^
+                    #                     |      |       | ||
+                    # beginning of newline|      |       | ||
+                    #      alphA, first char only|       | ||
+                    #                    alphAnum, or '_'| ||
+                    #      (py equavalent to [a-zA-z0-9_]) ||
+                    #              zero or more of previous||
+                    #                var assignment delmiter|
+                    #
+                    # Value comes after that, even whitespace is a legal Null.
+                    # Compiled regex machine is cached during runtime for loop.
+                    _kvpair = line.split('=', 1)
                 try:
                     return_dict[_kvpair[0]] = _polish_corners(_kvpair[1])
                 except IndexError:

@@ -3877,58 +3877,6 @@ def source(fname=None):
     '''
     return_dict = OrderedDict()
 
-# ----------------------------------------------------------
-#
-# HERE
-#
-# ----------------------------------------------------------
-def _polish_corners(str_val):
-        '''
-        Helper to strip either "'" or '"' from quoted string values.
-        Only operates if both beginning and end of string have the same quotes.
-        If this condition is not met, reliably return the string as-is.
-        '''
-        try:
-            if str_val.startswith('"') and str_val.endswith('"'):
-                return str_val[1:-1]
-            elif str_val.startswith("'") and str_val.endswith("'"):
-                return str_val[1:-1]
-            else:
-                return str(str_val)
-        except Exception as err:
-            raise type(err)(
-                "Internal Error for source(): {}".format(err))
-
-        try:
-            conf_file = open(fname)
-            for line in conf_file.readlines():
-                # strip newlines separately (covers quotes edge case),
-                line = line.strip().rstrip()
-                if re.match('[a-zA-Z]\w*=', line):
-                    # regex explained:
-                    #                re.match('[a-zA-Z]\w*=', line)
-                    #                     ^      ^       ^ ^^
-                    #                     |      |       | ||
-                    # beginning of newline|      |       | ||
-                    #      alphA, first char only|       | ||
-                    #                    alphAnum, or '_'| ||
-                    #      (py equavalent to [a-zA-z0-9_]) ||
-                    #              zero or more of previous||
-                    #                var assignment delmiter|
-                    #
-                    # Value comes after that, even whitespace is a legal Null.
-                    # Compiled regex machine is cached during runtime for loop.
-                    _kvpair = line.split('=', 1)
-                try:
-                    return_dict[_kvpair[0]] = _polish_corners(_kvpair[1])
-                except IndexError:
-                    return_dict[_kvpair[0]] = None
-        conf_file.close()
-    except Exception as err:
-        raise type(err)(
-            'cannot source() file: {}'.format(err))
-
-    return return_dict
 
 
 # ----------------------------------------------------------
@@ -6094,9 +6042,59 @@ def update_grv_tag(session: boto3.session.Session,
                 {
                     'Key': tag_key,
                     'Value': tag_value
-                }
-            ]
-        )
+                    }
+                ]
+            )
         return tag_value
     else:
         return ""
+    # placed here temp
+    return
+
+def _polish_corners(str_val):
+    """
+    Helper to strip either \" or \' from quoted string values.
+    Only operates if both beginning and end of string have the same quotes.
+    If this condition is not met, reliably return the string as-is.
+    """
+    try:
+        if str_val.startswith('"') and str_val.endswith('"'):
+            return str_val[1:-1]
+        elif str_val.startswith("'") and str_val.endswith("'"):
+            return str_val[1:-1]
+        else:
+            return str(str_val)
+    except Exception as err:
+        raise type(err)(
+            "Internal Error for source(): {}".format(err))
+
+    try:
+        conf_file = open(fname)
+        for line in conf_file.readlines():
+            # strip newlines separately (covers quotes edge case),
+            line = line.strip().rstrip()
+            if re.match('[a-zA-Z]\w*=', line):
+                # regex explained:
+                #                re.match('[a-zA-Z]\w*=', line)
+                #                     ^      ^       ^ ^^
+                #                     |      |       | ||
+                # beginning of newline|      |       | ||
+                #      alphA, first char only|       | ||
+                #                    alphAnum, or '_'| ||
+                #      (py equavalent to [a-zA-z0-9_]) ||
+                #              zero or more of previous||
+                #                var assignment delmiter|
+                #
+                # Value comes after that, even whitespace is a legal Null.
+                # Compiled regex machine is cached during runtime for loop.
+                _kvpair = line.split('=', 1)
+                try:
+                    return_dict[_kvpair[0]] = _polish_corners(_kvpair[1])
+                except IndexError:
+                    return_dict[_kvpair[0]] = None
+            conf_file.close()
+    except Exception as err:
+        raise type(err)(
+            'cannot source() file: {}'.format(err))
+        
+    return return_dict

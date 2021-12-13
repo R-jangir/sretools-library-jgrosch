@@ -16,7 +16,7 @@ from botocore.exceptions import ClientError
 # ----------------------------------------------------------
 def rds_default_creds(arcade_name: str,
                       name='rds_default_credentials',
-                      length=12) -> boolean:
+                      length=12) -> bool:
     """
     Generates Default RDS creds for secrets manager per arcade
     

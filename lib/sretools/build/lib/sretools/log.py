@@ -1,12 +1,12 @@
 import logging
-
+import argparse
 
 # ----------------------------------------------------------
 #
 # add_log_level_argument
 #
 # ----------------------------------------------------------
-def add_log_level_argument(parser: argparse.parser) -> None:
+def add_log_level_argument(parser) -> None:
     """
     Args:
 
